@@ -13,11 +13,11 @@ export const hospitalfilter = (searchedHospData, filterData) => {
     }
     if (
       filterData.city.length == 0 &&
-      filterData.sub.length > 0 &&
-      filterData.status.length === 0
+      filterData.status.length > 0 &&
+      filterData.sub.length === 0
     ) {
       return searchedHospData.filter((seachHosp) => {
-        return filterData.sub.includes(seachHosp.subscription);
+        return filterData.status.includes(seachHosp.status);
       });
     }
     if (

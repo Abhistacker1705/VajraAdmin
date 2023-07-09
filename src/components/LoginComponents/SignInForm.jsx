@@ -86,24 +86,6 @@ const SignInForm = () => {
           src={LoginUser}
           alt="Login For Admin to Medpick Vajra"
         />
-        <Stack
-          width="100%"
-          justifyContent="center"
-          alignItems="center"
-          direction="column"
-          gap="1rem">
-          {/* <Typography color="secondary" variant="body1">
-            Download Our App
-          </Typography> */}
-          {/* <Box display="flex" gap="2.5rem">
-            <Link to="/">
-              <img src={Playstore} alt="Download Vajra App from Playstore" />
-            </Link>
-            <Link>
-              <img src={AppStore} alt="Download Vajra App from Appstore" />
-            </Link>
-          </Box> */}
-        </Stack>
       </Box>
       <Box
         sx={{
@@ -117,7 +99,7 @@ const SignInForm = () => {
         justifyContent="start"
         alignItems="center"
         width={{mobile: "100%", laptop: "50%"}}
-        maxHeight="90vh">
+        height="100%">
         <Typography variant="h2" color="text.primary">
           Get Started
         </Typography>
@@ -205,9 +187,13 @@ const SignInForm = () => {
             fullWidth
           />
           <Link
-            fontFamily="'Poppins' ,sans-seriff"
-            sx={{alignSelf: "end", fontSize: "1rem"}}
-            color="primary">
+            style={{
+              fontFamily: "'Poppins' ,sans-seriff",
+              alignSelf: "end",
+              fontSize: "1rem",
+              color: "#1746A2",
+              textDecoration: "none",
+            }}>
             Forgot Password
           </Link>
         </Stack>
@@ -231,12 +217,6 @@ const SignInForm = () => {
             onClick={handleDataSubmit}>
             Sign in
           </Button>
-          <Typography color="primary" variant="subtitle2">
-            New to Vajra?{" "}
-            <Link underline="hover" sx={{color: "secondary.main"}}>
-              Sign Up
-            </Link>
-          </Typography>
         </Box>
       </Box>
     </Stack>

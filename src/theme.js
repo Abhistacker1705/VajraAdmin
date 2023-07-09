@@ -72,6 +72,7 @@ const theme = createTheme({
     box: "0px 4px 8px -2px rgba(0, 79, 149, 0.25)",
     nav: "0px 4px 8px -2px rgba(154, 154, 154, 0.25)",
     footer: "0px -4px 8px -2px rgba(154, 154, 154, 0.25)",
+    button: "0px 2px 4px 0px rgba(0, 0, 0, 0.25)",
   },
 });
 
