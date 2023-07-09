@@ -36,6 +36,13 @@ const SideBarWrapper = (props) => {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    console.log("Logout Done");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  };
+
   const drawer = (
     <>
       <Stack alignItems="center" m={2}>
@@ -84,7 +91,7 @@ const SideBarWrapper = (props) => {
       <Button
         startIcon={<LogoutIcon />}
         component={Link}
-        to={"/logout"}
+        onClick={handleLogout}
         fullWidth
         sx={{
           borderRadius: "0",

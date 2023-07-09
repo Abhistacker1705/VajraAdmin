@@ -222,10 +222,9 @@ const SideBarWrapper = (props) => {
               <MenuItem
                 onClick={handleClose2}
                 component={Link}
-                to="/logout"
+                to="/"
                 button
-                key={"2"}
-                selected={"/logout" === path}>
+                key={"2"}>
                 {" "}
                 Log out
               </MenuItem>

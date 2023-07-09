@@ -1,9 +1,13 @@
-import {createTheme} from "@mui/material/styles";
+import {createTheme, experimental_extendTheme} from "@mui/material/styles";
 import shadows from "@mui/material/styles/shadows";
-
 const theme = createTheme({
   breakpoints: {
     values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
       mobile: 0,
       tablet: 480,
       laptop: 790,

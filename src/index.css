@@ -18,15 +18,9 @@ body {
   html {
     font-size: 80%;
   }
-  .LoginUserImage {
-    width: 20%;
-  }
 }
 @media (max-width: 480px) {
   html {
     font-size: 60%;
-  }
-  .LoginUserImage {
-    width: 20%;
   }
 }

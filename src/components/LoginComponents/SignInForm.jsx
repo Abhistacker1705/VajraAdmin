@@ -58,7 +58,7 @@ const SignInForm = () => {
       justifyContent="space-between"
       alignItems={{mobile: "center", laptop: "initial"}}
       minHeight="100vh"
-      gap={{mobile: "2rem", laptop: "0"}}>
+      gap={{mobile: "3rem", laptop: "0"}}>
       <Box
         display="flex"
         flexDirection="column"
@@ -66,7 +66,7 @@ const SignInForm = () => {
         alignItems="center"
         rowGap="3rem"
         width={{mobile: "100%", laptop: "50%"}}
-        maxHeight="90%">
+        maxHeight="100%">
         <Typography textAlign="center" variant="h1" color="text.primary">
           Welcome, Vajra Admin
         </Typography>
@@ -82,7 +82,7 @@ const SignInForm = () => {
 
         <img
           className="LoginUserImage"
-          style={{height: "40%", width: "100%"}}
+          style={{maxWidth: "80%"}}
           src={LoginUser}
           alt="Login For Admin to Medpick Vajra"
         />
@@ -193,7 +193,8 @@ const SignInForm = () => {
               fontSize: "1rem",
               color: "#1746A2",
               textDecoration: "none",
-            }}>
+            }}
+            to="/forgotpass">
             Forgot Password
           </Link>
         </Stack>
