@@ -14,7 +14,7 @@ const HospitalTable = ({searchedFilteredHospData}) => {
     <Box
       sx={{
         width: "100%",
-        overflowX: {xs: "scroll", sm: "visible"},
+        overflowX: {xs: "scroll", desktop: "visible"},
       }}>
       <Table
         aria-label="simple table"

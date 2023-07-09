@@ -1,7 +1,8 @@
 import React from "react";
 import VajraLogo from "/VajraLogo.svg";
-import {Box, Stack, Link, Typography, IconButton, Icon} from "@mui/material";
+import {Box, Stack, Typography, IconButton} from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import {Link} from "react-router-dom";
 const Navbar = () => {
   return (
     <Stack
@@ -20,17 +21,25 @@ const Navbar = () => {
           alt="Vajra Admin Sign Page"
         />
       </Box>
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        sx={{textDecoration: "none"}}
+        component={Link}
+        to="/"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center">
         <IconButton>
           <HomeRoundedIcon sx={{color: "#FFFFFF"}} />
         </IconButton>
-        <Link
-          sx={{display: {mobile: "none", laptop: "block"}}}
-          underline="hover"
-          color="#FFFFFF"
+        <Typography
+          sx={{
+            display: {mobile: "none", laptop: "block"},
+            color: "#FFFFFF",
+            textDecoration: "none",
+          }}
           variant="body1">
           HOME
-        </Link>
+        </Typography>
       </Box>
     </Stack>
   );

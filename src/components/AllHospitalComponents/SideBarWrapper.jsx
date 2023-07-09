@@ -96,6 +96,7 @@ const SideBarWrapper = (props) => {
         sx={{
           borderRadius: "0",
           gap: "1rem",
+          paddingLeft: "1rem",
           color: "#FFFFFF",
           backgroundColor: "primary.main",
           justifyContent: "start",

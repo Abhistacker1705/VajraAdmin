@@ -4,15 +4,17 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Link,
   TextField,
   Box,
   Button,
 } from "@mui/material";
-import HouseIcon from "@mui/icons-material/House";
+import {Link} from "react-router-dom";
+// import HouseIcon from "@mui/icons-material/House";
+import Navbar from "../components/LoginComponents/Navbar";
+import Footer from "../components/LoginComponents/Footer";
 
 const Forgot = () => {
-  let [email, setEmail] = useState();
+  let [email, setEmail] = useState("");
   let [error, setError] = useState(false);
   let [successMessage, setSuccessMessage] = useState("");
   let [errorMessage, setErrorMessage] = useState("");
@@ -63,8 +65,8 @@ const Forgot = () => {
   };
 
   return (
-    <Box textAlign="center" width="100%">
-      <Box>
+    <Box textAlign="center" width="100%" minHeight="100vh">
+      {/* <Box>
         <AppBar sx={{background: "primary.main"}}>
           <Toolbar
             sx={{
@@ -112,9 +114,12 @@ const Forgot = () => {
                   width: "40px",
                   height: "31.85px",
                   marginTop: "10px",
-                }}></HouseIcon>
+                }}
+              />
             </Typography>
-            <Link
+            <Button
+              component={Link}
+              to="/"
               sx={{
                 color: "#FFFFFF",
                 marginTop: "4px",
@@ -122,6 +127,7 @@ const Forgot = () => {
                 fontSize: "24px",
                 fontWeight: "500",
                 textDecoration: "none",
+                textTransform: "none",
                 visibility: {
                   xl: "visible",
                   lg: "visible",
@@ -131,10 +137,11 @@ const Forgot = () => {
                 },
               }}>
               Home
-            </Link>
+            </Button>
           </Toolbar>
         </AppBar>
-      </Box>
+      </Box> */}
+      <Navbar />
 
       <Box
         sx={{
@@ -162,12 +169,13 @@ const Forgot = () => {
             xs: "18px",
           },
           marginTop: {
-            xl: "240px",
-            lg: "180px",
-            md: "160px",
-            sm: "140px",
-            xs: "120px",
+            xl: "40px",
+            lg: "40px",
+            md: "40px",
+            sm: "40px",
+            xs: "20px",
           },
+          marginBottom: "2rem",
         }}>
         <Box marginTop="40px">
           <Typography
@@ -328,8 +336,9 @@ const Forgot = () => {
           </form>
         </Box>
       </Box>
+      <Footer />
 
-      <footer
+      {/* <footer
         width={{xl: "100%", lg: "100%", md: "100%", sm: "100%", xs: "100%"}}>
         <Box
           sx={{
@@ -415,7 +424,7 @@ const Forgot = () => {
             Terms & conditions | FAQ’s
           </Typography>
         </Box>
-      </footer>
+      </footer> */}
     </Box>
   );
 };
