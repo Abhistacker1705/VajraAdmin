@@ -213,7 +213,7 @@ const SideBarWrapper = (props) => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                bgcolor: "white",
+                bgcolor: "background.default",
               }}>
               <AccountCircleOutlinedIcon sx={{color: "#FF731D"}} />
               userIds

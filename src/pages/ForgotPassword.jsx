@@ -1,17 +1,9 @@
-import React, {useState} from "react";
-import VajraLogo from "/VajraLogo.svg";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  TextField,
-  Box,
-  Button,
-} from "@mui/material";
-import {Link} from "react-router-dom";
-// import HouseIcon from "@mui/icons-material/House";
+import React, {useEffect, useState} from "react";
+import {Typography, TextField, Box, Button} from "@mui/material";
 import Navbar from "../components/LoginComponents/Navbar";
 import Footer from "../components/LoginComponents/Footer";
+import {useDispatch, useSelector} from "react-redux";
+import {forgotPass} from "../redux/data/action";
 
 const Forgot = () => {
   let [email, setEmail] = useState("");
@@ -19,45 +11,43 @@ const Forgot = () => {
   let [successMessage, setSuccessMessage] = useState("");
   let [errorMessage, setErrorMessage] = useState("");
 
+  const dispatch = useDispatch();
+  const {isLoading, isError, forgotPassReqResponse} = useSelector(
+    (store) => store.data
+  );
   let handleEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleSend = async (e) => {
+  const handleSend = (e) => {
     e.preventDefault();
     if (validateEmail(email)) {
-      let response = await fetch(
-        "https://api.medpick.in/vajra/fbsignuplogin/resetpassword",
-        {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({email: email}),
-        }
-      );
-
-      if (response.ok) {
-        let responseData = await response.json();
-        if (responseData.success) {
-          setEmail("");
-          setErrorMessage("");
-          setSuccessMessage(
-            "“Password Reset link has been Send to your Registered email ID”"
-          );
-        } else {
-          setSuccessMessage("");
-          setErrorMessage(responseData.message || "“Email Not Found”");
-        }
-      } else {
-        let responseData = await response.json();
-        setSuccessMessage("");
-        setErrorMessage(responseData.error || "Reset Password Limit exceeded");
-      }
+      let payloadData = {
+        email: email,
+      };
+      dispatch(forgotPass(payloadData));
     } else {
       setError(true);
       setErrorMessage("Please enter a valid email");
       setSuccessMessage("");
     }
   };
+
+  useEffect(() => {
+    if (forgotPassReqResponse?.length !== 0) {
+      if (forgotPassReqResponse.success) {
+        console.log(forgotPassReqResponse);
+        setEmail("");
+        setErrorMessage("");
+        setSuccessMessage(
+          "“Password Reset link has been Send to your Registered email ID”"
+        );
+      } else {
+        setSuccessMessage("");
+        setErrorMessage(forgotPassReqResponse.message || "“Email Not Found”");
+      }
+    } else setErrorMessage("");
+  }, [forgotPassReqResponse]);
 
   const validateEmail = (email) => {
     const emailType = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
