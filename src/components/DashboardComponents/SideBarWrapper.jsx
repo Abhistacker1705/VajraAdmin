@@ -1,10 +1,11 @@
-import {Box, Button, Stack, Drawer, IconButton, AppBar} from "@mui/material";
+import {Box, Button, Stack, Drawer, IconButton, Popover} from "@mui/material";
 import VajraLogo from "/VajraLogo.svg";
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import {ExpandMore, ExpandLess, Logout} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 const drawerWidth = 230;
 
@@ -15,6 +16,15 @@ const SideBarWrapper = (props) => {
 
   const handleDrawerToggle = (e) => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   const drawer = (
@@ -50,6 +60,18 @@ const SideBarWrapper = (props) => {
             </Button>
           );
         })}
+
+        <Button
+          sx={{
+            color: "#FFFFFF",
+            justifyContent: "start",
+            paddingLeft: "2rem",
+          }}
+          style={{marginTop: "50vh"}}
+          startIcon={<Logout />}
+          fullWidth>
+          Logout
+        </Button>
       </Stack>
     </>
   );
@@ -175,15 +197,12 @@ const SideBarWrapper = (props) => {
             justifyContent="flex-end"
             alignItems="center"
             maxWidth="100vw"
-            height="5vh">
-            <Box
+            height="3vh"
+            paddingTop="2vh"
+            marginBottom="3vh">
+            <Button
               variant="h6"
-              color="black"
-              id="basic-button"
-              aria-controls={open2 ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open2 ? "true" : undefined}
-              onClick={handleClick2}
+              onClick={handleClick}
               sx={{
                 boxShadow: " 0px 2px 4px rgba(0, 0, 0, 0.25)",
                 borderRadius: "36px",
@@ -197,38 +216,53 @@ const SideBarWrapper = (props) => {
                 bgcolor: "white",
               }}>
               <AccountCircleOutlinedIcon sx={{color: "#FF731D"}} />
-              {userIds.username}
+              userIds
               {!open ? <ExpandMore /> : <ExpandLess />}
-            </Box>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorE2}
-              open={open2}
-              onClose={handleClose2}
-              sx={{marginTop: "2%"}}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
+            </Button>
+
+            {/* header with profile and logout dropdown */}
+
+            <Popover
+              sx={{
+                "& .MuiPopover-paper": {
+                  borderRadius: "0 0 1rem 1rem",
+                },
+              }}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
               }}>
-              <MenuItem
-                onClick={handleClose2}
-                component={Link}
-                to="/profile"
-                button
-                key={"2"}
-                selected={"/profile" === path}>
-                {" "}
-                Profile
-              </MenuItem>
-              <MenuItem
-                onClick={handleClose2}
-                component={Link}
-                to="/"
-                button
-                key={"2"}>
-                {" "}
-                Log out
-              </MenuItem>
-            </Menu>
+              <Box
+                display="flex"
+                flexDirection="column"
+                width="150px"
+                bgcolor="background.default"
+                borderRadius="0 0 1rem 1rem">
+                <Button
+                  onClick={handleClose}
+                  component={Link}
+                  to="/profile"
+                  button
+                  key={"1"}>
+                  Profile
+                </Button>
+                <Button
+                  onClick={handleClose}
+                  component={Link}
+                  to="/"
+                  button
+                  key={"2"}>
+                  Logout
+                </Button>
+              </Box>
+            </Popover>
           </Box>
           {props.children}
         </Box>

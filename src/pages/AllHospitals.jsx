@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import SideBarWrapper from "../components/AllHospitalComponents/SideBarWrapper";
+import SideBarWrapper from "../components/DashboardComponents/SideBarWrapper";
 import HospitalTable from "../components/AllHospitalComponents/HospitalTable";
 import {Box, Stack, Typography} from "@mui/material";
 import Search from "../components/AllHospitalComponents/Search";
