@@ -41,11 +41,11 @@ const theme = createTheme({
     fontFamily: "Poppins",
     h1: {
       fontSize: "3.125rem",
-      fontWeight: 500,
+      fontWeight: 600,
     },
     h2: {
       fontSize: "2.5rem",
-      fontWeight: 600,
+      fontWeight: 500,
     },
     h3: {
       fontSize: "1.5rem",

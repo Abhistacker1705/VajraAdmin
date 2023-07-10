@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
-import SideBarWrapper from "../components/DashboardComponents/SideBarWrapper";
-import HospitalTable from "../components/AllHospitalComponents/HospitalTable";
+import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
+import HospitalTable from "../components/AllHospital/HospitalTable";
 import {Box, Stack, Typography} from "@mui/material";
-import Search from "../components/AllHospitalComponents/Search";
+import Search from "../components/AllHospital/Search";
 import {mockData} from "../dummyData";
-import Filter from "../components/AllHospitalComponents/HospitalFilter";
-import Sort from "../components/AllHospitalComponents/Sort";
+import Filter from "../components/AllHospital/HospitalFilter";
+import Sort from "../components/AllHospital/Sort";
 import {hospitalsort} from "../utils/hospitalSort";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Typography, TextField, Box, Button} from "@mui/material";
-import Navbar from "../components/LoginComponents/Navbar";
-import Footer from "../components/LoginComponents/Footer";
+import Navbar from "../components/Login/Navbar";
+import Footer from "../components/Login/Footer";
 import {useDispatch, useSelector} from "react-redux";
 import {forgotPass} from "../redux/data/action";
 
