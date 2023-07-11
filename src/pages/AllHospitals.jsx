@@ -51,7 +51,7 @@ const AllHospitals = () => {
 
   return (
     <SideBarWrapper menuList={DashboardMenuList}>
-      <Stack>
+      <Stack minHeight="100%">
         <Box
           display="flex"
           justifyContent="space-between"

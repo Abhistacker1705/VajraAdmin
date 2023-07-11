@@ -53,6 +53,11 @@ const SideBarWrapper = (props) => {
                   backgroundColor: isActive ? "#FFFFFF" : "#1746A2",
                 };
               }}
+              sx={{
+                justifyContent: "flex-start",
+                paddingLeft: "4rem",
+                textTransform: "none",
+              }}
               startIcon={item.icon}
               fullWidth
               variant="text">
@@ -66,8 +71,8 @@ const SideBarWrapper = (props) => {
             color: "#FFFFFF",
             justifyContent: "start",
             paddingLeft: "2rem",
+            textTransform: "none",
           }}
-          style={{marginTop: "50vh"}}
           startIcon={<Logout />}
           fullWidth>
           Logout
@@ -126,7 +131,7 @@ const SideBarWrapper = (props) => {
             bgcolor: "background.default",
             alignItems: "center",
             justifyContent: "center",
-            height: "100vh",
+            height: "100%",
             flexShrink: {mobile: 0},
           }}>
           <Drawer
@@ -176,6 +181,7 @@ const SideBarWrapper = (props) => {
                 borderTopRightRadius: "3rem",
                 borderBottomRightRadius: "3rem",
                 height: "90vh",
+                marginTop: "5vh",
               },
             }}
             open>
@@ -186,9 +192,9 @@ const SideBarWrapper = (props) => {
           component="main"
           sx={{
             width: "100%",
-            height: "100vh",
+            height: "100%",
             bgcolor: "background.default",
-            margin: 0,
+            marginBottom: "2.5%",
             padding: "2.5%",
             overflowY: "scroll",
           }}>
@@ -196,10 +202,9 @@ const SideBarWrapper = (props) => {
             display="flex"
             justifyContent="flex-end"
             alignItems="center"
-            maxWidth="100vw"
-            height="3vh"
-            paddingTop="2vh"
-            marginBottom="3vh">
+            maxWidth="100%"
+            height="10vh"
+            marginTop="2vh">
             <Button
               variant="h6"
               onClick={handleClick}
@@ -215,6 +220,7 @@ const SideBarWrapper = (props) => {
                 justifyContent: "center",
                 alignItems: "center",
                 bgcolor: "background.default",
+                textTransform: "none",
               }}>
               <AccountCircleOutlinedIcon sx={{color: "#FF731D"}} />
               User
