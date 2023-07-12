@@ -5,15 +5,17 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const login_Request = () => {
   return {type: LOGIN_REQUEST};
 };
-export const login_Success = () => {
-  return {type: LOGIN_SUCCESS};
+export const login_Success = (data) => {
+  return {type: LOGIN_SUCCESS, payload: data};
 };
 
 export const login = (data) => (dispatch) => {
   dispatch(login_Request());
-  localStorage.setItem("user", data.user);
-  localStorage.setItem("userPass", data.userPass);
-  dispatch(login_Success(data));
+  const user = JSON.stringify(data.user);
+  const userPass = JSON.stringify(data.userPass);
+  localStorage.setItem("user", user);
+  localStorage.setItem("userPass", userPass);
+  dispatch(login_Success({user, userPass}));
 };
 
 //Logout Actions

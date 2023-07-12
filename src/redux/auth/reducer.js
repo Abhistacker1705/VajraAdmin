@@ -28,7 +28,7 @@ export const authReducer = (state = initState, action) => {
         ...state,
         isLoading: false,
         user: action.payload.user,
-        userPass: action.payload.userPassword,
+        userPass: action.payload.userPass,
       };
     }
     case LOGOUT_REQUEST: {

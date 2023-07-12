@@ -6,9 +6,10 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LoginUser from "/LoginUser.svg";
 import Playstore from "/PlayStore.svg";
 import AppStore from "/AppStore.svg";
-import {useState, useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useState, useEffect, useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../redux/auth/action";
+import isAuthenticated from "../../utils/Auth";
 
 const SignInForm = () => {
   const [formData, setFormData] = useState({
@@ -22,12 +23,28 @@ const SignInForm = () => {
   const [userNameError, setEmailError] = useState(true);
   const [showErrors, setShowErrors] = useState(false);
 
+  const navigate = useNavigate();
+  let user = useSelector((store) => store.auth.user);
+  let userPass = useSelector((store) => store.auth.userPass);
+  console.log(user, userPass);
+  useEffect(() => {
+    const auth = isAuthenticated();
+    if (auth) {
+      navigate("/home");
+    } else {
+      return;
+    }
+  }, [user, userPass]);
+
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
   useEffect(() => {
     validateInputs();
   }, [formData]);
+
+  const handleFormInputs = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
 
   const handleDataSubmit = () => {
     setShowErrors(true);
@@ -41,7 +58,6 @@ const SignInForm = () => {
       });
       let payloadData = {user: formData.userName, userPass: formData.password};
       dispatch(login(payloadData));
-      navigate("/dashboard");
     } else return;
   };
 
@@ -136,9 +152,8 @@ const SignInForm = () => {
             value={formData.userName}
             required
             type="email"
-            onChange={(e) =>
-              setFormData({...formData, userName: e.target.value})
-            }
+            name="userName"
+            onChange={handleFormInputs}
             placeholder="Username"
             variant="outlined"
             fullWidth
@@ -165,9 +180,8 @@ const SignInForm = () => {
             value={formData.password}
             required
             type={passVisible ? "text" : "password"}
-            onChange={(e) =>
-              setFormData({...formData, password: e.target.value})
-            }
+            onChange={handleFormInputs}
+            name="password"
             iconEnd={
               <Visibility onClick={() => setPassVisible(!passVisible)} />
             }
@@ -189,9 +203,8 @@ const SignInForm = () => {
             value={formData.secretKey}
             required
             type="password"
-            onChange={(e) =>
-              setFormData({...formData, secretKey: e.target.value})
-            }
+            name="secretKey"
+            onChange={handleFormInputs}
             placeholder="SecretKey"
             variant="outlined"
             fullWidth

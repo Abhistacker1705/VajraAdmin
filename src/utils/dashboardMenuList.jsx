@@ -9,27 +9,27 @@ import {
 export const DashboardMenuList = [
   {
     name: "Home",
-    path: "/dashboard",
+    path: "/home",
     icon: <HomeRounded />,
   },
   {
     name: "Hospitals",
-    path: "/dashboard/hosp",
+    path: "/home/hosp",
     icon: <LocalHospital />,
   },
   {
     name: "Service Request",
-    path: "/dashboard/servicereq",
+    path: "/home/servicereq",
     icon: <SettingsSuggest />,
   },
   {
     name: "Users",
-    path: "/dashboard/users",
+    path: "/home/users",
     icon: <Group />,
   },
   {
     name: "Messages",
-    path: "/dashboard/messages",
+    path: "/home/messages",
     icon: <Message />,
   },
 ];

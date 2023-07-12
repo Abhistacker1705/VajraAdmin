@@ -32,7 +32,7 @@ const SideBarWrapper = (props) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/");
+    navigate("/login");
   };
 
   const drawer = (
@@ -43,7 +43,7 @@ const SideBarWrapper = (props) => {
           alt="Dashboard Home Page"
           height={80}
           width={80}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/login")}
         />
       </Stack>
       <Stack spacing={1} alignItems="flex-start" justifyContent="flex-start">
@@ -112,7 +112,7 @@ const SideBarWrapper = (props) => {
             style={{height: "40%"}}
             src={VajraLogo}
             alt="Dashboard Home Page"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/login")}
           />
         </Box>
       </Box>
@@ -265,8 +265,6 @@ const SideBarWrapper = (props) => {
                     handleClose();
                     handleLogout();
                   }}
-                  component={Link}
-                  to="/"
                   key={"2"}>
                   Logout
                 </Button>
