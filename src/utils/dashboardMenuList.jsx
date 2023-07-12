@@ -3,6 +3,7 @@ import {
   LocalHospital,
   SettingsSuggest,
   Message,
+  Group,
 } from "@mui/icons-material";
 
 export const DashboardMenuList = [
@@ -20,6 +21,11 @@ export const DashboardMenuList = [
     name: "Service Request",
     path: "/dashboard/servicereq",
     icon: <SettingsSuggest />,
+  },
+  {
+    name: "Users",
+    path: "/dashboard/users",
+    icon: <Group />,
   },
   {
     name: "Messages",

@@ -7,10 +7,13 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import MenuIcon from "@mui/icons-material/Menu";
 import {ExpandMore, ExpandLess, Logout} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
+import {logout} from "../../redux/auth/action";
+import {useDispatch} from "react-redux";
 const drawerWidth = 230;
 
 const SideBarWrapper = (props) => {
   let navigate = useNavigate();
+  let dispatch = useDispatch();
   let menuList = props.menuList;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -25,6 +28,11 @@ const SideBarWrapper = (props) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
   };
 
   const drawer = (
@@ -74,6 +82,7 @@ const SideBarWrapper = (props) => {
             textTransform: "none",
           }}
           startIcon={<Logout />}
+          onClick={handleLogout}
           fullWidth>
           Logout
         </Button>
@@ -87,32 +96,24 @@ const SideBarWrapper = (props) => {
         sx={{
           backgroundColor: "primary.main",
           width: "100vw",
-          minHeight: "80px",
-          display: {laptop: "none", mobile: "grid"},
-          gridTemplateColumns: "10% 75% 15%",
-          placeItems: "flex-start",
+          minHeight: "100px",
+          display: {laptop: "none", mobile: "flex"},
+
           alignItems: "center",
+          overflow: "visible",
         }}>
         <IconButton
           aria-label="open drawer"
           onClick={(e) => handleDrawerToggle(e)}>
           <MenuIcon sx={{color: "#FFFFFF"}} />
         </IconButton>
-        <Box display="flex" alignItems="center" width="50%" height="50%">
+        <Box display="flex" alignItems="center" width="100%" height="100%">
           <img
-            style={{height: "80%"}}
+            style={{height: "40%"}}
             src={VajraLogo}
             alt="Dashboard Home Page"
             onClick={() => navigate("/")}
           />
-        </Box>
-        <Box sx={{justifySelf: "end"}}>
-          <IconButton
-            sx={{
-              display: {laptop: "none", tablet: "block"},
-            }}>
-            <AccountCircleIcon sx={{color: "#FFFFFF"}} />
-          </IconButton>
         </Box>
       </Box>
       <Box
@@ -259,7 +260,14 @@ const SideBarWrapper = (props) => {
                   key={"1"}>
                   Profile
                 </Button>
-                <Button onClick={handleClose} component={Link} to="/" key={"2"}>
+                <Button
+                  onClick={() => {
+                    handleClose();
+                    handleLogout();
+                  }}
+                  component={Link}
+                  to="/"
+                  key={"2"}>
                   Logout
                 </Button>
               </Box>

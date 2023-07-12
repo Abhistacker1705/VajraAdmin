@@ -13,6 +13,7 @@ import {
   Checkbox,
   Box,
   InputAdornment,
+  InputBase,
   IconButton,
   TableContainer,
 } from "@mui/material";
@@ -391,7 +392,7 @@ const ServiceReqestTable = () => {
   return (
     <Box width="100%">
       <Box>
-        <Box display="flex">
+        <Box display="flex" justifyContent="space-between">
           <Typography
             sx={{
               fontSize: {
@@ -404,7 +405,7 @@ const ServiceReqestTable = () => {
               fontWeight: "500",
               color: "secondary.main",
               marginTop: "35px",
-              marginLeft: "20px",
+
               width: {
                 xl: "220px",
                 lg: "220px",
@@ -425,7 +426,7 @@ const ServiceReqestTable = () => {
               sm: "30px",
               xs: "30px",
             }}>
-            <Box>
+            {/* <Box>
               <TextField
                 value={searchQuery}
                 onChange={handleSearchChange}
@@ -454,7 +455,32 @@ const ServiceReqestTable = () => {
                   },
                 }}
               />
+            </Box> */}
+            <Box
+              sx={{
+                display: "flex",
+                maxWidth: "20ch",
+                borderRadius: "3rem",
+                border: "1px solid rgba(23, 70, 162, 0.5)",
+                backgroundColor: "#FFFFFF",
+              }}>
+              <IconButton
+                sx={{
+                  color: "#C2C2C2",
+                }}
+                type="button"
+                aria-label="search">
+                <SearchIcon />
+              </IconButton>
+              <InputBase
+                sx={{ml: 1}}
+                placeholder="Search"
+                inputProps={{"aria-label": "search table"}}
+                value={searchQuery}
+                onChange={(e) => filterSearch(e)}
+              />
             </Box>
+
             <Box display="flex" marginTop="-10px">
               <IconButton onClick={handleSortClick} type="button">
                 <SortIcon
@@ -487,7 +513,7 @@ const ServiceReqestTable = () => {
                     color:
                       sortOption === "oldestToNewest"
                         ? "secondary.main"
-                        : "#212427",
+                        : "text.primary",
                     fontSize: "16px",
                     fontWeight: "500",
                   }}>
@@ -496,7 +522,8 @@ const ServiceReqestTable = () => {
                 <MenuItem
                   onClick={() => handleSortOptionSelect("aToZ")}
                   sx={{
-                    color: sortOption === "aToZ" ? "secondary.main" : "#212427",
+                    color:
+                      sortOption === "aToZ" ? "secondary.main" : "text.primary",
                     fontSize: "16px",
                     fontWeight: "500",
                   }}>
@@ -505,7 +532,8 @@ const ServiceReqestTable = () => {
                 <MenuItem
                   onClick={() => handleSortOptionSelect("zToA")}
                   sx={{
-                    color: sortOption === "zToA" ? "secondary.main" : "#212427",
+                    color:
+                      sortOption === "zToA" ? "secondary.main" : "text.primary",
                     fontSize: "16px",
                     fontWeight: "500",
                   }}>
@@ -539,7 +567,7 @@ const ServiceReqestTable = () => {
                     control={
                       <Checkbox
                         sx={{
-                          color: "#212427",
+                          color: "text.primary",
                           "&.Mui-checked": {color: "secondary.main"},
                         }}
                         checked={filterDepartments.includes("Radiology")}
@@ -550,7 +578,7 @@ const ServiceReqestTable = () => {
                     label={
                       <Typography
                         style={{
-                          color: "#212427",
+                          color: "text.primary",
                           fontSize: "14px",
                           fontWeight: "500",
                         }}>
@@ -562,7 +590,7 @@ const ServiceReqestTable = () => {
                     control={
                       <Checkbox
                         sx={{
-                          color: "#212427",
+                          color: "text.primary",
                           "&.Mui-checked": {color: "secondary.main"},
                         }}
                         checked={filterDepartments.includes("ECG")}
@@ -573,7 +601,7 @@ const ServiceReqestTable = () => {
                     label={
                       <Typography
                         style={{
-                          color: "#212427",
+                          color: "text.primary",
                           fontSize: "14px",
                           fontWeight: "500",
                         }}>
@@ -585,7 +613,7 @@ const ServiceReqestTable = () => {
                     control={
                       <Checkbox
                         sx={{
-                          color: "#212427",
+                          color: "text.primary",
                           "&.Mui-checked": {color: "secondary.main"},
                         }}
                         checked={filterDepartments.includes("ICU")}
@@ -596,7 +624,7 @@ const ServiceReqestTable = () => {
                     label={
                       <Typography
                         style={{
-                          color: "#212427",
+                          color: "text.primary",
                           fontSize: "14px",
                           fontWeight: "500",
                         }}>
@@ -619,7 +647,7 @@ const ServiceReqestTable = () => {
                     control={
                       <Checkbox
                         sx={{
-                          color: "#212427",
+                          color: "text.primary",
                           "&.Mui-checked": {color: "secondary.main"},
                         }}
                         checked={filterCities.includes("Banglore")}
@@ -630,7 +658,7 @@ const ServiceReqestTable = () => {
                     label={
                       <Typography
                         style={{
-                          color: "#212427",
+                          color: "text.primary",
                           fontSize: "14px",
                           fontWeight: "500",
                         }}>
@@ -642,7 +670,7 @@ const ServiceReqestTable = () => {
                     control={
                       <Checkbox
                         sx={{
-                          color: "#212427",
+                          color: "text.primary",
                           "&.Mui-checked": {color: "secondary.main"},
                         }}
                         checked={filterCities.includes("Shivamogga")}
@@ -653,7 +681,7 @@ const ServiceReqestTable = () => {
                     label={
                       <Typography
                         style={{
-                          color: "#212427",
+                          color: "text.primary",
                           fontSize: "14px",
                           fontWeight: "500",
                         }}>
@@ -665,7 +693,7 @@ const ServiceReqestTable = () => {
                     control={
                       <Checkbox
                         sx={{
-                          color: "#212427",
+                          color: "text.primary",
                           "&.Mui-checked": {color: "secondary.main"},
                         }}
                         checked={filterCities.includes("Davangere")}
@@ -676,7 +704,7 @@ const ServiceReqestTable = () => {
                     label={
                       <Typography
                         style={{
-                          color: "#212427",
+                          color: "text.primary",
                           fontSize: "14px",
                           fontWeight: "500",
                         }}>
@@ -801,18 +829,17 @@ const ServiceReqestTable = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredServiceRequests.map((request, index) => (
-                  <Box width="1030px">
+                <Box width="1030px">
+                  {filteredServiceRequests.map((request, index) => (
                     <TableRow display="flex" key={index}>
                       <TableCell
                         align="left"
                         sx={{
                           fontSize: "18px",
                           fontWeight: "400",
-                          color: "#212427",
+                          color: "text.primary",
                           width: "250px",
                           height: "35px",
-                          borderColor: "black",
                         }}
                         component="th">
                         {request.hospital}
@@ -822,10 +849,9 @@ const ServiceReqestTable = () => {
                         sx={{
                           fontSize: "18px",
                           fontWeight: "400",
-                          color: "#212427",
+                          color: "text.primary",
                           width: "180px",
                           height: "35px",
-                          borderColor: "black",
                         }}>
                         {request.asset}
                       </TableCell>
@@ -834,10 +860,9 @@ const ServiceReqestTable = () => {
                         sx={{
                           fontSize: "18px",
                           fontWeight: "400",
-                          color: "#212427",
+                          color: "text.primary",
                           width: "120px",
                           height: "35px",
-                          borderColor: "black",
                         }}>
                         {request.city}
                       </TableCell>
@@ -846,10 +871,9 @@ const ServiceReqestTable = () => {
                         sx={{
                           fontSize: "18px",
                           fontWeight: "400",
-                          color: "#212427",
+                          color: "text.primary",
                           width: "120px",
                           height: "35px",
-                          borderColor: "black",
                         }}>
                         {request.department}
                       </TableCell>
@@ -858,15 +882,13 @@ const ServiceReqestTable = () => {
                         sx={{
                           fontSize: "18px",
                           fontWeight: "400",
-                          color: "#212427",
+                          color: "text.primary",
                           width: "100px",
                           height: "35px",
-                          borderColor: "black",
+
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           display: "-webkit-box",
-                          "-webkit-line-clamp": "2",
-                          "-webkit-box-orient": "vertical",
                         }}>
                         {request.issue}
                       </TableCell>
@@ -875,16 +897,15 @@ const ServiceReqestTable = () => {
                         sx={{
                           fontSize: "18px",
                           fontWeight: "400",
-                          color: "#212427",
+                          color: "text.primary",
                           width: "120px",
                           height: "35px",
-                          borderColor: "black",
                         }}>
                         {request.date}
                       </TableCell>
                     </TableRow>
-                  </Box>
-                ))}
+                  ))}
+                </Box>
               </TableBody>
             </Table>
           </TableContainer>

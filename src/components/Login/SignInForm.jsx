@@ -1,23 +1,28 @@
 import {Typography, TextField, Box, Stack, Button} from "@mui/material";
 import {IconTextField} from "./IconTextField";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, redirect} from "react-router-dom";
 import Visibility from "@mui/icons-material/Visibility";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LoginUser from "/LoginUser.svg";
 import Playstore from "/PlayStore.svg";
 import AppStore from "/AppStore.svg";
 import {useState, useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {login} from "../../redux/auth/action";
+
 const SignInForm = () => {
   const [formData, setFormData] = useState({
-    email: "",
+    userName: "",
     password: "",
     secretKey: "",
   });
   const [passVisible, setPassVisible] = useState(false);
   const [passwordValidated, setPasswordvalidated] = useState(false);
   const [passwordError, setPasswordError] = useState(true);
-  const [emailError, setEmailError] = useState(true);
+  const [userNameError, setEmailError] = useState(true);
   const [showErrors, setShowErrors] = useState(false);
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -27,14 +32,15 @@ const SignInForm = () => {
   const handleDataSubmit = () => {
     setShowErrors(true);
     setPassVisible(false);
-    if (!passwordError && !emailError && formData.secretKey !== "") {
+
+    if (!passwordError && !userNameError && formData.secretKey !== "") {
       setFormData({
-        email: "",
+        userName: "",
         password: "",
         secretKey: "",
       });
-      console.log(formData);
-
+      let payloadData = {user: formData.userName, userPass: formData.password};
+      dispatch(login(payloadData));
       navigate("/dashboard");
     } else return;
   };
@@ -45,7 +51,7 @@ const SignInForm = () => {
     } else {
       setPasswordError(true);
     }
-    if (formData.email.includes(".") && formData.email.includes("@", 1)) {
+    if (formData.userName.includes(".") && formData.userName.includes("@", 1)) {
       setEmailError(false);
     } else {
       setEmailError(true);
@@ -118,19 +124,21 @@ const SignInForm = () => {
               boxShadow: "input",
               marginBottom: "20px",
             }}
-            error={showErrors ? emailError : false}
+            error={showErrors ? userNameError : false}
             helperText={
               showErrors
-                ? emailError
-                  ? "Should not be empty and should be valid email"
+                ? userNameError
+                  ? "Should not be empty and should be valid userName"
                   : ""
                 : ""
             }
             iconEnd={<PersonOutlineIcon />}
-            value={formData.email}
+            value={formData.userName}
             required
             type="email"
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            onChange={(e) =>
+              setFormData({...formData, userName: e.target.value})
+            }
             placeholder="Username"
             variant="outlined"
             fullWidth
@@ -175,7 +183,6 @@ const SignInForm = () => {
             sx={{
               backgroundColor: "rgba(153, 153, 153, 0.1)",
               border: "1px solid rgba(126, 126, 126, 0.80)",
-
               boxShadow: "input",
               marginBottom: "10px",
             }}
@@ -198,6 +205,7 @@ const SignInForm = () => {
               fontSize: "1rem",
               color: "primary",
               textDecoration: "none",
+              textTransform: "none",
             }}>
             Forgot Password
           </Button>
@@ -214,7 +222,12 @@ const SignInForm = () => {
             </Typography>
           )}
           <Button
-            sx={{width: "50%", borderRadius: "2.5rem", marginBottom: "2.5rem"}}
+            sx={{
+              width: "50%",
+              borderRadius: "2.5rem",
+              marginBottom: "2.5rem",
+              textTransform: "none",
+            }}
             variant="contained"
             color="primary"
             onClick={handleDataSubmit}>
