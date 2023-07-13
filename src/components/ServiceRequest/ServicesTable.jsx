@@ -20,6 +20,8 @@ import {
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
+import {useParams, Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const ServiceReqestTable = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,6 +31,7 @@ const ServiceReqestTable = () => {
   const [filterDepartments, setFilterDepartments] = useState([]);
   const [filterCities, setFilterCities] = useState([]);
 
+  const serviceRequests = useSelector((store) => store.data.requests);
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -75,289 +78,6 @@ const ServiceReqestTable = () => {
   };
 
   const getServiceRequests = () => {
-    const serviceRequests = [
-      {
-        hospital: "Apolo Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 2 MJHNJNHJH JHJHJHJH JHJJHHHGGGFDDDBJKK",
-        date: "2023/07/01",
-      },
-      {
-        hospital: "Megan Hospital",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "ICU",
-        issue: "Issue 2 msdddfdfssasd fdsfdsvcdc",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "KIMS Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 3 fdfssasd fdsfdsvcdc hhhdnnadkjdj",
-        date: "2023/07/03",
-      },
-      {
-        hospital: "Narayana Hrudayalaya",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "ICU",
-        issue: "Issue 4",
-        date: "2023/07/04",
-      },
-      {
-        hospital: "Subbhaiah Hospital",
-        asset: "PFT USB",
-        city: "Shivmogga",
-        department: "ECG",
-        issue: "Issue 5",
-        date: "2023/07/05",
-      },
-      {
-        hospital: "SS Hospital",
-        asset: "PFT USB",
-        city: "Davangere",
-        department: "Radiology",
-        issue: "Issue 3",
-        date: "2023/07/06",
-      },
-      {
-        hospital: "MAX Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "Apolo Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 1",
-        date: "2023/07/01",
-      },
-      {
-        hospital: "Megan Hospital",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "Radiology",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "KIMS Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 3",
-        date: "2023/07/03",
-      },
-      {
-        hospital: "Narayana Hrudayalaya",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "Radiology",
-        issue: "Issue 4",
-        date: "2023/07/04",
-      },
-      {
-        hospital: "Subbhaiah Hospital",
-        asset: "PFT USB",
-        city: "Shivmogga",
-        department: "ECG",
-        issue: "Issue 5",
-        date: "2023/07/05",
-      },
-      {
-        hospital: "SS Hospital",
-        asset: "PFT USB",
-        city: "Davangere",
-        department: "Radiology",
-        issue: "Issue 3",
-        date: "2023/07/06",
-      },
-      {
-        hospital: "MAX Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "Apolo Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 1",
-        date: "2023/07/01",
-      },
-      {
-        hospital: "Megan Hospital",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "Radiology",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "KIMS Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 3",
-        date: "2023/07/03",
-      },
-      {
-        hospital: "Narayana Hrudayalaya",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "ICU",
-        issue: "Issue 4",
-        date: "2023/07/04",
-      },
-      {
-        hospital: "Subbhaiah Hospital",
-        asset: "PFT USB",
-        city: "Shivmogga",
-        department: "Radiology",
-        issue: "Issue 5",
-        date: "2023/07/05",
-      },
-      {
-        hospital: "SS Hospital",
-        asset: "PFT USB",
-        city: "Davangere",
-        department: "ICU",
-        issue: "Issue 3",
-        date: "2023/07/06",
-      },
-      {
-        hospital: "MAX Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "Apolo Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 1",
-        date: "2023/07/01",
-      },
-      {
-        hospital: "Megan Hospital",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "ICU",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "KIMS Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 3",
-        date: "2023/07/03",
-      },
-      {
-        hospital: "Narayana Hrudayalaya",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "ICU",
-        issue: "Issue 4",
-        date: "2023/07/04",
-      },
-      {
-        hospital: "Subbhaiah Hospital",
-        asset: "PFT USB",
-        city: "Shivmogga",
-        department: "Radiology",
-        issue: "Issue 5",
-        date: "2023/07/05",
-      },
-      {
-        hospital: "SS Hospital",
-        asset: "PFT USB",
-        city: "Davangere",
-        department: "ICU",
-        issue: "Issue 3",
-        date: "2023/07/06",
-      },
-      {
-        hospital: "MAX Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "Apolo Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 1",
-        date: "2023/07/01",
-      },
-      {
-        hospital: "Megan Hospital",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "Radiology",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-      {
-        hospital: "KIMS Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 3",
-        date: "2023/07/03",
-      },
-      {
-        hospital: "Narayana Hrudayalaya",
-        asset: "PFT USB",
-        city: "Shivamogga",
-        department: "ICU",
-        issue: "Issue 4",
-        date: "2023/07/04",
-      },
-      {
-        hospital: "Subbhaiah Hospital",
-        asset: "PFT USB",
-        city: "Shivmogga",
-        department: "ECG",
-        issue: "Issue 5",
-        date: "2023/07/05",
-      },
-      {
-        hospital: "SS Hospital",
-        asset: "PFT USB",
-        city: "Davangere",
-        department: "ICU",
-        issue: "Issue 3",
-        date: "2023/07/06",
-      },
-      {
-        hospital: "MAX Hospital",
-        asset: "PFT USB",
-        city: "Banglore",
-        department: "ECG",
-        issue: "Issue 2",
-        date: "2023/07/02",
-      },
-    ];
-
     let filteredData = [...serviceRequests];
 
     if (filterDepartments.length > 0) {
@@ -426,36 +146,6 @@ const ServiceReqestTable = () => {
               sm: "30px",
               xs: "30px",
             }}>
-            {/* <Box>
-              <TextField
-                value={searchQuery}
-                onChange={handleSearchChange}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment>
-                      <IconButton>
-                        <SearchIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                placeholder="Search"
-                sx={{
-                  "& fieldset": {
-                    borderRadius: "36px",
-                    border: "1px solid black",
-                    height: "56px",
-                    width: {
-                      xl: "247px",
-                      lg: "247px",
-                      md: "247px",
-                      sm: "200px",
-                      xs: "180px",
-                    },
-                  },
-                }}
-              />
-            </Box> */}
             <Box
               sx={{
                 display: "flex",
@@ -477,7 +167,7 @@ const ServiceReqestTable = () => {
                 placeholder="Search"
                 inputProps={{"aria-label": "search table"}}
                 value={searchQuery}
-                onChange={(e) => filterSearch(e)}
+                onChange={handleSearchChange}
               />
             </Box>
 
@@ -842,7 +532,14 @@ const ServiceReqestTable = () => {
                           height: "35px",
                         }}
                         component="th">
-                        {request.hospital}
+                        <Link
+                          to={`${request.id}`}
+                          style={{
+                            color: "primary.main",
+                            textDecoration: "none",
+                          }}>
+                          {request.hospital}
+                        </Link>
                       </TableCell>
                       <TableCell
                         align="left"

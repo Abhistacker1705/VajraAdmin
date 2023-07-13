@@ -26,7 +26,7 @@ const SignInForm = () => {
   const navigate = useNavigate();
   let user = useSelector((store) => store.auth.user);
   let userPass = useSelector((store) => store.auth.userPass);
-  console.log(user, userPass);
+
   useEffect(() => {
     const auth = isAuthenticated();
     if (auth) {

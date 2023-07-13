@@ -76,3 +76,68 @@ export const forgotPass = (data, token) => (dispatch) => {
     })
     .catch((err) => dispatch(forgotPassFailure(err)));
 };
+
+//Add User
+
+export const ADD_USER_REQUEST = "ADD_USER_REQUEST";
+export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
+export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
+
+export const addUserRequest = () => {
+  return {
+    type: ADD_USER_REQUEST,
+  };
+};
+
+export const addUserSuccess = (data) => {
+  return {
+    type: ADD_USER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const addUserFailure = () => {
+  return {
+    type: ADD_USER_FAILURE,
+  };
+};
+
+//Action Dispatcher
+export const addUser = (data, token) => (dispatch) => {
+  dispatch(addUserRequest());
+  if (!!data.user && !!data.email && !!data.phone && !!data.role)
+    dispatch(addUserSuccess(data));
+  else dispatch(addUserFailure());
+};
+
+//Delete User
+
+export const DELETE_USER_REQUEST = "DELETE_USER_REQUEST";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const DELETE_USER_FAILURE = "DELETE_USER_FAILURE";
+
+export const deleteUserRequest = () => {
+  return {
+    type: DELETE_USER_REQUEST,
+  };
+};
+
+export const deleteUserSuccess = (data) => {
+  return {
+    type: DELETE_USER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const deleteUserFailure = () => {
+  return {
+    type: DELETE_USER_FAILURE,
+  };
+};
+
+//Action Dispatcher
+export const deleteUser = (index, token) => (dispatch) => {
+  dispatch(deleteUserRequest());
+  dispatch(deleteUserSuccess(index));
+  dispatch(deleteUserFailure());
+};

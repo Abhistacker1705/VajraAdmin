@@ -1,4 +1,4 @@
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import AllHospitals from "./pages/AllHospitals";
@@ -9,13 +9,21 @@ import isAuthenticated from "./utils/Auth";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import Users from "./pages/Users";
 import {useEffect} from "react";
+import {useSelector} from "react-redux";
+import AddUser from "./pages/AddUser";
+import EditUser from "./pages/EditUser";
+import ServiceIssue from "./components/ServiceRequest/ServiceIssue";
+import ServiceIssueImage from "./components/ServiceRequest/ServiceIssueImage";
+
 function App() {
   const navigate = useNavigate();
+  let user = useSelector((store) => store.auth.user);
+  let userPass = useSelector((store) => store.auth.userPass);
 
   useEffect(() => {
-    navigate("/login");
+    if (!!user && !!userPass) navigate("/login");
+    else return;
   }, []);
-
   return (
     <Routes>
       {/* protected */}
@@ -44,6 +52,25 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+        path="home/servicereq/:hospitalid"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <ServiceIssue />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="home/servicereq/:hospitalid/:imageid"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <ServiceIssueImage />
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="home/messages"
         element={
@@ -61,6 +88,25 @@ function App() {
         }
       />
 
+      <Route
+        path="home/users/add"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <AddUser />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="home/users/edit/:userid"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <EditUser />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgotpass" element={<ForgotPassword />} />
     </Routes>

@@ -1,7 +1,4 @@
 import {
-  // CHECK_LOGIN_START,
-  // CHECK_LOGIN_FAILED,
-  // CHECK_LOGIN_SUCCESS,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT_REQUEST,
@@ -45,28 +42,7 @@ export const authReducer = (state = initState, action) => {
         userPass: "",
       };
     }
-    // case CHECK_LOGIN_START: {
-    //   return {
-    //     ...state,
-    //     isLoading: true,
-    //   };
-    // }
 
-    // case CHECK_LOGIN_SUCCESS: {
-    //   return {
-    //     ...state,
-    //     isLoading: false,
-    //     isLoggedIn: true,
-    //   };
-    // }
-
-    // case CHECK_LOGIN_FAILED: {
-    //   return {
-    //     ...state,
-    //     isLoading: false,
-    //     isLoggedIn: true,
-    //   };
-    // }
     default: {
       return {...state};
     }

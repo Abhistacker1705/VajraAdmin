@@ -1,29 +1,38 @@
 import {Box, Icon, IconButton, Stack, Typography} from "@mui/material";
 import {EditOutlined, DeleteOutlined} from "@mui/icons-material";
 import React from "react";
+import {useDispatch} from "react-redux";
+import {deleteUser} from "../../redux/data/action";
+import {Link} from "react-router-dom";
 
-const UserCards = ({user, index, users, setUsers}) => {
-  const deleteUser = (e, index) => {
-    // const filteredUsers = users.filter((user, idx) => idx !== index);
-    // setUsers(filteredUsers);
+const UserCards = ({index, user}) => {
+  const dispatch = useDispatch();
+  //delete users
+  const handleDeleteUser = (e, index) => {
+    dispatch(deleteUser(index));
   };
+
   return (
     <Box
       display="flex"
       bgcolor="#FFFFFF"
-      height="20rem"
+      height="13rem"
       padding="2rem"
       gap="1rem"
       flexDirection="column"
       border="1px solid #21242780"
       justifyContent="start">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Typography variant="h3">{user.name}</Typography>
+        <Typography variant="h3">{user.user}</Typography>
         <Box display="flex" flexDirection="row">
-          <IconButton>
+          <IconButton component={Link} to={`edit/${user.id}`}>
             <EditOutlined color="secondary" />
           </IconButton>
-          <IconButton onClick={(e) => deleteUser(e, index)}>
+          <IconButton
+            onClick={(e) => {
+              console.log("deleteclicked");
+              handleDeleteUser(e, index);
+            }}>
             <DeleteOutlined color="secondary" />
           </IconButton>
         </Box>
