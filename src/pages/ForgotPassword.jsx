@@ -36,7 +36,6 @@ const Forgot = () => {
   useEffect(() => {
     if (forgotPassReqResponse?.length !== 0) {
       if (forgotPassReqResponse.success) {
-        console.log(forgotPassReqResponse);
         setEmail("");
         setErrorMessage("");
         setSuccessMessage(

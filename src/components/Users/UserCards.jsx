@@ -30,7 +30,6 @@ const UserCards = ({index, user}) => {
           </IconButton>
           <IconButton
             onClick={(e) => {
-              console.log("deleteclicked");
               handleDeleteUser(e, index);
             }}>
             <DeleteOutlined color="secondary" />
@@ -44,9 +43,9 @@ const UserCards = ({index, user}) => {
           flexDirection="row"
           alignItems="center"
           columnGap="0.75rem">
-          <Typography variant="body1">Role : </Typography>
+          <Typography variant="body1">User Access : </Typography>
           <Typography variant="body2" color="text.primary">
-            {user.role}
+            {user.access}
           </Typography>
         </Box>
 

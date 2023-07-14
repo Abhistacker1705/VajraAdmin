@@ -71,7 +71,6 @@ export const forgotPass = (data, token) => (dispatch) => {
     data,
   })
     .then((resultData) => {
-      // console.log(resultData.data);
       dispatch(forgotPassSuccess(resultData.data));
     })
     .catch((err) => dispatch(forgotPassFailure(err)));
@@ -105,7 +104,7 @@ export const addUserFailure = () => {
 //Action Dispatcher
 export const addUser = (data, token) => (dispatch) => {
   dispatch(addUserRequest());
-  if (!!data.user && !!data.email && !!data.phone && !!data.role)
+  if (!!data.user && !!data.email && !!data.phone && !!data.access)
     dispatch(addUserSuccess(data));
   else dispatch(addUserFailure());
 };
@@ -140,4 +139,38 @@ export const deleteUser = (index, token) => (dispatch) => {
   dispatch(deleteUserRequest());
   dispatch(deleteUserSuccess(index));
   dispatch(deleteUserFailure());
+};
+
+//Edit User
+
+export const EDIT_USER_REQUEST = "EDIT_USER_REQUEST";
+export const EDIT_USER_SUCCESS = "EDIT_USER_SUCCESS";
+export const EDIT_USER_FAILURE = "EDIT_USER_FAILURE";
+
+export const editUserRequest = () => {
+  return {
+    type: EDIT_USER_REQUEST,
+  };
+};
+
+export const editUserSuccess = (data) => {
+  return {
+    type: EDIT_USER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const editUserFailure = () => {
+  return {
+    type: EDIT_USER_FAILURE,
+  };
+};
+
+//Action Dispatcher
+export const editUser = (data, token) => (dispatch) => {
+  dispatch(editUserRequest());
+
+  if (!!data.user && !!data.email && !!data.phone && !!data.access) {
+    dispatch(editUserSuccess(data));
+  } else dispatch(editUserFailure());
 };

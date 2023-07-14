@@ -5,6 +5,9 @@ import {
   DELETE_USER_FAILURE,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
+  EDIT_USER_FAILURE,
+  EDIT_USER_REQUEST,
+  EDIT_USER_SUCCESS,
   FORGOT_PASS_FAILURE,
   FORGOT_PASS_REQUEST,
   FORGOT_PASS_SUCCESS,
@@ -22,29 +25,29 @@ const initState = {
     {
       id: 0,
       user: "Paresh",
-      role: "admin",
-      phone: "0985098090",
+      access: "Admin",
+      phone: "9850980900",
       email: "akdlknlknlask@ksmflk.com",
     },
     {
       id: 1,
-      user: "Paresh",
-      role: "admin",
-      phone: "0985098090",
+      user: "Masood",
+      access: "Partial",
+      phone: "9850980900",
       email: "akdlknlknlask@ksmflk.com",
     },
     {
       id: 2,
-      user: "Paresh",
-      role: "admin",
-      phone: "0985098090",
+      user: "Arun",
+      access: "Partial",
+      phone: "9850980900",
       email: "akdlknlknlask@ksmflk.com",
     },
     {
       id: 3,
-      user: "Paresh",
-      role: "admin",
-      phone: "0985098090",
+      user: "Abhijith",
+      access: "Guest",
+      phone: "9850980900",
       email: "akdlknlknlask@ksmflk.com",
     },
   ],
@@ -460,6 +463,34 @@ export const dataReducer = (state = initState, action) => {
       };
     }
     case DELETE_USER_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    }
+
+    //EDIT USER
+
+    case EDIT_USER_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    }
+    case EDIT_USER_SUCCESS: {
+      const usersWithoutEditedUser = state.users.filter(
+        (user) => user.id != action.payload.id
+      );
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        users: [...usersWithoutEditedUser, action.payload],
+      };
+    }
+    case EDIT_USER_FAILURE: {
       return {
         ...state,
         isLoading: false,
