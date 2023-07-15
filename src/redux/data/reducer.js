@@ -282,95 +282,151 @@ const initState = {
       issue: "Issue 4",
       date: "2023/07/04",
     },
+  ],
+  messages: [
     {
-      id: 25,
-      hospital: "Subbhaiah Hospital",
-      asset: "PFT USB",
-      city: "Shivmogga",
-      department: "Radiology",
-      issue: "Issue 5",
-      date: "2023/07/05",
-    },
-    {
-      id: 26,
-      hospital: "SS Hospital",
-      asset: "PFT USB",
-      city: "Davangere",
-      department: "ICU",
-      issue: "Issue 3",
-      date: "2023/07/06",
-    },
-    {
-      id: 27,
-      hospital: "MAX Hospital",
-      asset: "PFT USB",
-      city: "Banglore",
-      department: "ECG",
-      issue: "Issue 2",
-      date: "2023/07/02",
-    },
-    {
-      id: 28,
+      id: 1,
       hospital: "Apolo Hospital",
-      asset: "PFT USB",
       city: "Banglore",
-      department: "ECG",
-      issue: "Issue 1",
+      Messages:
+        "Hii Medpick, I am Dr. Jayadev from Apolo Hospital your product is good and service maintenance is also good Thank you.  ",
       date: "2023/07/01",
+      contact: "+91-9591932562",
     },
     {
-      id: 29,
+      id: 2,
       hospital: "Megan Hospital",
-      asset: "PFT USB",
-      city: "Shivamogga",
-      department: "Radiology",
-      issue: "Issue 2",
+      city: "Shimoga",
+      Messages:
+        "Hii Vajra, I am Dr. Devaraj from Megan Hospital your product is good and service maintenance is also good Thank you.  ",
       date: "2023/07/02",
+      contact: "+91-9258193562",
     },
     {
-      id: 30,
-      hospital: "KIMS Hospital",
-      asset: "PFT USB",
-      city: "Banglore",
-      department: "ECG",
-      issue: "Issue 3",
-      date: "2023/07/03",
-    },
-    {
-      id: 31,
-      hospital: "Narayana Hrudayalaya",
-      asset: "PFT USB",
-      city: "Shivamogga",
-      department: "ICU",
-      issue: "Issue 4",
-      date: "2023/07/04",
-    },
-    {
-      id: 32,
-      hospital: "Subbhaiah Hospital",
-      asset: "PFT USB",
-      city: "Shivmogga",
-      department: "ECG",
-      issue: "Issue 5",
-      date: "2023/07/05",
-    },
-    {
-      id: 33,
+      id: 3,
       hospital: "SS Hospital",
-      asset: "PFT USB",
       city: "Davangere",
-      department: "ICU",
-      issue: "Issue 3",
-      date: "2023/07/06",
+      Messages:
+        "Hii, I am Dr. Rakesh from SS Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/07/03",
+      contact: "+91-6258193562",
     },
     {
-      id: 34,
-      hospital: "MAX Hospital",
-      asset: "PFT USB",
+      id: 4,
+      hospital: "Subbhai Hospital",
+      city: "Shimoga",
+      Messages:
+        "Hii Med, I am Dr.Abhijith from Subbhai Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/01",
+      contact: "+91-7258195562",
+    },
+    {
+      id: 5,
+      hospital: "KIIMS Hospital",
       city: "Banglore",
-      department: "ECG",
-      issue: "Issue 2",
+      Messages:
+        "Hii Vajra, I am Dr. Chandan from KIIMS Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/02",
+      contact: "+91-8258593562",
+    },
+    {
+      id: 6,
+      hospital: "Max Hospital",
+      city: "Shimoga",
+      Messages:
+        "Hii Medpick, I am Dr. Praveen from Max Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/03",
+      contact: "+91-6358183562",
+    },
+    {
+      id: 7,
+      hospital: "Chigetere Hospital",
+      city: "Davangere",
+      Messages:
+        "Hii , I am Dr. Raghu from Chigetere Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/04",
+      contact: "+91-9258793562",
+    },
+    {
+      id: 8,
+      hospital: "Jayadeva Hospital",
+      city: "Davangere",
+      Messages:
+        "Hii , I am Dr. Jagadeesh from Chigetere Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/04",
+      contact: "+91-7481935623",
+    },
+    {
+      id: 9,
+      hospital: "Apolo Hospital",
+      city: "Banglore",
+      Messages:
+        "Hii Medpick, I am Dr. Jayadev from Apolo Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/07/01",
+      contact: "+91-9591932562",
+    },
+    {
+      id: 10,
+      hospital: "Megan Hospital",
+      city: "Shimoga",
+      Messages:
+        "Hii Vajra, I am Dr. Devaraj from Megan Hospital your product is good and service maintenance is also good Thank you.  ",
       date: "2023/07/02",
+      contact: "+91-9258193562",
+    },
+    {
+      id: 11,
+      hospital: "SS Hospital",
+      city: "Davangere",
+      Messages:
+        "Hii, I am Dr. Rakesh from SS Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/07/03",
+      contact: "+91-6258193562",
+    },
+    {
+      id: 12,
+      hospital: "Subbhai Hospital",
+      city: "Shimoga",
+      Messages:
+        "Hii Med, I am Dr.Abhijith from Subbhai Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/01",
+      contact: "+91-7258195562",
+    },
+    {
+      id: 13,
+      hospital: "KIIMS Hospital",
+      city: "Banglore",
+      Messages:
+        "Hii Vajra, I am Dr. Chandan from KIIMS Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/02",
+      contact: "+91-8258593562",
+    },
+    {
+      id: 14,
+      hospital: "Max Hospital",
+      city: "Shimoga",
+      Messages:
+        "Hii Medpick, I am Dr. Praveen from Max Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/03",
+      contact: "+91-6358183562",
+    },
+    {
+      id: 15,
+      hospital: "Chigetere Hospital",
+      city: "Davangere",
+      Messages:
+        "Hii , I am Dr. Raghu from Chigetere Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/04",
+      contact: "+91-9258793562",
+    },
+    {
+      id: 16,
+      hospital: "Jayadeva Hospital",
+      city: "Davangere",
+      Messages:
+        "Hii , I am Dr. Jagadeesh from Chigetere Hospital your product is good and service maintenance is also good Thank you.  ",
+      date: "2023/06/04",
+      contact: "+91-7481935623",
     },
   ],
 };
@@ -497,6 +553,8 @@ export const dataReducer = (state = initState, action) => {
         isError: true,
       };
     }
+
+    //messages fetch
 
     default: {
       return {...state};

@@ -15,6 +15,8 @@ import EditUser from "./pages/EditUser";
 import ServiceIssue from "./components/ServiceRequest/ServiceIssue";
 import ServiceIssueImage from "./components/ServiceRequest/ServiceIssueImage";
 
+import MessageFocused from "./components/Messages/MessageFocused";
+
 function App() {
   const navigate = useNavigate();
   let user = useSelector((store) => store.auth.user);
@@ -76,6 +78,15 @@ function App() {
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
             <Messages />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="home/messages/:messageId"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <MessageFocused />
           </ProtectedRoute>
         }
       />

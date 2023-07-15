@@ -4,6 +4,7 @@ import {
   SettingsSuggest,
   Message,
   Group,
+  CardMembership,
 } from "@mui/icons-material";
 
 export const DashboardMenuList = [
@@ -31,5 +32,10 @@ export const DashboardMenuList = [
     name: "Messages",
     path: "/home/messages",
     icon: <Message />,
+  },
+  {
+    name: "Warranty",
+    path: "/home/messages",
+    icon: <CardMembership />,
   },
 ];

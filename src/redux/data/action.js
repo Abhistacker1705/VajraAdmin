@@ -174,3 +174,37 @@ export const editUser = (data, token) => (dispatch) => {
     dispatch(editUserSuccess(data));
   } else dispatch(editUserFailure());
 };
+
+//Messages of Contacted Clients
+
+export const MESSAGE_FETCH_REQUEST = "MESSAGE_FETCH_REQUEST";
+export const MESSAGE_FETCH_SUCCESS = "MESSAGE_FETCH_SUCCESS";
+export const MESSAGE_FETCH_FAILURE = "MESSAGE_FETCH_FAILURE";
+
+export const messageFetchRequest = () => {
+  return {
+    type: MESSAGE_FETCH_REQUEST,
+  };
+};
+
+export const messageFetchSuccess = (data) => {
+  return {
+    type: MESSAGE_FETCH_SUCCESS,
+    payload: data,
+  };
+};
+
+export const messageFetchFailure = () => {
+  return {
+    type: MESSAGE_FETCH_FAILURE,
+  };
+};
+
+//Action Dispatcher
+export const messageFetch = (data, token) => (dispatch) => {
+  dispatch(messageFetchRequest());
+
+  if (!!data.user && !!data.email && !!data.phone && !!data.access) {
+    dispatch(messageFetchSuccess(data));
+  } else dispatch(messageFetchFailure());
+};

@@ -22,83 +22,25 @@ const EditUserBox = (props) => {
     phone: props.toEditUser[0].phone,
     access: props.toEditUser[0].access,
   });
-  const [toggle, setToggle] = useState(true);
 
   //validate form
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [userError, setUserError] = useState("");
   const [accessError, setAccessError] = useState("");
-  const [showSubmit, setShowSubmit] = useState(false);
-
-  // useEffect(() => {
-  //   setPhoneError("");
-  //   setEmailError("");
-  //   setAccessError("");
-  //   setUserError("");
-  //   let validPhone = true;
-
-  //   const validEmail = new RegExp(
-  //     "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
-  //   );
-  //   console.log(userDetails.phone.length);
-  //   //phone test
-  //   if (
-  //     userDetails.phone.length > 8 &&
-  //     (userDetails.phone[0] === "6" ||
-  //       userDetails.phone[0] === "7" ||
-  //       userDetails.phone[0] === "8" ||
-  //       userDetails.phone[0] === "9")
-  //   ) {
-  //     validPhone = false;
-  //   } else validPhone = true;
-
-  //   //email test
-  //   let emailTest = validEmail.test(userDetails.email);
-
-  //   if (!userDetails.user) {
-  //     setUserError("Name cannot be empty");
-  //   }
-
-  //   if (!userDetails.phone) {
-  //     setPhoneError("Phone Number cannot be empty");
-  //   }
-  //   if (!userDetails.email) {
-  //     setEmailError("Email cannot be empty");
-  //   }
-
-  //   if (!userDetails.access) {
-  //     setAccessError("User access cannot be empty");
-  //   }
-  //   if (!emailTest) {
-  //     setEmailError("Email is not valid");
-  //   }
-  //   if (validPhone) {
-  //     setPhoneError("Phone Number is not valid");
-  //   }
-  // }, [toggle]);
 
   useEffect(() => {
     setPhoneError("");
     setEmailError("");
     setAccessError("");
     setUserError("");
-    let validPhone = true;
-
+    // let validPhone = true;
+    let validPhone = new RegExp(/(0|91)?[6-9][0-9]{9}/);
     const validEmail = new RegExp(
       "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
     );
-    console.log(userDetails.phone.length);
-    //phone test
-    if (
-      userDetails.phone.length > 8 &&
-      (userDetails.phone[0] === "6" ||
-        userDetails.phone[0] === "7" ||
-        userDetails.phone[0] === "8" ||
-        userDetails.phone[0] === "9")
-    ) {
-      validPhone = false;
-    } else validPhone = true;
+
+    let phoneTest = validPhone.test(userDetails.phone);
 
     //email test
     let emailTest = validEmail.test(userDetails.email);
@@ -120,7 +62,7 @@ const EditUserBox = (props) => {
     if (!emailTest) {
       setEmailError("Email is not valid");
     }
-    if (validPhone) {
+    if (!phoneTest) {
       setPhoneError("Phone Number is not valid");
     }
   }, [userDetails]);
@@ -140,11 +82,6 @@ const EditUserBox = (props) => {
 
   const dispatch = useDispatch();
 
-  const handleShowError = () => {
-    setShowSubmit(true);
-    setToggle(!toggle);
-  };
-
   const handleEditUser = () => {
     setTimeout(() => {
       if (
@@ -162,7 +99,7 @@ const EditUserBox = (props) => {
           phone: "",
           access: "",
         });
-        setShowSubmit(false);
+
         navigate(-1);
       } else return;
     }, 1000);
@@ -225,10 +162,26 @@ const EditUserBox = (props) => {
           </Select>
         </FormControl>
         <Box display="flex" flexDirection="column">
-          {phoneError && <Typography color="error">{phoneError}</Typography>}
-          {emailError && <Typography color="error">{emailError}</Typography>}
-          {accessError && <Typography color="error">{accessError}</Typography>}
-          {userError && <Typography color="error">{userError}</Typography>}
+          {phoneError && (
+            <Typography variant="subtitle1" color="error">
+              {phoneError}
+            </Typography>
+          )}
+          {emailError && (
+            <Typography variant="subtitle1" color="error">
+              {emailError}
+            </Typography>
+          )}
+          {accessError && (
+            <Typography variant="subtitle1" color="error">
+              {accessError}
+            </Typography>
+          )}
+          {userError && (
+            <Typography variant="subtitle1" color="error">
+              {userError}
+            </Typography>
+          )}
         </Box>
       </Box>
 
@@ -240,22 +193,9 @@ const EditUserBox = (props) => {
           color="primary"
           display="flex"
           gap="0.5rem"
-          disabled={showSubmit}
-          onClick={handleShowError}>
-          {showSubmit ? "Saved" : "Save"}
+          onClick={handleEditUser}>
+          Save
         </Button>
-        {showSubmit && (
-          <Button
-            to="add"
-            variant="contained"
-            sx={{borderRadius: "2rem", textTransform: "none"}}
-            color="primary"
-            display="flex"
-            gap="0.5rem"
-            onClick={handleEditUser}>
-            Submit
-          </Button>
-        )}
       </Box>
     </>
   );

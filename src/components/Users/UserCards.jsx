@@ -14,6 +14,7 @@ const UserCards = ({index, user}) => {
 
   return (
     <Box
+      sx={{":hover": {translate: " 0 -5px"}}}
       display="flex"
       bgcolor="#FFFFFF"
       height="13rem"

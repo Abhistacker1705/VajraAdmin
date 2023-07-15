@@ -74,7 +74,7 @@ const HospitalTable = ({searchedFilteredHospData}) => {
         </TableHead>
         <TableBody>
           {searchedFilteredHospData?.map((data) => (
-            <TableRow key={data.id}>
+            <TableRow sx={{":hover": {boxShadow: "tableRow"}}} key={data.id}>
               <TableCell sx={{maxWidth: "20ch", lineHeight: "2"}}>
                 {data.name}
               </TableCell>

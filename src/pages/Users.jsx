@@ -35,7 +35,9 @@ const Users = () => {
       </Box>
       <Box
         display="grid"
-        sx={{gridTemplateColumns: {tablet: "1fr 1fr", mobile: "1fr"}}}
+        sx={{
+          gridTemplateColumns: {tablet: "1fr 1fr", mobile: "1fr"},
+        }}
         gridTemplateColumns="1fr 1fr"
         bgcolor="#FFFFFF"
         width="100%"

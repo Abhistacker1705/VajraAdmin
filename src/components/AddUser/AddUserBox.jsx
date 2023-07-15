@@ -7,7 +7,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {LabelTextField} from "./LabelTextField";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -23,29 +23,25 @@ const AddUserBox = () => {
   const [userError, setUserError] = useState("");
   const [accessError, setAccessError] = useState("");
   const [showSubmit, setShowSubmit] = useState(false);
-
-  //validate form
+  const [userDetails, setUserDetails] = useState({
+    id: nextUserId,
+    user: "",
+    email: "",
+    phone: "",
+    access: "",
+  });
   useEffect(() => {
     setPhoneError("");
     setEmailError("");
     setAccessError("");
     setUserError("");
-    let validPhone = true;
-
+    // let validPhone = true;
+    let validPhone = new RegExp(/(0|91)?[6-9][0-9]{9}/);
     const validEmail = new RegExp(
       "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
     );
-    console.log(userDetails.phone.length);
-    //phone test
-    if (
-      userDetails.phone.length > 8 &&
-      (userDetails.phone[0] === "6" ||
-        userDetails.phone[0] === "7" ||
-        userDetails.phone[0] === "8" ||
-        userDetails.phone[0] === "9")
-    ) {
-      validPhone = false;
-    } else validPhone = true;
+
+    let phoneTest = validPhone.test(userDetails.phone);
 
     //email test
     let emailTest = validEmail.test(userDetails.email);
@@ -67,18 +63,10 @@ const AddUserBox = () => {
     if (!emailTest) {
       setEmailError("Email is not valid");
     }
-    if (validPhone) {
+    if (!phoneTest) {
       setPhoneError("Phone Number is not valid");
     }
   }, [userDetails]);
-
-  const [userDetails, setUserDetails] = useState({
-    id: nextUserId,
-    user: "",
-    email: "",
-    phone: "",
-    access: "",
-  });
 
   const [open, setOpen] = useState(false);
 
@@ -97,7 +85,12 @@ const AddUserBox = () => {
   const dispatch = useDispatch();
 
   const handleAddUser = () => {
-    if (handleValidation()) {
+    if (
+      emailError.length === 0 &&
+      phoneError.length === 0 &&
+      userError.length === 0 &&
+      accessError.length === 0
+    ) {
       dispatch(addUser(userDetails));
       setUserDetails({
         id: users.length,
@@ -166,13 +159,28 @@ const AddUserBox = () => {
             <MenuItem value="guest">Guest</MenuItem>
           </Select>
         </FormControl>
-
-        {errors.phone && <Typography color="error">{errors.phone}</Typography>}
-        {errors.email && <Typography color="error">{errors.email}</Typography>}
-        {errors.access && (
-          <Typography color="error">{errors.access}</Typography>
-        )}
-        {errors.user && <Typography color="error">{errors.user}</Typography>}
+        <Box display="flex" flexDirection="column">
+          {phoneError && (
+            <Typography variant="subtitle1" color="error">
+              {phoneError}
+            </Typography>
+          )}
+          {emailError && (
+            <Typography variant="subtitle1" color="error">
+              {emailError}
+            </Typography>
+          )}
+          {accessError && (
+            <Typography variant="subtitle1" color="error">
+              {accessError}
+            </Typography>
+          )}
+          {userError && (
+            <Typography variant="subtitle1" color="error">
+              {userError}
+            </Typography>
+          )}
+        </Box>
       </Box>
 
       <Box display="flex" gap="0.5rem" justifyContent="end" marginTop="2rem">
