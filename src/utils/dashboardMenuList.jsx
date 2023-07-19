@@ -38,4 +38,9 @@ export const DashboardMenuList = [
     path: "/home/messages",
     icon: <CardMembership />,
   },
+  {
+    name: "All Assets",
+    path: "/home/hosp/assets",
+    icon: <CardMembership />,
+  },
 ];

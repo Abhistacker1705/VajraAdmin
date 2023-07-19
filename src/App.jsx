@@ -14,8 +14,9 @@ import AddUser from "./pages/AddUser";
 import EditUser from "./pages/EditUser";
 import ServiceIssue from "./components/ServiceRequest/ServiceIssue";
 import ServiceIssueImage from "./components/ServiceRequest/ServiceIssueImage";
-
+import AllHospitalAssets from "./pages/HospitalAllAssets";
 import MessageFocused from "./components/Messages/MessageFocused";
+import AssetDetails from "./pages/AssetDetails";
 
 function App() {
   const navigate = useNavigate();
@@ -43,6 +44,28 @@ function App() {
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
             <AllHospitals />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        // path="home/hosp/:hospitalId/
+
+        path="home/hosp/assets"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <AllHospitalAssets />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        // path="home/hosp/:hospitalId/
+
+        path="home/hosp/assets/:assetId"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <AssetDetails />
           </ProtectedRoute>
         }
       />

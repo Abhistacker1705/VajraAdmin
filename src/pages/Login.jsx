@@ -3,7 +3,7 @@ import Navbar from "../components/Login/Navbar";
 import SignInForm from "../components/Login/SignInForm";
 import Footer from "../components/Login/Footer";
 import {useNavigate} from "react-router";
-import isAuthenticated from "../utils/Auth";
+
 const Login = () => {
   const navigate = useNavigate();
 

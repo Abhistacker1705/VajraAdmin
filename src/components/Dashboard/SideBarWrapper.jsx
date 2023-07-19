@@ -53,7 +53,7 @@ const SideBarWrapper = (props) => {
               key={index}
               component={NavLink}
               to={item.path}
-              end={true}
+              end={item.path === "/home" ? true : false}
               style={({isActive}) => {
                 return {
                   borderRadius: "0",
