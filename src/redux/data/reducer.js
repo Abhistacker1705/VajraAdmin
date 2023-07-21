@@ -542,11 +542,68 @@ const initState = {
       brand: "Taylor",
       maintenance: "05/09/2022",
     },
+    {
+      id: 2,
+      assetName: "Smart PFT USB",
+      caliStatus: "Yes",
+      department: "Ultrasound",
+      type: "new",
+      serialNo: "BB34456TR",
+      status: "Working",
+      brand: "Taylor",
+      maintenance: "05/09/2022",
+    },
+    {
+      id: 3,
+      assetName: "Smart PFT USB",
+      caliStatus: "Yes",
+      department: "Ultrasound",
+      type: "new",
+      serialNo: "BB34456TR",
+      status: "Working",
+      brand: "Taylor",
+      maintenance: "05/09/2022",
+    },
+    {
+      id: 4,
+      assetName: "Smart PFT USB",
+      caliStatus: "Yes",
+      department: "Ultrasound",
+      type: "new",
+      serialNo: "BB34456TR",
+      status: "Working",
+      brand: "Taylor",
+      maintenance: "05/09/2022",
+    },
   ],
 
   assetServiceRequests: [
     {
       id: 1,
+      date: "05/09/2022",
+      name: "Rangnath",
+      report: "Service Completed",
+      download:
+        "https://harmonyhomemedical.com/cdn/shop/articles/Types-of-Medical-Supplies-729119_1200x660.jpg?v=1662070183",
+    },
+    {
+      id: 2,
+      date: "05/09/2022",
+      name: "Rangnath",
+      report: "Service Completed",
+      download:
+        "https://harmonyhomemedical.com/cdn/shop/articles/Types-of-Medical-Supplies-729119_1200x660.jpg?v=1662070183",
+    },
+    {
+      id: 3,
+      date: "05/09/2022",
+      name: "Rangnath",
+      report: "Service Completed",
+      download:
+        "https://harmonyhomemedical.com/cdn/shop/articles/Types-of-Medical-Supplies-729119_1200x660.jpg?v=1662070183",
+    },
+    {
+      id: 4,
       date: "05/09/2022",
       name: "Rangnath",
       report: "Service Completed",

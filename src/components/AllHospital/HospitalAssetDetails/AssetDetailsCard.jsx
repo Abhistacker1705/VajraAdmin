@@ -30,7 +30,7 @@ const AssetDetailsCard = () => {
           Details
         </Typography>
       </Box>
-      <Box maxHeight="20rem" sx={{overflowY: "scroll"}}>
+      <Box paddingX="2rem" maxHeight="20rem" sx={{overflowY: "auto"}}>
         <Stack display="flex" flexWrap={"wrap"} rowGap="0.5rem">
           <Box display="flex" justifyContent="space-between" flexWrap={"wrap"}>
             <Typography
@@ -41,7 +41,7 @@ const AssetDetailsCard = () => {
             </Typography>
             <Box
               display="flex"
-              minWidth={{desktop: "10rem", mobile: "6rem"}}
+              minWidth="10rem"
               gap="1rem"
               justifyContent="space-between">
               <Typography
@@ -66,7 +66,7 @@ const AssetDetailsCard = () => {
               Serial No
             </Typography>
             <Box
-              minWidth={{desktop: "10rem", mobile: "6rem"}}
+              minWidth="10rem"
               display="flex"
               gap="1rem"
               justifyContent="space-between">
@@ -92,7 +92,7 @@ const AssetDetailsCard = () => {
               Department
             </Typography>
             <Box
-              minWidth={{desktop: "10rem", mobile: "6rem"}}
+              minWidth="10rem"
               display="flex"
               gap="1rem"
               justifyContent="space-between">
@@ -118,7 +118,7 @@ const AssetDetailsCard = () => {
               Type
             </Typography>
             <Box
-              minWidth={{desktop: "10rem", mobile: "6rem"}}
+              minWidth="10rem"
               display="flex"
               gap="1rem"
               justifyContent="space-between">
@@ -144,7 +144,7 @@ const AssetDetailsCard = () => {
               Status
             </Typography>
             <Box
-              minWidth={{desktop: "10rem", mobile: "6rem"}}
+              minWidth="10rem"
               display="flex"
               gap="1rem"
               justifyContent="space-between">
@@ -170,7 +170,7 @@ const AssetDetailsCard = () => {
               Sold by
             </Typography>
             <Box
-              minWidth={{desktop: "10rem", mobile: "6rem"}}
+              minWidth="10rem"
               display="flex"
               gap="1rem"
               justifyContent="space-between">
@@ -196,7 +196,7 @@ const AssetDetailsCard = () => {
               Calibrate Status
             </Typography>
             <Box
-              minWidth={{desktop: "10rem", mobile: "6rem"}}
+              minWidth="10rem"
               display="flex"
               gap="1rem"
               justifyContent="space-between">
@@ -222,7 +222,7 @@ const AssetDetailsCard = () => {
               AMC/CMC
             </Typography>
             <Box
-              minWidth={{desktop: "10rem", mobile: "6rem"}}
+              minWidth="10rem"
               display="flex"
               gap="1rem"
               justifyContent="space-between">

@@ -17,6 +17,7 @@ import ServiceIssueImage from "./components/ServiceRequest/ServiceIssueImage";
 import AllHospitalAssets from "./pages/HospitalAllAssets";
 import MessageFocused from "./components/Messages/MessageFocused";
 import AssetDetails from "./pages/AssetDetails";
+import HospitalDashboard from "./pages/HospitalDashboard";
 
 function App() {
   const navigate = useNavigate();
@@ -30,7 +31,6 @@ function App() {
   return (
     <Routes>
       {/* protected */}
-
       <Route
         path="home"
         element={
@@ -49,9 +49,18 @@ function App() {
       />
 
       <Route
-        // path="home/hosp/:hospitalId/
+        path="home/hosp/:hospitalId"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <HospitalDashboard />
+          </ProtectedRoute>
+        }
+      />
 
-        path="home/hosp/assets"
+      {/* //all assets of a particular hospital */}
+
+      <Route
+        path="home/hosp/:hospitalId/assets"
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
             <AllHospitalAssets />
@@ -59,16 +68,17 @@ function App() {
         }
       />
 
-      <Route
-        // path="home/hosp/:hospitalId/
+      {/* //details of a particular asset */}
 
-        path="home/hosp/assets/:assetId"
+      <Route
+        path="home/hosp/:hospitalId/assets/:assetId"
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
             <AssetDetails />
           </ProtectedRoute>
         }
       />
+
       <Route
         path="home/servicereq"
         element={
@@ -77,7 +87,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="home/servicereq/:hospitalid"
         element={
@@ -86,7 +95,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="home/servicereq/:hospitalid/:imageid"
         element={
@@ -95,7 +103,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="home/messages"
         element={
@@ -104,7 +111,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="home/messages/:messageId"
         element={
@@ -121,7 +127,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="home/users/add"
         element={
@@ -130,7 +135,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="home/users/edit/:userid"
         element={
@@ -139,7 +143,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgotpass" element={<ForgotPassword />} />

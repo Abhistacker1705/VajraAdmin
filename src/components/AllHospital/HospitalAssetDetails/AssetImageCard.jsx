@@ -1,4 +1,9 @@
-import {DownloadDoneOutlined, DownloadOutlined} from "@mui/icons-material";
+import {
+  DownloadDoneOutlined,
+  DownloadOutlined,
+  NavigateBefore,
+  NavigateNext,
+} from "@mui/icons-material";
 import {Box, Button, Typography} from "@mui/material";
 import React, {useState} from "react";
 import {QrCode2} from "@mui/icons-material";
@@ -48,25 +53,30 @@ const AssetImageAndQRCard = () => {
       });
   };
   return (
-    <Box display="flex" flexDirection="column" gap="1.25rem">
+    <Box display="flex" minWidth="50%" flexDirection="column" gap="1.25rem">
       <Box
         sx={{borderRadius: "2rem", padding: "2rem"}}
         display="flex"
         flexDirection="column"
-        height={"8rem"}
+        height="8rem"
         bgcolor="#FFFFFF">
         <Box
           display="flex"
+          justifyContent="center"
           alignSelf="center"
           width="fit-content"
           height="6rem">
           <Button
             sx={{fontSize: "4rem", fontWeight: "100"}}
             onClick={handleDecrement}
-            variant="text">
-            {"<"}
-          </Button>
-          <Box minWidth={{desktop: "15rem", mobile: "3rem"}} height="6rem">
+            variant="text"
+            startIcon={<NavigateBefore />}></Button>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minWidth={{desktop: "15rem", mobile: "3rem"}}
+            height={{desktop: "6rem", mobile: "8rem"}}>
             <img
               style={{
                 width: "100%",
@@ -79,9 +89,8 @@ const AssetImageAndQRCard = () => {
           <Button
             sx={{fontSize: "4rem", fontWeight: "100"}}
             onClick={handleIncrement}
-            variant="text">
-            {">"}
-          </Button>
+            variant="text"
+            startIcon={<NavigateNext />}></Button>
         </Box>
         <Button
           sx={{alignSelf: "end"}}

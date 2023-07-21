@@ -9,15 +9,20 @@ import {Box} from "@mui/material";
 const AssetDetails = () => {
   return (
     <SideBarWrapper menuList={DashboardMenuList}>
-      <Box display="flex" justifyContent="space-between" gap="2rem">
+      <Box
+        display="flex"
+        flexDirection={{mobile: "column", desktop: "row"}}
+        justifyContent="space-between"
+        gap="2rem">
         <AssetDetailsCard />
         <AssetImageAndQRCard />
       </Box>
       <Box
         display="flex"
+        flexDirection={{mobile: "column", desktop: "row"}}
         justifyContent="space-between"
-        gap="2rem"
-        marginTop="2rem">
+        marginTop="2rem"
+        gap="2rem">
         <AssetServiceHistory />
 
         <AssetWarrantyCard />

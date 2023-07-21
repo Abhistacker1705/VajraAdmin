@@ -8,6 +8,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import {Link} from "react-router-dom";
 
 const HospitalTable = ({searchedFilteredHospData}) => {
   return (
@@ -75,9 +76,16 @@ const HospitalTable = ({searchedFilteredHospData}) => {
         <TableBody>
           {searchedFilteredHospData?.map((data) => (
             <TableRow sx={{":hover": {boxShadow: "tableRow"}}} key={data.id}>
-              <TableCell sx={{maxWidth: "20ch", lineHeight: "2"}}>
-                {data.name}
+              <TableCell
+                sx={{
+                  maxWidth: "20ch",
+                  lineHeight: "2",
+                }}>
+                <Link style={{textDecoration: "none"}} to={":hospitalId"}>
+                  {data.name}
+                </Link>
               </TableCell>
+
               <TableCell>{data.city}</TableCell>
               <TableCell>{data.phone}</TableCell>
               <TableCell>{data.joinDate}</TableCell>

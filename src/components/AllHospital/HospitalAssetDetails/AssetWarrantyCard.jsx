@@ -1,19 +1,24 @@
-import {Box, Typography} from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
 import React from "react";
 import WarrantyIcon from "/WarrantyIcon.png";
 
 const AssetWarrantyCard = () => {
   return (
-    <Box
-      zIndex="1"
-      position="relative"
-      minWidth="15rem"
+    <Stack
+      maxHeight="16rem"
+      minWidth="48%"
       bgcolor="#FFFFFF"
       padding="1rem"
       borderRadius="2rem">
       <Typography color="secondary.main">Warranty</Typography>
-      <Box display="flex" gap="0.5rem" padding="2rem">
-        <img src={WarrantyIcon} style={{scale: "0.8"}} />
+      <Box
+        display="flex"
+        flexDirection={{mobile: "column", desktop: "row"}}
+        justifyContent={{mobile: "center", desktop: "center"}}
+        alignItems="center"
+        gap="0.5rem"
+        padding="2rem">
+        <img src={WarrantyIcon} style={{width: "5rem", height: "7rem"}} />
         <Typography
           display="flex"
           justifyContent="start"
@@ -24,7 +29,7 @@ const AssetWarrantyCard = () => {
           View warranty status of asset
         </Typography>
       </Box>
-    </Box>
+    </Stack>
   );
 };
 

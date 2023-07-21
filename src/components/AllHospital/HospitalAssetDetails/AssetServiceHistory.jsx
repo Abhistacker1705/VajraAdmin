@@ -6,40 +6,69 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Paper,
   Typography,
 } from "@mui/material";
 import React from "react";
 import {useSelector} from "react-redux";
-
+import ServiceHistEmptyIcon from "/ServiceHistEmptyIcon.png";
 const AssetServiceHistory = () => {
   const assetServiceRequests = useSelector(
     (store) => store.data.assetServiceRequests
   );
-  return (
+
+  const downloadReport = () => {
+    console.log("download report has not yet been done");
+  };
+  return assetServiceRequests.length === 0 ? (
     <Box
       sx={{
-        width: "40vw",
-        overflow: "visible",
-        marginTop: "2rem",
-        paddingTop: "0.5rem",
+        display: "flex",
+        paddingY: "2rem",
+        flexDirection: "column",
+        gap: "2rem",
+        justifyContent: "center",
+        alignItems: "center",
+        minWidth: "48%",
+
+        overflow: "auto",
+        paddingTop: "0.75rem",
         height: "fit-content",
         bgcolor: "#FFFFFF",
         borderRadius: "2rem",
       }}>
-      <Typography marginLeft="1rem" variant="body1" color="secondary.main">
+      <img src={ServiceHistEmptyIcon} />
+      <Typography variant="subtitle2">Serivice History is empty</Typography>
+    </Box>
+  ) : (
+    <Box
+      sx={{
+        minWidth: "48%",
+        maxHeight: "24rem",
+        overflow: "auto",
+        paddingTop: "0.75rem",
+        height: "fit-content",
+        bgcolor: "#FFFFFF",
+        borderRadius: "2rem",
+      }}>
+      <Typography
+        position="relative"
+        display="fixed"
+        top="0px"
+        marginLeft="1rem"
+        marginBottom="1rem"
+        variant="body1"
+        color="secondary.main">
         Service History
       </Typography>
 
       <Table
         aria-label="simple table"
         sx={{
-          zIndex: "1",
           marginX: "auto",
           fontSize: "1.125rem",
-          width: "100%",
 
-          borderRadius: "1rem",
+          borderBottomLeftRadius: "1rem",
+          borderBottomRightRadius: "1rem",
           boxShadow: "0px 0px 4px 0px #00000033",
           backgroundColor: "#FFFFFF",
         }}>
@@ -50,7 +79,6 @@ const AssetServiceHistory = () => {
                 fontSize: "1.25rem",
                 fontWeight: "500",
                 color: "primary.main",
-                borderTopLeftRadius: "1rem",
               }}>
               Date
             </TableCell>
@@ -75,7 +103,6 @@ const AssetServiceHistory = () => {
                 fontSize: "1.25rem",
                 fontWeight: "500",
                 color: "primary.main",
-                borderTopRightRadius: "1rem",
               }}>
               Download
             </TableCell>
@@ -88,7 +115,7 @@ const AssetServiceHistory = () => {
               <TableCell>{request.name}</TableCell>
               <TableCell>{request.report}</TableCell>
               <TableCell align="center">
-                <DownloadOutlined color="secondary" />
+                <DownloadOutlined onClick={downloadReport} color="secondary" />
               </TableCell>
             </TableRow>
           ))}
