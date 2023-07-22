@@ -17,7 +17,7 @@ const AddUser = () => {
         width="100%"
         marginBottom="2rem">
         <Typography color="secondary" variant="h3">
-          AddUser
+          Add User
         </Typography>
       </Box>
       <AddUserBox />

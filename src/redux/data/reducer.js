@@ -2,6 +2,10 @@ import {
   ADD_USER_FAILURE,
   ADD_USER_REQUEST,
   ADD_USER_SUCCESS,
+  CHANGE_PRICE_FAILURE,
+  CHANGE_PRICE_REQUEST,
+  CHANGE_PRICE_SUCCESS,
+  CHANGE_PRICE_SUCCESS_AND_CHANGE_VALUE,
   DELETE_USER_FAILURE,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
@@ -19,6 +23,7 @@ import {
 const initState = {
   isLoading: false,
   isError: false,
+  isValueSaved: false,
   allHospital_list: [],
   forgotPassReqResponse: [],
   users: [
@@ -611,6 +616,51 @@ const initState = {
         "https://harmonyhomemedical.com/cdn/shop/articles/Types-of-Medical-Supplies-729119_1200x660.jpg?v=1662070183",
     },
   ],
+
+  warrantyReqs: [
+    {
+      id: 1,
+      assetName: "Defib",
+      brand: "BPL",
+      hospName: "Apollo",
+      dept: "Radiology",
+      modelNo: "CP101022",
+      dop: "17-12-2011",
+      warrantyExpDate: "17-12-2021",
+      price: "9999",
+    },
+    {
+      id: 2,
+      assetName: "Xray",
+      brand: "Siemens",
+      hospName: "Narayana H",
+      dept: "Radiology",
+      modelNo: "CP101022",
+      dop: "17-12-2011",
+      warrantyExpDate: "17-12-2022",
+      price: "9999",
+    },
+    {
+      id: 3,
+      assetName: "ECG Machine",
+      brand: "Siemens",
+      hospName: "Apollo",
+      dept: "ECG",
+      modelNo: "CP101022",
+      dop: "17-12-2011",
+      warrantyExpDate: "17-12-2023",
+    },
+    {
+      id: 4,
+      assetName: "Pacemaker",
+      brand: "BPL",
+      hospName: "Narayana H",
+      dept: "Radiology",
+      modelNo: "CP101022",
+      dop: "17-12-2011",
+      warrantyExpDate: "17-12-2024",
+    },
+  ],
 };
 
 export const dataReducer = (state = initState, action) => {
@@ -736,7 +786,47 @@ export const dataReducer = (state = initState, action) => {
       };
     }
 
-    //messages fetch
+    //CHANGE PRICE
+    case CHANGE_PRICE_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    }
+    case CHANGE_PRICE_SUCCESS: {
+      const reqsNotEdited = state.warrantyReqs.filter(
+        (req) => req.id != action.payload.id
+      );
+      let reqEdited = state.warrantyReqs.filter(
+        (req) => req.id === action.payload.id
+      );
+      reqEdited[0].price = action.payload.value;
+      console.log(reqEdited);
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        isValueSaved: true,
+        warrantyReqs: [...reqEdited, ...reqsNotEdited],
+      };
+    }
+
+    case CHANGE_PRICE_SUCCESS_AND_CHANGE_VALUE: {
+      return {
+        ...state,
+
+        isValueSaved: false,
+      };
+    }
+    case CHANGE_PRICE_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isValueSaved: false,
+        isError: true,
+      };
+    }
 
     default: {
       return {...state};

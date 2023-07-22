@@ -34,13 +34,8 @@ export const DashboardMenuList = [
     icon: <Message />,
   },
   {
-    name: "Warranty",
-    path: "/home/messages",
-    icon: <CardMembership />,
-  },
-  {
-    name: "All Assets",
-    path: "/home/hosp/assets",
+    name: "Warranty Request",
+    path: "/home/warrantyReq",
     icon: <CardMembership />,
   },
 ];

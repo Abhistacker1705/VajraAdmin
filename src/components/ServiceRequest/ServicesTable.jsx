@@ -12,10 +12,8 @@ import {
   FormControlLabel,
   Checkbox,
   Box,
-  InputAdornment,
   InputBase,
   IconButton,
-  TableContainer,
 } from "@mui/material";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SearchIcon from "@mui/icons-material/Search";

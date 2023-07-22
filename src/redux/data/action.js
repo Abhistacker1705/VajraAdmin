@@ -208,3 +208,46 @@ export const messageFetch = (data, token) => (dispatch) => {
     dispatch(messageFetchSuccess(data));
   } else dispatch(messageFetchFailure());
 };
+
+//Change value of price
+
+export const CHANGE_PRICE_REQUEST = "CHANGE_PRICE_REQUEST";
+export const CHANGE_PRICE_SUCCESS = "CHANGE_PRICE_SUCCESS";
+export const CHANGE_PRICE_FAILURE = "CHANGE_PRICE_FAILURE";
+export const CHANGE_PRICE_SUCCESS_AND_CHANGE_VALUE =
+  "CHANGE_PRICE_SUCCESS_AND_CHANGE_VALUE";
+export const changePriceRequest = () => {
+  return {
+    type: CHANGE_PRICE_REQUEST,
+  };
+};
+
+export const changePriceSuccess = (data) => {
+  return {
+    type: CHANGE_PRICE_SUCCESS,
+    payload: data,
+  };
+};
+
+export const changePriceSuccessandChangeValue = () => {
+  return {
+    type: CHANGE_PRICE_SUCCESS_AND_CHANGE_VALUE,
+  };
+};
+
+export const changePriceFailure = () => {
+  return {
+    type: CHANGE_PRICE_FAILURE,
+  };
+};
+
+//Action Dispatcher
+export const changePrice = (data, token) => (dispatch) => {
+  dispatch(changePriceRequest());
+  if (data.value) {
+    dispatch(changePriceSuccess(data));
+    setTimeout(() => {
+      dispatch(changePriceSuccessandChangeValue());
+    }, 2000);
+  } else dispatch(changePriceFailure());
+};

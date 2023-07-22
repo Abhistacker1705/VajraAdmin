@@ -30,8 +30,9 @@ const WarrantyCard = () => {
               />
 
               <Typography
+                variant="body1"
                 sx={{
-                  fontSize: "20px",
+                  textAlign: "center",
                   fontWeight: "400",
                   color: "#212427",
                   width: "260px",

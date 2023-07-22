@@ -1,4 +1,12 @@
-import {Box, Button, Stack, Drawer, IconButton, Popover} from "@mui/material";
+import {
+  Box,
+  Button,
+  Stack,
+  Drawer,
+  IconButton,
+  Popover,
+  Typography,
+} from "@mui/material";
 import VajraLogo from "/VajraLogo.svg";
 import React from "react";
 import {NavLink, Link} from "react-router-dom";
@@ -271,6 +279,12 @@ const SideBarWrapper = (props) => {
               </Box>
             </Popover>
           </Box>
+          <Box marginBottom="2rem">
+            <Link style={{textDecoration: "none"}} to={-1}>
+              <Typography variant="body2">{"<< Previous"}</Typography>
+            </Link>
+          </Box>
+
           {props.children}
         </Box>
       </Box>

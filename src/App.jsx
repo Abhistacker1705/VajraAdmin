@@ -18,6 +18,7 @@ import AllHospitalAssets from "./pages/HospitalAllAssets";
 import MessageFocused from "./components/Messages/MessageFocused";
 import AssetDetails from "./pages/AssetDetails";
 import HospitalDashboard from "./pages/HospitalDashboard";
+import WarrantyRequest from "./pages/WarrantyRequest";
 
 function App() {
   const navigate = useNavigate();
@@ -140,6 +141,15 @@ function App() {
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
             <EditUser />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="home/warrantyReq"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <WarrantyRequest />
           </ProtectedRoute>
         }
       />

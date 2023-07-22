@@ -1,6 +1,11 @@
 import React, {useState, useEffect} from "react";
 import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
-import AllHospitalAssetsTable from "../components/AllHospital/HospitalDetails/HospitalAllAssetsTable";
+import {DashboardMenuList} from "../utils/dashboardMenuList";
+import {useSelector} from "react-redux";
+import WarrantyReqTable from "../components/WarrantyRequest/WarrantyReqTable";
+import {FilterAltOutlined} from "@mui/icons-material";
+
+import {FormatListNumberedRtl, SortOutlined, Search} from "@mui/icons-material";
 import {
   Box,
   Stack,
@@ -15,42 +20,36 @@ import {
   MenuItem,
   InputBase,
 } from "@mui/material";
-import {useSelector} from "react-redux";
-import {FilterAltOutlined} from "@mui/icons-material";
-import {DashboardMenuList} from "../utils/dashboardMenuList";
-import {FormatListNumberedRtl, SortOutlined, Search} from "@mui/icons-material";
 
-const AllHospitalAssets = () => {
-  const assets = useSelector((store) => store.data.assets);
+const WarrantyRequest = () => {
+  const warrantyReqs = useSelector((store) => store.data.warrantyReqs);
   const [searchQuery, setSearchQuery] = useState("");
   const [anchorElSort, setAnchorElSort] = useState(null);
   const [sortOption, setSortOption] = useState("");
 
   const [filterDepartments, setFilterDepartments] = useState([]);
-  const [filterStatus, setFilterStatus] = useState([]);
+  const [filterHosps, setFilterHosps] = useState([]);
   const [filterBrands, setFilterBrands] = useState([]);
   const [anchorElFilter, setAnchorElFilter] = useState(null);
   const open = Boolean(anchorElFilter);
   const openSort = Boolean(anchorElSort);
   const [uniqueFilterOptions, setUniqueFilterOptions] = useState({
     depts: [],
-    status: [],
+    hosps: [],
     brands: [],
   });
   const [sortOrder, setSortOrder] = useState("");
 
   useEffect(() => {
-    assets.map((asset) => {
-      // console.log(asset.status);
-
-      if (!uniqueFilterOptions.depts.includes(asset.department)) {
-        uniqueFilterOptions.depts.push(asset.department);
+    warrantyReqs.map((warrantyReq) => {
+      if (!uniqueFilterOptions.depts.includes(warrantyReq.dept)) {
+        uniqueFilterOptions.depts.push(warrantyReq.dept);
       }
-      if (!uniqueFilterOptions.status.includes(asset.status)) {
-        uniqueFilterOptions.status.push(asset.status);
+      if (!uniqueFilterOptions.hosps.includes(warrantyReq.hospName)) {
+        uniqueFilterOptions.hosps.push(warrantyReq.hospName);
       }
-      if (!uniqueFilterOptions.brands.includes(asset.brand)) {
-        uniqueFilterOptions.brands.push(asset.brand);
+      if (!uniqueFilterOptions.brands.includes(warrantyReq.brand)) {
+        uniqueFilterOptions.brands.push(warrantyReq.brand);
       }
     });
   }, []);
@@ -70,10 +69,10 @@ const AllHospitalAssets = () => {
           filterDepartments.filter((dept) => dept !== value)
         );
       } else setFilterDepartments([...filterDepartments, value]);
-    } else if (name === "status")
-      if (filterStatus.includes(value)) {
-        setFilterStatus(filterStatus.filter((status) => status !== value));
-      } else setFilterStatus([...filterStatus, value]);
+    } else if (name === "hosp")
+      if (filterHosps.includes(value)) {
+        setFilterHosps(filterHosps.filter((hosp) => hosp !== value));
+      } else setFilterHosps([...filterHosps, value]);
   };
 
   const handleFilterClose = () => {
@@ -111,44 +110,51 @@ const AllHospitalAssets = () => {
   //complete filter applying sort search and filter
 
   const getServiceRequests = () => {
-    let filteredAssetsData = [...assets];
+    let filteredWarrantyReqsData = [...warrantyReqs];
     if (filterBrands.length > 0) {
-      filteredAssetsData = filteredAssetsData.filter((request) =>
+      filteredWarrantyReqsData = filteredWarrantyReqsData.filter((request) =>
         filterBrands.includes(request.brand)
       );
     }
 
     if (filterDepartments.length > 0) {
-      filteredAssetsData = filteredAssetsData.filter((request) =>
-        filterDepartments.includes(request.department)
+      filteredWarrantyReqsData = filteredWarrantyReqsData.filter((request) =>
+        filterDepartments.includes(request.dept)
       );
     }
 
-    if (filterStatus.length > 0) {
-      filteredAssetsData = filteredAssetsData.filter((request) =>
-        filterStatus.includes(request.status)
+    if (filterHosps.length > 0) {
+      filteredWarrantyReqsData = filteredWarrantyReqsData.filter((request) =>
+        filterHosps.includes(request.hospName)
       );
     }
 
     if (sortOrder === "NewToOld") {
-      filteredAssetsData.sort(
-        (a, b) => new Date(b.maintenance) - new Date(a.maintenance)
-      );
+      filteredWarrantyReqsData.sort((a, b) => {
+        let aa = a.warrantyExpDate.split("-").join();
+        let bb = b.warrantyExpDate.split("-").join();
+        new Date(bb) - new Date(aa);
+      });
     } else if (sortOrder === "OldToNew") {
-      filteredAssetsData.sort(
-        (a, b) => new Date(a.maintenance) - new Date(b.maintenance)
-      );
+      filteredWarrantyReqsData.sort((a, b) => {
+        let aa = a.warrantyExpDate.split("-").join();
+        let bb = b.warrantyExpDate.split("-").join();
+        new Date(aa) - new Date(bb);
+      });
     }
 
-    return filteredAssetsData;
+    return filteredWarrantyReqsData;
   };
 
-  const filteredSearchedAssetData = getServiceRequests().filter((request) =>
-    request.assetName.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredSearchedWarrantyData = getServiceRequests().filter(
+    (request) =>
+      request.assetName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      request.hospName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <SideBarWrapper menuList={DashboardMenuList}>
+      {" "}
       <Stack minHeight="100%">
         <Box
           display="flex"
@@ -157,7 +163,7 @@ const AllHospitalAssets = () => {
           width="100%"
           marginBottom="2rem">
           <Typography color="secondary" variant="h3">
-            All Assets
+            Warranty Requests
           </Typography>
 
           {/* search */}
@@ -234,7 +240,7 @@ const AllHospitalAssets = () => {
                   sx={{
                     color:
                       filterDepartments.length ||
-                      filterStatus.length ||
+                      filterHosps.length ||
                       filterBrands.length
                         ? "#FF731D"
                         : "#C2C2C2",
@@ -305,10 +311,10 @@ const AllHospitalAssets = () => {
                         color: "#1746A2",
                       }}
                       component="legend">
-                      Status
+                      Hospitals
                     </FormLabel>
                     <Box sx={{maxWidth: "30vw", padding: "1rem"}}>
-                      {uniqueFilterOptions?.status?.map((status, index) => (
+                      {uniqueFilterOptions?.hosps?.map((hosps, index) => (
                         <FormControlLabel
                           key={index}
                           slotProps={{typography: {fontSize: "0.825rem"}}}
@@ -316,7 +322,7 @@ const AllHospitalAssets = () => {
                             <Checkbox
                               size="small"
                               inputProps={{
-                                "data-type": "status",
+                                "data-type": "hosp",
                               }}
                               onChange={handleFilterChange}
                               sx={{
@@ -325,11 +331,11 @@ const AllHospitalAssets = () => {
                                   color: "#FF731D",
                                 },
                               }}
-                              checked={filterStatus.includes(status)}
-                              name={status}
+                              checked={filterHosps.includes(hosps)}
+                              name={hosps}
                             />
                           }
-                          label={status}
+                          label={hosps}
                         />
                       ))}
                     </Box>
@@ -377,12 +383,12 @@ const AllHospitalAssets = () => {
             </Box>
           </Box>
         </Box>
-        <AllHospitalAssetsTable
-          filteredSearchedAssetData={filteredSearchedAssetData}
+        <WarrantyReqTable
+          filteredSearchedWarrantyData={filteredSearchedWarrantyData}
         />
       </Stack>
     </SideBarWrapper>
   );
 };
 
-export default AllHospitalAssets;
+export default WarrantyRequest;
