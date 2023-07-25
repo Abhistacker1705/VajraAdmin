@@ -1,5 +1,6 @@
 import React from "react";
 import {Card, CardContent, Typography, Grid, Box} from "@mui/material";
+import {Link} from "react-router-dom";
 const CalibrationCard = ({hospitalData}) => {
   return (
     <Box
@@ -27,7 +28,11 @@ const CalibrationCard = ({hospitalData}) => {
               Calibration
             </Typography>
             {hospitalData.calibration.map((calibration, index) => (
-              <Box key={index}>
+              <Box
+                component={Link}
+                to={calibration.task.split(" ").join("").toLowerCase()}
+                sx={{textDecoration: "none"}}
+                key={index}>
                 <Box display="flex" padding="10px">
                   <Box
                     sx={{

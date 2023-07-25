@@ -37,7 +37,7 @@ const WarrantyCard = () => {
                   color: "#212427",
                   width: "260px",
                 }}>
-                Click and Check your Asset warranty status
+                Click and Check Asset warranty status
               </Typography>
             </Box>
           </CardContent>

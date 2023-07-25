@@ -21,7 +21,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import {useParams, Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-const ServiceReqestTable = () => {
+const ServiceRequestTable = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [anchorElSort, setAnchorElSort] = useState(null);
   const [anchorElFilter, setAnchorElFilter] = useState(null);
@@ -163,8 +163,6 @@ const ServiceReqestTable = () => {
               <IconButton onClick={handleSortClick} type="button">
                 <SortIcon
                   sx={{
-                    width: "60px",
-                    height: "40px",
                     color: "secondary.main",
                   }}
                 />
@@ -221,10 +219,7 @@ const ServiceReqestTable = () => {
               <IconButton onClick={handleFilterClick}>
                 <FilterAltOutlinedIcon
                   sx={{
-                    width: "60px",
-                    height: "40px",
                     color: "secondary.main",
-                    marginLeft: "-20px",
                   }}></FilterAltOutlinedIcon>
               </IconButton>
               <Menu
@@ -488,7 +483,11 @@ const ServiceReqestTable = () => {
                   <TableCell>{data.asset}</TableCell>
                   <TableCell>{data.city}</TableCell>
                   <TableCell>{data.department}</TableCell>
-                  <TableCell>{data.issue}</TableCell>
+                  <TableCell>
+                    {data.issue.length > 20
+                      ? `${data.issue.substring(0, 20)}.....`
+                      : data.issue}
+                  </TableCell>
                   <TableCell>{data.date}</TableCell>
                 </TableRow>
               ))}
@@ -500,4 +499,4 @@ const ServiceReqestTable = () => {
   );
 };
 
-export default ServiceReqestTable;
+export default ServiceRequestTable;

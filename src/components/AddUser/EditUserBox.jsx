@@ -187,7 +187,6 @@ const EditUserBox = (props) => {
 
       <Box display="flex" gap="0.5rem" justifyContent="end" marginTop="2rem">
         <Button
-          to="add"
           variant="contained"
           sx={{borderRadius: "2rem", textTransform: "none"}}
           color="primary"

@@ -1,5 +1,6 @@
 import React from "react";
 import {Card, CardContent, Typography, Grid, Box} from "@mui/material";
+import {Link} from "react-router-dom";
 
 const IncidentCard = ({hospitalData}) => {
   return (
@@ -16,12 +17,13 @@ const IncidentCard = ({hospitalData}) => {
         border="1px solid #F7811740"
         boxShadow="0px 0px 4px 0px #0000001F">
         <Card sx={{borderRadius: "20px", border: "none", height: "100%"}}>
-          <CardContent>
+          <CardContent sx={{display: "flex", flexDirection: "column"}}>
             <Typography
               sx={{
                 fontSize: "18px",
                 fontWeight: "500",
                 color: "#1746A2",
+                marginBottom: "2rem",
               }}>
               Incident Statistics
             </Typography>
@@ -29,19 +31,24 @@ const IncidentCard = ({hospitalData}) => {
               display="flex"
               flexDirection="column"
               justifyContent="center"
+              gap="1.5rem"
+              paddingLeft="1rem"
               height="100%"
-              width="100%"
-              marginTop="30px">
+              width="100%">
               <Typography
                 sx={{
                   fontSize: "18px",
                   fontWeight: "400",
                   color: "#FF731D",
                   display: "flex",
+                  gap: "1rem",
                 }}>
                 <Typography
+                  component={Link}
+                  to="incidents"
                   sx={{
-                    marginBottom: "10px",
+                    textDecoration: "none",
+
                     fontSize: "18px",
                     fontWeight: "400",
                     color: "#212427",
@@ -51,7 +58,12 @@ const IncidentCard = ({hospitalData}) => {
                 {hospitalData.incidentStatistics.total}
               </Typography>
 
-              <Box display="flex" padding="10px">
+              <Box
+                display="flex"
+                gap="1rem"
+                sx={{textDecoration: "none"}}
+                component={Link}
+                to="incidents/cleared">
                 <Box
                   sx={{
                     height: "19px",
@@ -59,7 +71,6 @@ const IncidentCard = ({hospitalData}) => {
                     backgroundColor: "#CAE4DC",
                     borderRadius: "25px",
                     overflow: "hidden",
-                    marginBottom: "8px",
                   }}>
                   <Box
                     sx={{
@@ -74,12 +85,17 @@ const IncidentCard = ({hospitalData}) => {
                     fontSize: "14px",
                     fontWeight: "500",
                     color: "#212427",
-                    marginLeft: "10px",
                   }}>
-                  8 cleared
+                  8 Cleared
                 </Typography>
               </Box>
-              <Box display="flex" height="100%" padding="10px">
+              <Box
+                display="flex"
+                gap="1rem"
+                component={Link}
+                to="incidents/notcleared"
+                sx={{textDecoration: "none"}}
+                height="100%">
                 <Box
                   sx={{
                     height: "19px",
@@ -101,9 +117,8 @@ const IncidentCard = ({hospitalData}) => {
                     fontSize: "14px",
                     fontWeight: "500",
                     color: "#212427",
-                    marginLeft: "10px",
                   }}>
-                  2 cleared
+                  2 Not Cleared
                 </Typography>
               </Box>
             </Box>
