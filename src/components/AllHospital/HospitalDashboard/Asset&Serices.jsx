@@ -59,7 +59,7 @@ const AssetsAndServices = ({hospitalData}) => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "end",
-                  gap: "1rem",
+                  gap: "1.5rem",
                   textDecoration: "none",
                 }}
                 to="assets">
@@ -68,8 +68,17 @@ const AssetsAndServices = ({hospitalData}) => {
                     fontSize: "18px",
                     fontWeight: "400",
                     color: "#212427",
+                    width: "10ch",
                   }}>
-                  Total Assets :
+                  Total Assets
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "18px",
+                    fontWeight: "400",
+                    color: "#212427",
+                  }}>
+                  :
                 </Typography>
                 <Typography sx={{color: "secondary.main"}}>
                   {hospitalData.assets}
@@ -90,13 +99,13 @@ const AssetsAndServices = ({hospitalData}) => {
               }}>
               <img src="/Service.svg" alt="" />
             </Typography>
-            <Box padding="10px">
+            <Box width="fit-content">
               <Link
                 style={{
                   display: "flex",
                   justifyContent: "start",
                   alignItems: "end",
-                  gap: "1rem",
+                  gap: "1.5rem",
                   textDecoration: "none",
                 }}
                 to="services">
@@ -105,8 +114,17 @@ const AssetsAndServices = ({hospitalData}) => {
                     fontSize: "18px",
                     fontWeight: "400",
                     color: "#212427",
+                    width: "15ch",
                   }}>
-                  Total Services :
+                  Total Services
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "18px",
+                    fontWeight: "400",
+                    color: "#212427",
+                  }}>
+                  :
                 </Typography>
                 <Typography sx={{color: "secondary.main"}}>
                   {hospitalData.totalService}
@@ -117,7 +135,7 @@ const AssetsAndServices = ({hospitalData}) => {
                   display: "flex",
                   justifyContent: "start",
                   alignItems: "end",
-                  gap: "1rem",
+                  gap: "1.5rem",
                   textDecoration: "none",
                 }}
                 to="services/open">
@@ -126,8 +144,17 @@ const AssetsAndServices = ({hospitalData}) => {
                     fontSize: "18px",
                     fontWeight: "400",
                     color: "#212427",
+                    width: "15ch",
                   }}>
-                  Open Services :
+                  Open Services
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "18px",
+                    fontWeight: "400",
+                    color: "#212427",
+                  }}>
+                  :
                 </Typography>
                 <Typography sx={{color: "secondary.main"}}>
                   {hospitalData.openService}
@@ -138,7 +165,7 @@ const AssetsAndServices = ({hospitalData}) => {
                   display: "flex",
                   justifyContent: "start",
                   alignItems: "end",
-                  gap: "1rem",
+                  gap: "1.5rem",
                   textDecoration: "none",
                 }}
                 to="services/cleared">
@@ -147,8 +174,17 @@ const AssetsAndServices = ({hospitalData}) => {
                     fontSize: "18px",
                     fontWeight: "400",
                     color: "#212427",
+                    width: "15ch",
                   }}>
-                  Cleared Services :
+                  Cleared Services
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "18px",
+                    fontWeight: "400",
+                    color: "#212427",
+                  }}>
+                  :
                 </Typography>
                 <Typography sx={{color: "secondary.main"}}>
                   {hospitalData.clearedService}
