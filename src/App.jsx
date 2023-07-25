@@ -28,6 +28,8 @@ import NotClearedIncidents from "./pages/NotClearedIncidents";
 import Services from "./pages/Services";
 import ClearedServices from "./pages/ClearedServices";
 import OpenServices from "./pages/OpenServices";
+import HospitalDepartments from "./pages/HospitalDepartments";
+import DepartmentDetails from "./pages/DepartmentDetails";
 
 function App() {
   const navigate = useNavigate();
@@ -180,6 +182,26 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+      {/* Departments in hospital */}
+      <Route
+        path="home/hosp/:hospitalId/departments"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <HospitalDepartments />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="home/hosp/:hospitalId/departments/:dept"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <DepartmentDetails />
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="home/servicereq"
         element={

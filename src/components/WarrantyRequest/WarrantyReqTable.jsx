@@ -150,7 +150,14 @@ const WarrantyReqTable = ({filteredSearchedWarrantyData}) => {
                 <TableCell>{data.dop}</TableCell>
                 <TableCell>{data.warrantyExpDate}</TableCell>
                 {data.price ? (
-                  <TableCell align="center" sx={{minWidth: "10ch"}}>
+                  <TableCell
+                    align="center"
+                    sx={{
+                      minWidth: "10ch",
+                      textDecoration: "underline",
+                      textDecorationColor: "#1746A2",
+                      ":hover": {textDecoration: "none"},
+                    }}>
                     {data.price}
                     <Tooltip title="Edit Price">
                       <IconButton

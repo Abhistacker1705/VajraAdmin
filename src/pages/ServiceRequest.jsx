@@ -1,5 +1,5 @@
 import React from "react";
-import ServiceRequestTable from "../components/ServiceRequest/ServicesTable";
+import ServiceRequestTable from "../components/ServiceRequest/ServicesReqTable";
 import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
 const ServiceRequest = () => {

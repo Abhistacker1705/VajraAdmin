@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Card, CardContent, Typography, Grid, Box} from "@mui/material";
 import {Chart} from "react-google-charts";
+import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
 
 const PieChart = ({hospitalData}) => {
+  let navigate = useNavigate("");
+  const [currdepartment, setCurrDepartment] = useState("");
   const departmentsData = [
     ["Department", "Percentage"],
     ...hospitalData.departments.map((department) => [
@@ -10,6 +14,18 @@ const PieChart = ({hospitalData}) => {
       department.percentage,
     ]),
   ];
+
+  const handleClick = (slice) => {
+    const dept = departmentsData[slice.row + 1][0];
+    console.log(departmentsData[slice.row + 1][0]);
+    setCurrDepartment(dept);
+  };
+
+  useEffect(() => {
+    if (currdepartment) {
+      navigate(`departments/${currdepartment.toLowerCase()}`);
+    }
+  }, [currdepartment, navigate]);
 
   return (
     <Box display="flex" width="100%" height="400px">
@@ -29,16 +45,18 @@ const PieChart = ({hospitalData}) => {
             width: "100%",
           }}>
           <CardContent>
-            <Typography
-              sx={{
-                fontSize: "18px",
-                fontWeight: "500",
-                color: "#1746A2",
-                marginLeft: "10px",
-                margintop: "20px",
-              }}>
-              Department Asset
-            </Typography>
+            <Link style={{textDecoration: "none"}} to="departments">
+              <Typography
+                sx={{
+                  fontSize: "18px",
+                  fontWeight: "500",
+                  color: "#1746A2",
+                  marginLeft: "10px",
+                  margintop: "20px",
+                }}>
+                Department Assets
+              </Typography>
+            </Link>
             <Chart
               chartType="PieChart"
               width="100%"
@@ -61,6 +79,26 @@ const PieChart = ({hospitalData}) => {
                   },
                 },
               }}
+              chartEvents={[
+                {
+                  eventName: "ready",
+                  callback: ({chartWrapper, google}) => {
+                    const chart = chartWrapper.getChart();
+                    google.visualization.events.addListener(
+                      chart,
+                      "select",
+                      () => {
+                        const chart = chartWrapper.getChart();
+                        const selectedItem = chart.getSelection()[0];
+                        console.log(selectedItem);
+                        if (selectedItem) {
+                          handleClick(selectedItem);
+                        }
+                      }
+                    );
+                  },
+                },
+              ]}
               height="400px"
               borderRadius="20px"
             />

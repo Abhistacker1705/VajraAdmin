@@ -17,6 +17,7 @@ import {ExpandMore, ExpandLess, Logout} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import {logout} from "../../redux/auth/action";
 import {useDispatch} from "react-redux";
+
 const drawerWidth = 230;
 
 const SideBarWrapper = (props) => {
@@ -279,12 +280,15 @@ const SideBarWrapper = (props) => {
               </Box>
             </Popover>
           </Box>
-          <Box marginBottom="2rem">
-            <Link style={{textDecoration: "none"}} to={-1}>
-              <Typography variant="body2">{"<< Previous"}</Typography>
-            </Link>
-          </Box>
-
+          {window.location.pathname != "/home" ? (
+            <Box marginBottom="2rem">
+              <Link style={{textDecoration: "none"}} to={-1}>
+                <Typography variant="body2">{"<< Previous"}</Typography>
+              </Link>
+            </Box>
+          ) : (
+            ""
+          )}
           {props.children}
         </Box>
       </Box>

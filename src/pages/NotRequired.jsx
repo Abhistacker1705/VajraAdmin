@@ -433,7 +433,7 @@ const NotRequired = () => {
                 <TableCell align="left">{request.Dept}</TableCell>
                 <TableCell align="left">{request.SerialNo}</TableCell>
 
-                <TableCell align="start">
+                <TableCell align="center">
                   <Button
                     sx={{
                       border: "1px solid #FF4B4B ",

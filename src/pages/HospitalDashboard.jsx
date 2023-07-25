@@ -21,11 +21,11 @@ const HospitalDashboard = () => {
     openService: 23,
     clearedService: 12,
     departments: [
-      {name: "Radiology Asset", percentage: 11},
-      {name: "ECHO Asset", percentage: 2},
-      {name: "OP Asset", percentage: 2},
-      {name: "ICU Asset", percentage: 2},
-      {name: "ECG Asset", percentage: 7},
+      {name: "Radiology", percentage: 11},
+      {name: "ECHO", percentage: 2},
+      {name: "OP", percentage: 2},
+      {name: "ICU", percentage: 2},
+      {name: "ECG", percentage: 7},
     ],
     calibration: [
       {task: "Calibrated", percentage: 70},

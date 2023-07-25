@@ -10,14 +10,17 @@ import {
   Card,
   CardContent,
   Grid,
-  Link,
+  Button,
+  CardHeader,
 } from "@mui/material";
+import {Link} from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
+import IncidentAndServiceGrid from "../components/AllHospital/IncidentAndServiceGrid";
 
 const OpenServices = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -359,200 +362,7 @@ const OpenServices = () => {
           </Box>
         </Box>
       </Box>
-      <Box
-        maxWidth={{
-          xl: "1030px",
-          lg: "1030px",
-          md: "900px",
-          sm: "600px",
-          xs: "480px",
-        }}
-        minHeight="937px"
-        sx={{
-          boxShadow: "0px 0px 4px 0px #00000033",
-          border: "0px solid #1746A280",
-          borderRadius: "15px",
-          background: "white",
-          marginTop: {
-            xl: "20px",
-            lg: "20px",
-            md: "20px",
-            sm: "20px",
-            xs: "20px",
-          },
-          marginLeft: {xl: "0px", lg: "0px", md: "0px"},
-        }}>
-        {openServices?.map((request, index) => (
-          <Link
-            href={
-              request.Status === "Cleared"
-                ? `/detailscleared/${request.Head}`
-                : `/detailsnotcleared/${request.Head}`
-            }
-            color={request.Status === "Cleared" ? "#00A884" : "#FF4B4B"}
-            sx={{textDecoration: "none"}}
-            key={index}>
-            <Box
-              width="440px"
-              height="257px"
-              display="inline-block"
-              paddingX="20px"
-              paddingY="20px"
-              marginLeft={{xl: "15px"}}>
-              <Grid>
-                <Card
-                  sx={{
-                    width: {
-                      xl: "455px",
-                      lg: "455px",
-                      md: "480px",
-                      sm: "455px",
-                      xs: "455px",
-                    },
-                    height: "257px",
-                    border: "1px solid #1746A280",
-                    boxShadow: "0px 0px 4px 0px #00000033",
-                    borderRadius: "30px",
-                    marginLeft: {
-                      xl: "0px",
-                      lg: "0px",
-                      md: "180px",
-                      sm: "50px",
-                      xs: "-8px",
-                    },
-                  }}>
-                  <CardContent>
-                    <Typography
-                      sx={{
-                        fontSize: "24px",
-                        fontWeight: "500",
-                        color: "#000000",
-                        padding: "10PX",
-                      }}>
-                      {request.Head}
-                    </Typography>
-                    <Box>
-                      <Box display="flex" padding="8PX">
-                        <Typography
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#1746A2",
-                          }}>
-                          Department
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#1746A2",
-                            marginLeft: "10px",
-                          }}>
-                          :
-                        </Typography>
-                        <Typography
-                          display="flex"
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#212427",
-                            marginLeft: "10px",
-                          }}>
-                          {request.Dept}
-                        </Typography>
-                      </Box>
-                      <Box display="flex" padding="8PX">
-                        <Typography
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#1746A2",
-                          }}>
-                          Date
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#1746A2",
-                            marginLeft: "83.5px",
-                          }}>
-                          :
-                        </Typography>
-                        <Typography
-                          display="flex"
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#212427",
-                            marginLeft: "10px",
-                          }}>
-                          {request.Date}
-                        </Typography>
-                      </Box>
-                      <Box display="flex" padding="8PX">
-                        <Typography
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#1746A2",
-                          }}>
-                          Time
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#1746A2",
-                            marginLeft: "82.5px",
-                          }}>
-                          :
-                        </Typography>
-                        <Typography
-                          display="flex"
-                          sx={{
-                            fontSize: "20px",
-                            fontWeight: "400",
-                            color: "#212427",
-                            marginLeft: "10px",
-                          }}>
-                          {request.Time}
-                        </Typography>
-                      </Box>
-                    </Box>
-                    <Box
-                      color={
-                        request.Status === "Cleared" ? "#00A884" : "#FF4B4B"
-                      }
-                      sx={{
-                        border: "1px solid ",
-                        borderRadius: "18px",
-                        width: "115px",
-                        height: "36px",
-                        marginLeft: "280px",
-                      }}>
-                      <Typography
-                        align="center"
-                        color={
-                          request.Status === "Cleared" ? "#00A884" : "#FF4B4B"
-                        }
-                        sx={{
-                          fontSize: "16px",
-                          fontWeight: "500",
-                          height: "36px",
-                          width: "110px",
-                          padding: "2px",
-                        }}>
-                        {request.Status}
-                      </Typography>
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Box>
-          </Link>
-        ))}
-      </Box>
+      <IncidentAndServiceGrid data={openServices} />
     </SideBarWrapper>
   );
 };

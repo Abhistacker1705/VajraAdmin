@@ -81,7 +81,7 @@ const HospitalTable = ({searchedFilteredHospData}) => {
                   maxWidth: "20ch",
                   lineHeight: "2",
                 }}>
-                <Link style={{textDecoration: "none"}} to={":hospitalId"}>
+                <Link style={{textDecoration: "none"}} to={`${data.id}`}>
                   {data.name}
                 </Link>
               </TableCell>
