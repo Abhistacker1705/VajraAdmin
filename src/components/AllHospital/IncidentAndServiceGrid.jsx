@@ -23,7 +23,7 @@ const IncidentAndServiceGrid = ({data}) => {
         container
         width="100%"
         gap="4rem"
-        justifyContent={{mobile: "center", laptop: "start"}}>
+        justifyContent={{mobile: "center", laptop: "space-around"}}>
         {data?.map((request, index) => (
           <Grid
             sx={{textDecoration: "none", width: "32rem"}}
@@ -58,22 +58,27 @@ const IncidentAndServiceGrid = ({data}) => {
                   gap="1rem"
                   marginBottom="2rem">
                   <Box display="flex" justifyContent="space-between">
-                    <Typography
-                      sx={{
-                        fontSize: "20px",
-                        fontWeight: "400",
-                        color: "#1746A2",
-                      }}>
-                      Department
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "20px",
-                        fontWeight: "400",
-                        color: "#1746A2",
-                      }}>
-                      :
-                    </Typography>
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      width="25ch">
+                      <Typography
+                        sx={{
+                          fontSize: "20px",
+                          fontWeight: "400",
+                          color: "#1746A2",
+                        }}>
+                        Department
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: "20px",
+                          fontWeight: "400",
+                          color: "#1746A2",
+                        }}>
+                        :
+                      </Typography>
+                    </Box>
                     <Typography
                       display="flex"
                       sx={{
@@ -85,22 +90,27 @@ const IncidentAndServiceGrid = ({data}) => {
                     </Typography>
                   </Box>
                   <Box display="flex" justifyContent="space-between">
-                    <Typography
-                      sx={{
-                        fontSize: "20px",
-                        fontWeight: "400",
-                        color: "#1746A2",
-                      }}>
-                      Date
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "20px",
-                        fontWeight: "400",
-                        color: "#1746A2",
-                      }}>
-                      :
-                    </Typography>
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      width="25ch">
+                      <Typography
+                        sx={{
+                          fontSize: "20px",
+                          fontWeight: "400",
+                          color: "#1746A2",
+                        }}>
+                        Date
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: "20px",
+                          fontWeight: "400",
+                          color: "#1746A2",
+                        }}>
+                        :
+                      </Typography>
+                    </Box>
                     <Typography
                       display="flex"
                       sx={{
@@ -112,22 +122,27 @@ const IncidentAndServiceGrid = ({data}) => {
                     </Typography>
                   </Box>
                   <Box display="flex" justifyContent="space-between">
-                    <Typography
-                      sx={{
-                        fontSize: "20px",
-                        fontWeight: "400",
-                        color: "#1746A2",
-                      }}>
-                      Time
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "20px",
-                        fontWeight: "400",
-                        color: "#1746A2",
-                      }}>
-                      :
-                    </Typography>
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      width="25ch">
+                      <Typography
+                        sx={{
+                          fontSize: "20px",
+                          fontWeight: "400",
+                          color: "#1746A2",
+                        }}>
+                        Time
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: "20px",
+                          fontWeight: "400",
+                          color: "#1746A2",
+                        }}>
+                        :
+                      </Typography>
+                    </Box>
                     <Typography
                       display="flex"
                       sx={{
