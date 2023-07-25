@@ -33,12 +33,11 @@ const AssetsAndServices = ({hospitalData}) => {
               width: "100%",
             }}>
             <Typography
+              variant="h4"
               sx={{
-                fontSize: "16px",
-                fontWeight: "500",
                 color: "#1746A2",
               }}>
-              Asset
+              Assets
             </Typography>
             <Typography
               sx={{
@@ -78,9 +77,8 @@ const AssetsAndServices = ({hospitalData}) => {
               </Link>
             </Typography>
             <Typography
+              variant="h4"
               sx={{
-                fontSize: "16px",
-                fontWeight: "500",
                 color: "#1746A2",
               }}>
               Services
