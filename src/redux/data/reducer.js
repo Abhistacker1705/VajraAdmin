@@ -4,8 +4,8 @@ import {
   ADD_USER_SUCCESS,
   CHANGE_PRICE_FAILURE,
   CHANGE_PRICE_REQUEST,
-  CHANGE_PRICE_SUCCESS,
   CHANGE_PRICE_SUCCESS_AND_CHANGE_VALUE,
+  CHANGE_PRICE_SUCCESS,
   DELETE_USER_FAILURE,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
@@ -795,20 +795,16 @@ export const dataReducer = (state = initState, action) => {
       };
     }
     case CHANGE_PRICE_SUCCESS: {
-      const reqsNotEdited = state.warrantyReqs.filter(
-        (req) => req.id != action.payload.id
-      );
       let reqEdited = state.warrantyReqs.filter(
         (req) => req.id === action.payload.id
       );
       reqEdited[0].price = action.payload.value;
-      console.log(reqEdited);
+
       return {
         ...state,
         isLoading: false,
         isError: false,
         isValueSaved: true,
-        warrantyReqs: [...reqEdited, ...reqsNotEdited],
       };
     }
 
@@ -819,6 +815,7 @@ export const dataReducer = (state = initState, action) => {
         isValueSaved: false,
       };
     }
+
     case CHANGE_PRICE_FAILURE: {
       return {
         ...state,

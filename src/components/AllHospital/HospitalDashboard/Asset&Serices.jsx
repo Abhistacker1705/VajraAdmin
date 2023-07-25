@@ -8,7 +8,7 @@ const AssetsAndServices = ({hospitalData}) => {
       <Grid
         sx={{background: "white"}}
         width="100%"
-        maxHeight="370px"
+        maxHeight="400px"
         marginTop="20px"
         borderRadius="20px"
         border="1px solid #F7811740"
@@ -28,6 +28,7 @@ const AssetsAndServices = ({hospitalData}) => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              gap: "1rem",
               justifyContent: "center",
               width: "100%",
             }}>
@@ -121,7 +122,7 @@ const AssetsAndServices = ({hospitalData}) => {
                   gap: "1rem",
                   textDecoration: "none",
                 }}
-                to="services">
+                to="services/open">
                 <Typography
                   sx={{
                     fontSize: "18px",
@@ -142,7 +143,7 @@ const AssetsAndServices = ({hospitalData}) => {
                   gap: "1rem",
                   textDecoration: "none",
                 }}
-                to="services">
+                to="services/cleared">
                 <Typography
                   sx={{
                     fontSize: "18px",

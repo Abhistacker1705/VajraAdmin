@@ -25,7 +25,6 @@ const WarrantyRequest = () => {
   const warrantyReqs = useSelector((store) => store.data.warrantyReqs);
   const [searchQuery, setSearchQuery] = useState("");
   const [anchorElSort, setAnchorElSort] = useState(null);
-  const [sortOption, setSortOption] = useState("");
 
   const [filterDepartments, setFilterDepartments] = useState([]);
   const [filterHosps, setFilterHosps] = useState([]);
@@ -131,14 +130,15 @@ const WarrantyRequest = () => {
 
     if (sortOrder === "NewToOld") {
       filteredWarrantyReqsData.sort((a, b) => {
-        let aa = a.warrantyExpDate.split("-").join();
-        let bb = b.warrantyExpDate.split("-").join();
+        let aa = a.warrantyExpDate.split("-").reverse().join();
+        let bb = b.warrantyExpDate.split("-").reverse().join();
         new Date(bb) - new Date(aa);
       });
-    } else if (sortOrder === "OldToNew") {
+    }
+    if (sortOrder === "OldToNew") {
       filteredWarrantyReqsData.sort((a, b) => {
-        let aa = a.warrantyExpDate.split("-").join();
-        let bb = b.warrantyExpDate.split("-").join();
+        let aa = a.warrantyExpDate.split("-").reverse().join();
+        let bb = b.warrantyExpDate.split("-").reverse().join();
         new Date(aa) - new Date(bb);
       });
     }
@@ -154,7 +154,6 @@ const WarrantyRequest = () => {
 
   return (
     <SideBarWrapper menuList={DashboardMenuList}>
-      {" "}
       <Stack minHeight="100%">
         <Box
           display="flex"

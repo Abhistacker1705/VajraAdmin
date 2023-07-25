@@ -488,7 +488,11 @@ const ServiceReqestTable = () => {
                   <TableCell>{data.asset}</TableCell>
                   <TableCell>{data.city}</TableCell>
                   <TableCell>{data.department}</TableCell>
-                  <TableCell>{data.issue}</TableCell>
+                  <TableCell>
+                    {data.issue.length > 20
+                      ? `${data.issue.substring(0, 20)}.....`
+                      : data.issue}
+                  </TableCell>
                   <TableCell>{data.date}</TableCell>
                 </TableRow>
               ))}

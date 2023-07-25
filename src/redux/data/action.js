@@ -234,7 +234,6 @@ export const changePriceSuccessandChangeValue = () => {
     type: CHANGE_PRICE_SUCCESS_AND_CHANGE_VALUE,
   };
 };
-
 export const changePriceFailure = () => {
   return {
     type: CHANGE_PRICE_FAILURE,
@@ -248,6 +247,6 @@ export const changePrice = (data, token) => (dispatch) => {
     dispatch(changePriceSuccess(data));
     setTimeout(() => {
       dispatch(changePriceSuccessandChangeValue());
-    }, 2000);
+    }, 500);
   } else dispatch(changePriceFailure());
 };

@@ -50,7 +50,7 @@ const HospitalDashboard = () => {
           display="flex"
           gap="2rem"
           flexDirection={{xs: "column", lg: "row"}}>
-          <Stack width={{xl: "50%", xs: "100%"}} gap="5rem" marginBottom={2}>
+          <Stack width={{xl: "50%", xs: "100%"}} gap="4rem" marginBottom={2}>
             <AssetsAndServices hospitalData={hospitalData} />
             <PieChart hospitalData={hospitalData} />
           </Stack>

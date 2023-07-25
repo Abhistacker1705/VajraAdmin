@@ -61,7 +61,7 @@ const PieChart = ({hospitalData}) => {
                   },
                 },
               }}
-              height="351px"
+              height="400px"
               borderRadius="20px"
             />
           </CardContent>

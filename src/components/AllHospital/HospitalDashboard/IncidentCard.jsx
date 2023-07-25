@@ -1,5 +1,6 @@
 import React from "react";
 import {Card, CardContent, Typography, Grid, Box} from "@mui/material";
+import {Link} from "react-router-dom";
 
 const IncidentCard = ({hospitalData}) => {
   return (
@@ -40,7 +41,10 @@ const IncidentCard = ({hospitalData}) => {
                   display: "flex",
                 }}>
                 <Typography
+                  component={Link}
+                  to="incidents"
                   sx={{
+                    textDecoration: "none",
                     marginBottom: "10px",
                     fontSize: "18px",
                     fontWeight: "400",
@@ -51,7 +55,12 @@ const IncidentCard = ({hospitalData}) => {
                 {hospitalData.incidentStatistics.total}
               </Typography>
 
-              <Box display="flex" padding="10px">
+              <Box
+                sx={{textDecoration: "none"}}
+                component={Link}
+                to="incidents/cleared"
+                display="flex"
+                padding="10px">
                 <Box
                   sx={{
                     height: "19px",
@@ -79,7 +88,13 @@ const IncidentCard = ({hospitalData}) => {
                   8 cleared
                 </Typography>
               </Box>
-              <Box display="flex" height="100%" padding="10px">
+              <Box
+                component={Link}
+                to="incidents/notcleared"
+                sx={{textDecoration: "none"}}
+                display="flex"
+                height="100%"
+                padding="10px">
                 <Box
                   sx={{
                     height: "19px",
