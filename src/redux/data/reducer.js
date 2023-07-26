@@ -661,6 +661,68 @@ const initState = {
       warrantyExpDate: "17-12-2024",
     },
   ],
+  hospitalUsers: [
+    {
+      name: "Aarav Gupta",
+      role: "admin",
+      dept: "Medical Research",
+      email: "aarav.gupta@example.com",
+    },
+    {
+      name: "Aditi Sharma",
+      role: "partial",
+      dept: "Pharmacy",
+      email: "aditi.sharma@example.com",
+    },
+    {
+      name: "Ishaan Patel",
+      role: "partial",
+      dept: "Nursing",
+      email: "ishaan.patel@example.com",
+    },
+    {
+      name: "Alisha Reddy",
+      role: "partial",
+      dept: "Physical Therapy",
+      email: "alisha.reddy@example.com",
+    },
+    {
+      name: "Vikram Singh",
+      role: "partial",
+      dept: "Pediatrics",
+      email: "vikram.singh@example.com",
+    },
+    {
+      name: "Ananya Verma",
+      role: "admin",
+      dept: "Medical Records",
+      email: "ananya.verma@example.com",
+    },
+    {
+      name: "Kabir Yadav",
+      role: "partial",
+      dept: "Radiology",
+      email: "kabir.yadav@example.com",
+    },
+    {
+      name: "Diya Choudhury",
+      role: "admin",
+      dept: "Cardiology",
+      email: "diya.choudhury@example.com",
+    },
+    {
+      name: "Arjun Mehta",
+      role: "partial",
+      dept: "Emergency Medicine",
+      email: "arjun.mehta@example.com",
+    },
+    {
+      name: "Myra Nair",
+      role: "admin",
+      dept: "Neurology",
+      email: "myra.nair@example.com",
+    },
+  ],
 };
 
 export const dataReducer = (state = initState, action) => {

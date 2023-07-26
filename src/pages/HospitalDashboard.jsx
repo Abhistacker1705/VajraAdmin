@@ -9,13 +9,15 @@ import HospDashHeader from "../components/AllHospital/HospitalDashboard/HospDash
 import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
 import {useParams} from "react-router";
+import ReportCard from "../components/AllHospital/HospitalDashboard/ReportCard";
+import TotalUsersCard from "../components/AllHospital/HospitalDashboard/TotalUsersCard";
 
 const HospitalDashboard = () => {
   const {hospitalId} = useParams();
 
   const hospitalData = {
-    name: "Apolo Hospital",
-    city: "Banglore",
+    name: "Apollo Hospital",
+    city: "Bengaluru",
     assets: 54,
     totalService: 35,
     openService: 23,
@@ -45,20 +47,38 @@ const HospitalDashboard = () => {
         <HospDashHeader hospitalData={hospitalData} />
 
         <Box
+          marginTop="2rem"
           minHeight="100%"
           width="100%"
           display="flex"
           gap="2rem"
           flexDirection={{xs: "column", lg: "row"}}>
-          <Stack width={{xl: "50%", xs: "100%"}} gap="4rem" marginBottom={2}>
+          <Stack width={{xl: "50%", xs: "100%"}} gap="2.5rem">
             <AssetsAndServices hospitalData={hospitalData} />
             <PieChart hospitalData={hospitalData} />
           </Stack>
-          <Stack width={{xl: "50%", xs: "100%"}} gap="1.5rem">
-            <SubscriptionCard />
-            <IncidentCard hospitalData={hospitalData} />
-            <CalibrationCard hospitalData={hospitalData} />
-            <WarrantyCard />
+          <Stack width={{xl: "50%", xs: "100%"}} gap="2.5rem">
+            <Box display="grid" gap="1.75rem">
+              <Box
+                display="grid"
+                gridTemplateColumns={{mobile: "1fr", tablet: "1fr 1fr"}}
+                gap="1rem">
+                <SubscriptionCard />
+                <ReportCard />
+              </Box>
+              <IncidentCard hospitalData={hospitalData} />
+            </Box>
+            <Box display="flex" flexDirection="column" gap="4.25rem">
+              <CalibrationCard hospitalData={hospitalData} />
+
+              <Box
+                display="grid"
+                gridTemplateColumns={{mobile: "1fr", tablet: "1fr 1fr"}}
+                gap="1rem">
+                <TotalUsersCard />
+                <WarrantyCard />
+              </Box>
+            </Box>
           </Stack>
         </Box>
       </Box>

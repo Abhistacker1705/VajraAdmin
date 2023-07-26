@@ -11,6 +11,9 @@ import {
 import {Link} from "react-router-dom";
 
 const IncidentAndServiceGrid = ({data}) => {
+  const path = window.location.pathname.split("/");
+  const lastPath = path[path.length - 1];
+
   return (
     <Box
       bgcolor="white"
@@ -28,11 +31,13 @@ const IncidentAndServiceGrid = ({data}) => {
           <Grid
             sx={{textDecoration: "none", width: "32rem"}}
             component={Link}
-            // to={
-            //   request.Status === "Cleared"
-            //     ? `/detailscleared/${request.Head}`
-            //     : `/detailsnotcleared/${request.Head}`
-            // }
+            to={
+              lastPath == "services" || lastPath == "incidents"
+                ? request.Status === "Cleared"
+                  ? `cleared/${request.Head}`
+                  : `notcleared/${request.Head}`
+                : `${request.Head}`
+            }
             item
             key={index}>
             <Card

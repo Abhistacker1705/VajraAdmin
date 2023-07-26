@@ -201,7 +201,7 @@ const OpenServices = () => {
           sx={{
             color: "#FF731D",
           }}>
-          Services - Open
+          Services - Not Cleared
         </Typography>
         <Box display="flex">
           <Box

@@ -3,28 +3,26 @@ import {Typography, Box} from "@mui/material";
 
 const HospDashHeader = ({hospitalData}) => {
   return (
-    <Box width="100%">
-      <Box display={"flex"} width="100%">
+    <Box display="flex" flexDirection="column" width="100%" gap="3rem">
+      <Box
+        display={"flex"}
+        gap="2rem"
+        alignItems={"center"}
+        flexDirection={{mobile: "column", tablet: "row"}}
+        width="100%">
         <Typography
+          variant="h1"
+          color="primary"
           sx={{
-            fontSize: "30px",
-            fontWeight: "500",
-            color: "#1746A2",
-            width: "300px",
+            maxWidth: "25ch",
           }}>
           {hospitalData.name}
         </Typography>
-        <Typography
-          sx={{fontSize: "30px", fontWeight: "500", color: "#212427"}}>
+        <Typography variant="h2" fontWeight="400" color="text.primary">
           {hospitalData.city}
         </Typography>
       </Box>
-      <Typography
-        sx={{
-          fontSize: "20px",
-          fontWeight: "500",
-          color: "#1746A2",
-        }}>
+      <Typography variant="h4" fontWeight="400" color="primary">
         View and analyze hospital data
       </Typography>
     </Box>
