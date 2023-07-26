@@ -30,6 +30,11 @@ import ClearedServices from "./pages/ClearedServices";
 import OpenServices from "./pages/OpenServices";
 import HospitalDepartments from "./pages/HospitalDepartments";
 import DepartmentDetails from "./pages/DepartmentDetails";
+import ServiceClearedDetails from "./pages/ServiceClearedDetails";
+import ServiceNotClearedDetails from "./pages/ServiceNotClearedDetails";
+import IncidentClearedDetails from "./pages/IncidentClearedDetails";
+import IncidentNotClearedDetails from "./pages/IncidentNotClearedDetails";
+import HospitalUsers from "./components/AllHospital/HospitalUsers.jsx/HospitalUsers";
 
 function App() {
   const navigate = useNavigate();
@@ -91,6 +96,16 @@ function App() {
         }
       />
 
+      {/* hospital users  */}
+
+      <Route
+        path="home/hosp/:hospitalId/users"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <HospitalUsers />
+          </ProtectedRoute>
+        }
+      />
       {/* hospital calibration details */}
 
       {/* calibrated assets */}
@@ -152,6 +167,26 @@ function App() {
         }
       />
 
+      {/*Incidents Cleared Details */}
+      <Route
+        path="home/hosp/:hospitalId/incidents/cleared/:id"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <IncidentClearedDetails />
+          </ProtectedRoute>
+        }
+      />
+      {/* Not Cleared Incidents */}
+
+      <Route
+        path="home/hosp/:hospitalId/incidents/notcleared/:id"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <IncidentNotClearedDetails />
+          </ProtectedRoute>
+        }
+      />
+
       {/* hospital service records */}
 
       {/* every service of hospital */}
@@ -175,10 +210,30 @@ function App() {
       />
       {/* Open services */}
       <Route
-        path="home/hosp/:hospitalId/services/open"
+        path="home/hosp/:hospitalId/services/notcleared"
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
             <OpenServices />
+          </ProtectedRoute>
+        }
+      />
+
+      {/*Service Cleared Details */}
+      <Route
+        path="home/hosp/:hospitalId/services/cleared/:id"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <ServiceClearedDetails />
+          </ProtectedRoute>
+        }
+      />
+      {/* Not Cleared services */}
+
+      <Route
+        path="home/hosp/:hospitalId/services/notcleared/:id"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <ServiceNotClearedDetails />
           </ProtectedRoute>
         }
       />
@@ -226,6 +281,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+
       <Route
         path="home/messages"
         element={
@@ -272,6 +328,15 @@ function App() {
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
             <WarrantyRequest />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="home/manuals"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <Messages />
           </ProtectedRoute>
         }
       />

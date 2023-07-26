@@ -5,6 +5,8 @@ import {
   Message,
   Group,
   CardMembership,
+  LibraryBooks,
+  Queue,
 } from "@mui/icons-material";
 
 export const DashboardMenuList = [
@@ -37,5 +39,11 @@ export const DashboardMenuList = [
     name: "Warranty Request",
     path: "/home/warrantyReq",
     icon: <CardMembership />,
+  },
+
+  {
+    name: "Manuals",
+    path: "/home/manuals",
+    icon: <LibraryBooks />,
   },
 ];

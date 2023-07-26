@@ -8,11 +8,6 @@ const SubscriptionCard = () => {
       sx={{
         boxShadow: "0px 0px 4px 0px #0000001F",
         borderRadius: "20px",
-        marginTop: "20px",
-      }}
-      width={{
-        sm: "100%",
-        xs: "90vw",
       }}>
       <Card sx={{borderRadius: "20px", border: "none", height: "100%"}}>
         <CardContent
@@ -25,31 +20,22 @@ const SubscriptionCard = () => {
             display="flex"
             flexDirection="column"
             gap="1rem"
+            justifyContent="space-between"
             alignItems="center">
-            <Typography
-              sx={{
-                fontSize: "22px",
-                fontWeight: "500",
-                color: "#1746A2",
-              }}>
+            <Typography variant="h4" color="primary">
               Plus
             </Typography>
 
             <img
               src="/plan.svg"
               style={{
-                width: "50px",
-                height: "40px",
+                width: "64px",
+                height: "64px",
               }}
               alt=""
             />
 
-            <Typography
-              sx={{
-                fontSize: "22px",
-                fontWeight: "500",
-                color: "#212427",
-              }}>
+            <Typography variant="h4" fontWeight="400">
               Current Plan
             </Typography>
           </Box>
