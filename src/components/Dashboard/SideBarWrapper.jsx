@@ -61,8 +61,8 @@ const SideBarWrapper = (props) => {
           return (
             <Box
               component={motion.div}
-              whileHover={{translateY: "-0.25rem", scale: "1.0125"}}
-              whileTap={{scale: "0.9"}}
+              whileHover={{translateY: "-0.125rem", scale: 1.0125}}
+              whileTap={{scale: 0.9}}
               width="100%"
               height="fit-content">
               <Button

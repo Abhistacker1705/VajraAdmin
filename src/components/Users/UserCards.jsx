@@ -16,7 +16,7 @@ const UserCards = ({index, user}) => {
   return (
     <Box
       component={motion.div}
-      whileHover={{translateY: "-1rem"}}
+      whileHover={{translateY: "-1rem", animationTimingFunction: "ease-in-out"}}
       display="flex"
       bgcolor="#FFFFFF"
       height="13rem"

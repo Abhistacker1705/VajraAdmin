@@ -460,10 +460,10 @@ const HospitalDepartments = () => {
   };
 
   const AssetsDetails = () => {
-    const filteredData = [...AllAssetsData.AllAssets];
+    let filteredData = [...AllAssetsData.AllAssets];
 
     if (filterStatus.length > 0) {
-      filteredData?.filter((request) =>
+      filteredData = filteredData?.filter((request) =>
         filterStatus.includes(request.asset_status)
       );
     }
