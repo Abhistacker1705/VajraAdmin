@@ -17,9 +17,8 @@ const PieChart = ({hospitalData}) => {
 
   const handleClick = (slice) => {
     const dept = departmentsData[slice.row + 1][0];
-    console.log(departmentsData[slice.row + 1][0]);
+
     setCurrDepartment(dept);
-    console.log(slice);
   };
 
   useEffect(() => {

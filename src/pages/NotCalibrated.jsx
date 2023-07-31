@@ -23,6 +23,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import TableContainer from "@mui/material/TableContainer";
 import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
+import {motion} from "framer-motion";
 
 const NotCalibrated = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -172,7 +173,7 @@ const NotCalibrated = () => {
         id: 12,
         Asset: "Megan USB Smart",
         Dept: "ICU",
-        SerialNo: "BB34456TR",
+        SerialNo: "BP34456TR",
         Status: "Not Calibrated",
         Date: "2023/03/04",
         DueDate: "2023/05/05",
@@ -253,8 +254,10 @@ const NotCalibrated = () => {
     return filteredData;
   };
 
-  const filteredAssets = getNotCalibrated().filter((request) =>
-    request.Asset.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredAssets = getNotCalibrated().filter(
+    (request) =>
+      request.Asset.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      request.SerialNo.toLowerCase().includes(searchQuery.toLowerCase())
   );
   const notCalibratedAssets = filteredAssets.filter(
     (assets) => assets.Status === "Not Calibrated"
@@ -490,7 +493,13 @@ const NotCalibrated = () => {
           </TableHead>
           <TableBody>
             {notCalibratedAssets?.map((request, index) => (
-              <TableRow key={index}>
+              <TableRow
+                component={motion.div}
+                whileHover={{
+                  animationTimingFunction: "ease-in-out",
+                  translateY: "-0.25rem",
+                }}
+                key={index}>
                 <TableCell>{request.Asset}</TableCell>
                 <TableCell align="left">{request.Dept}</TableCell>
                 <TableCell align="left">{request.SerialNo}</TableCell>

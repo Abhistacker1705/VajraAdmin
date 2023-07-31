@@ -256,7 +256,7 @@ const HospitalDepartments = () => {
     if (!file) {
       return;
     }
-    console.log(e.target.value);
+
     e.target.value = null;
     reader.onload = function (e) {
       const contents = e.target.result;

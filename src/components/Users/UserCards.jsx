@@ -4,6 +4,7 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import {deleteUser} from "../../redux/data/action";
 import {Link} from "react-router-dom";
+import {motion} from "framer-motion";
 
 const UserCards = ({index, user}) => {
   const dispatch = useDispatch();
@@ -14,7 +15,8 @@ const UserCards = ({index, user}) => {
 
   return (
     <Box
-      sx={{":hover": {translate: " 0 -5px"}}}
+      component={motion.div}
+      whileHover={{translateY: "-1rem"}}
       display="flex"
       bgcolor="#FFFFFF"
       height="13rem"

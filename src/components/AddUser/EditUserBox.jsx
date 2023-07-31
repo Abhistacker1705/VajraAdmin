@@ -91,7 +91,7 @@ const EditUserBox = (props) => {
         accessError.length === 0
       ) {
         dispatch(editUser(userDetails));
-        console.log("editdispatched");
+
         setUserDetails({
           id: props.toEditUser[0].id,
           user: "",

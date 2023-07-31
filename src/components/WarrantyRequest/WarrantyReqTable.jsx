@@ -18,6 +18,7 @@ import {Edit} from "@mui/icons-material";
 import MuiAlert from "@mui/material/Alert";
 import ChangePriceModal from "./ChangePriceModal";
 import {useSelector} from "react-redux";
+import {motion} from "framer-motion";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -138,7 +139,14 @@ const WarrantyReqTable = ({filteredSearchedWarrantyData}) => {
           </TableHead>
           <TableBody>
             {filteredSearchedWarrantyData?.map((data) => (
-              <TableRow sx={{":hover": {boxShadow: "tableRow"}}} key={data.id}>
+              <TableRow
+                component={motion.div}
+                whileHover={{
+                  animationTimingFunction: "ease-in-out",
+                  translateY: "-0.25rem",
+                }}
+                sx={{":hover": {boxShadow: "tableRow"}}}
+                key={data.id}>
                 <TableCell>
                   <Typography variant="body2">{data.assetName}</Typography>
                 </TableCell>

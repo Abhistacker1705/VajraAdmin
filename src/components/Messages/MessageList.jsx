@@ -18,6 +18,7 @@ import TableContainer from "@mui/material/TableContainer";
 import SortIcon from "@mui/icons-material/Sort";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import {motion} from "framer-motion";
 
 const MessageList = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -295,6 +296,11 @@ const MessageList = () => {
             <TableBody>
               {filteredMessages.map((request, index) => (
                 <TableRow
+                  component={motion.div}
+                  whileHover={{
+                    animationTimingFunction: "ease-in-out",
+                    translateY: "-0.25rem",
+                  }}
                   sx={{":hover": {boxShadow: "tableRow"}}}
                   display="flex"
                   key={index}>

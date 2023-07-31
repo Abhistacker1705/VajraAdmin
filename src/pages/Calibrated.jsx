@@ -23,6 +23,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import TableContainer from "@mui/material/TableContainer";
 import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
+import {motion} from "framer-motion";
 
 const Calibrated = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -115,7 +116,7 @@ const Calibrated = () => {
         id: 6,
         Asset: "Max USB Smart",
         Dept: "ICU",
-        SerialNo: "BB34456TR",
+        SerialNo: "B34456TR",
         Status: "Not Calibrated",
         Active: "Not Required",
       },
@@ -123,7 +124,7 @@ const Calibrated = () => {
         id: 7,
         Asset: "Narayan PFT USB",
         Dept: "Radiology",
-        SerialNo: "BB34456TR",
+        SerialNo: "BC34456TR",
         Status: "Calibrated",
         Date: "2023/02/04",
         DueDate: "2023/06/05",
@@ -158,7 +159,7 @@ const Calibrated = () => {
         id: 11,
         Asset: "Subbhaiha PFT USB",
         Dept: "ECG",
-        SerialNo: "BB34456TR",
+        SerialNo: "BP34456TR",
         Status: "Not Calibrated",
         Active: "Required",
       },
@@ -166,7 +167,7 @@ const Calibrated = () => {
         id: 12,
         Asset: "Megan USB Smart",
         Dept: "ICU",
-        SerialNo: "BB34456TR",
+        SerialNo: "BC34456TR",
         Status: "Not Calibrated",
         Active: "Not Required",
       },
@@ -219,8 +220,10 @@ const Calibrated = () => {
     return filteredData;
   };
 
-  const filteredSearchedData = getCalibrated().filter((request) =>
-    request.Asset.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredSearchedData = getCalibrated().filter(
+    (request) =>
+      request.Asset.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      request.SerialNo.toLowerCase().includes(searchQuery.toLowerCase())
   );
   const calibrated = filteredSearchedData.filter(
     (asset) => asset.Status === "Calibrated"
@@ -450,7 +453,13 @@ const Calibrated = () => {
           </TableHead>
           <TableBody>
             {calibrated?.map((request, index) => (
-              <TableRow key={index}>
+              <TableRow
+                component={motion.div}
+                whileHover={{
+                  animationTimingFunction: "ease-in-out",
+                  translateY: "-0.25rem",
+                }}
+                key={index}>
                 <TableCell>{request.Asset}</TableCell>
                 <TableCell align="left">{request.Dept}</TableCell>
                 <TableCell align="left">{request.SerialNo}</TableCell>

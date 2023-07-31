@@ -34,6 +34,7 @@ const ReportCard = () => {
 
               <Typography
                 component={Link}
+                to={"reports"}
                 color="text.primary"
                 sx={{textDecoration: "none"}}
                 alignSelf="center"
@@ -46,6 +47,7 @@ const ReportCard = () => {
 
               <Typography
                 component={Link}
+                to={"reports"}
                 color="text.primary"
                 sx={{textDecoration: "none"}}
                 alignSelf="center"
@@ -58,6 +60,7 @@ const ReportCard = () => {
 
               <Typography
                 component={Link}
+                to={"reports"}
                 color="text.primary"
                 sx={{textDecoration: "none"}}
                 alignSelf="center"
@@ -69,6 +72,7 @@ const ReportCard = () => {
               </Typography>
               <Typography
                 component={Link}
+                to={"reports"}
                 color="text.primary"
                 sx={{textDecoration: "none"}}
                 alignSelf="center"

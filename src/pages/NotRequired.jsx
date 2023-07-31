@@ -21,6 +21,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
+import {motion} from "framer-motion";
 
 const NotRequired = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -164,7 +165,7 @@ const NotRequired = () => {
         id: 12,
         Asset: "Megan USB Smart",
         Dept: "ICU",
-        SerialNo: "BB34456TR",
+        SerialNo: "BC34456T",
         Status: "Not Required",
         Active: "Not Required",
       },
@@ -212,8 +213,10 @@ const NotRequired = () => {
     return filteredData;
   };
 
-  const filteredSearchedAssets = getCalibrated().filter((request) =>
-    request.Asset.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredSearchedAssets = getCalibrated().filter(
+    (request) =>
+      request.Asset.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      request.SerialNo.toLowerCase().includes(searchQuery.toLowerCase())
   );
   const notRequiredAssets = filteredSearchedAssets.filter(
     (incident) => incident.Active === "Not Required"
@@ -428,7 +431,13 @@ const NotRequired = () => {
           </TableHead>
           <TableBody>
             {notRequiredAssets?.map((request, index) => (
-              <TableRow key={index}>
+              <TableRow
+                component={motion.div}
+                whileHover={{
+                  animationTimingFunction: "ease-in-out",
+                  translateY: "-0.25rem",
+                }}
+                key={index}>
                 <TableCell>{request.Asset}</TableCell>
                 <TableCell align="left">{request.Dept}</TableCell>
                 <TableCell align="left">{request.SerialNo}</TableCell>

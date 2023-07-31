@@ -51,5 +51,10 @@
         "department_incharge": "Rajesh Gupta\r"
       }
     ]
+  },
+  "AllAssetsData": {
+    "Hospital": "Apollo",
+    "City": "Bengaluru",
+    "AllAssets": []
   }
 }

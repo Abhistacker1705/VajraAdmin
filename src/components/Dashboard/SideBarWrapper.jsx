@@ -17,6 +17,7 @@ import {ExpandMore, ExpandLess, Logout} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import {logout} from "../../redux/auth/action";
 import {useDispatch} from "react-redux";
+import {motion} from "framer-motion";
 
 const drawerWidth = 230;
 
@@ -58,28 +59,35 @@ const SideBarWrapper = (props) => {
       <Stack spacing={1} alignItems="flex-start" justifyContent="flex-start">
         {menuList.map((item, index) => {
           return (
-            <Button
-              key={index}
-              component={NavLink}
-              to={item.path}
-              end={item.path === "/home" ? true : false}
-              style={({isActive}) => {
-                return {
-                  borderRadius: "0",
-                  color: isActive ? "#1746A2" : "#FFFFFF",
-                  backgroundColor: isActive ? "#FFFFFF" : "#1746A2",
-                };
-              }}
-              sx={{
-                justifyContent: "flex-start",
-                paddingLeft: "4rem",
-                textTransform: "none",
-              }}
-              startIcon={item.icon}
-              fullWidth
-              variant="text">
-              {item.name}
-            </Button>
+            <Box
+              component={motion.div}
+              whileHover={{translateY: "-0.25rem", scale: "1.0125"}}
+              whileTap={{scale: "0.9"}}
+              width="100%"
+              height="fit-content">
+              <Button
+                key={index}
+                component={NavLink}
+                to={item.path}
+                end={item.path === "/home" ? true : false}
+                style={({isActive}) => {
+                  return {
+                    borderRadius: "0",
+                    color: isActive ? "#1746A2" : "#FFFFFF",
+                    backgroundColor: isActive ? "#FFFFFF" : "#1746A2",
+                  };
+                }}
+                sx={{
+                  justifyContent: "flex-start",
+                  paddingLeft: "4rem",
+                  textTransform: "none",
+                }}
+                startIcon={item.icon}
+                fullWidth
+                variant="text">
+                {item.name}
+              </Button>
+            </Box>
           );
         })}
 
