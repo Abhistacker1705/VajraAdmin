@@ -51,9 +51,7 @@ const AssetServiceHistory = () => {
         borderRadius: "2rem",
       }}>
       <Typography
-        position="relative"
-        display="fixed"
-        top="0px"
+        display="block"
         marginLeft="1rem"
         marginBottom="1rem"
         variant="body1"

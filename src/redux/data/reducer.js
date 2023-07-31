@@ -9,6 +9,9 @@ import {
   DELETE_USER_FAILURE,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
+  DELETE_HOSPUSER_FAILURE,
+  DELETE_HOSPUSER_REQUEST,
+  DELETE_HOSPUSER_SUCCESS,
   EDIT_USER_FAILURE,
   EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
@@ -18,12 +21,16 @@ import {
   GET_ALLHOSPITAL_FAILURE,
   GET_ALLHOSPITAL_REQUEST,
   GET_ALLHOSPITAL_SUCCESS,
+  CHANGE_HOSPUSER_STATUS_REQUEST,
+  CHANGE_HOSPUSER_STATUS_SUCCESS,
+  CHANGE_HOSPUSER_STATUS_FAILURE,
 } from "./action";
 
 const initState = {
   isLoading: false,
   isError: false,
   isValueSaved: false,
+
   allHospital_list: [],
   forgotPassReqResponse: [],
   users: [
@@ -663,64 +670,94 @@ const initState = {
   ],
   hospitalUsers: [
     {
+      id: 1,
       name: "Aarav Gupta",
       role: "admin",
       dept: "Medical Research",
       email: "aarav.gupta@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 2,
       name: "Aditi Sharma",
       role: "partial",
       dept: "Pharmacy",
       email: "aditi.sharma@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 3,
       name: "Ishaan Patel",
       role: "partial",
       dept: "Nursing",
       email: "ishaan.patel@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 4,
       name: "Alisha Reddy",
       role: "partial",
       dept: "Physical Therapy",
       email: "alisha.reddy@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 5,
       name: "Vikram Singh",
       role: "partial",
       dept: "Pediatrics",
       email: "vikram.singh@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 6,
       name: "Ananya Verma",
       role: "admin",
       dept: "Medical Records",
       email: "ananya.verma@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 7,
       name: "Kabir Yadav",
       role: "partial",
       dept: "Radiology",
       email: "kabir.yadav@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 8,
       name: "Diya Choudhury",
       role: "admin",
       dept: "Cardiology",
       email: "diya.choudhury@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 9,
       name: "Arjun Mehta",
       role: "partial",
       dept: "Emergency Medicine",
       email: "arjun.mehta@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
     {
+      id: 10,
       name: "Myra Nair",
       role: "admin",
       dept: "Neurology",
       email: "myra.nair@example.com",
+      designation: "Associate Researcher",
+      status: "Active",
     },
   ],
 };
@@ -887,6 +924,72 @@ export const dataReducer = (state = initState, action) => {
       };
     }
 
+    //DELETE_HOSPITAL_USER
+    case DELETE_HOSPUSER_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    }
+    case DELETE_HOSPUSER_SUCCESS: {
+      const HospUsersWithoutRemUser = state.hospitalUsers.filter(
+        (hosp) => hosp.id != action.payload
+      );
+
+      return {
+        ...state,
+        hospitalUsers: [...HospUsersWithoutRemUser],
+        isLoading: false,
+        isError: false,
+      };
+    }
+
+    case DELETE_HOSPUSER_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    }
+
+    //CHANGE HOSPITAL USER STATUS - ACTIVATE OR DEACTIVATE
+    case CHANGE_HOSPUSER_STATUS_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    }
+    case CHANGE_HOSPUSER_STATUS_SUCCESS: {
+      const users = [...state.hospitalUsers];
+      const statusChangedUser = users.filter(
+        (user) => user.id == action.payload
+      );
+      if (statusChangedUser[0].status.toLowerCase() == "active") {
+        statusChangedUser[0].status = "Inactive";
+      } else if (statusChangedUser[0].status.toLowerCase() == "inactive") {
+        statusChangedUser[0].status = "Active";
+      }
+      const everyOtherUser = users.filter((user) => user.id != action.payload);
+      const completeUsers = [...everyOtherUser, ...statusChangedUser].sort(
+        (a, b) => a.id - b.id
+      );
+      return {
+        ...state,
+        hospitalUsers: [...completeUsers],
+        isLoading: false,
+        isError: false,
+      };
+    }
+
+    case CHANGE_HOSPUSER_STATUS_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    }
     default: {
       return {...state};
     }

@@ -12,6 +12,7 @@ const theme = createTheme({
       tablet: 480,
       laptop: 790,
       desktop: 970,
+      xLDesktop: 1200,
     },
   },
   palette: {

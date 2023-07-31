@@ -35,6 +35,8 @@ import ServiceNotClearedDetails from "./pages/ServiceNotClearedDetails";
 import IncidentClearedDetails from "./pages/IncidentClearedDetails";
 import IncidentNotClearedDetails from "./pages/IncidentNotClearedDetails";
 import HospitalUsers from "./components/AllHospital/HospitalUsers.jsx/HospitalUsers";
+import HospitalUserDetails from "./pages/HospitalUserDetails";
+import Reports from "./pages/Reports";
 
 function App() {
   const navigate = useNavigate();
@@ -103,6 +105,15 @@ function App() {
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
             <HospitalUsers />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="home/hosp/:hospitalId/users/:userId"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <HospitalUserDetails />
           </ProtectedRoute>
         }
       />
@@ -238,6 +249,16 @@ function App() {
         }
       />
 
+      {/* Reports of assets in hospital */}
+      <Route
+        path="home/hosp/:hospitalId/reports"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated()}>
+            <Reports />
+          </ProtectedRoute>
+        }
+      />
+
       {/* Departments in hospital */}
       <Route
         path="home/hosp/:hospitalId/departments"
@@ -340,6 +361,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgotpass" element={<ForgotPassword />} />

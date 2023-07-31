@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {Box, Typography} from "@mui/material";
 import {
+  Paper,
   TextField,
+  Button,
   Table,
   TableHead,
   TableRow,
@@ -9,115 +11,194 @@ import {
   TableCell,
   Menu,
   MenuItem,
+  Dialog,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 import TableContainer from "@mui/material/TableContainer";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
-import {Link} from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
+import {TbFileUpload} from "react-icons/tb";
+import axios from "axios";
+
 const HospitalDepartments = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [anchorElSort, setAnchorElSort] = useState(null);
   const [sortOption, setSortOption] = useState("");
 
-  const DepartmentsData = {
-    Hospital: "Apolo Hospital",
-    City: "Banglore",
-    Departments: [
+  // csv useState
+  const [csvData, setCsvData] = useState(null);
+  const [editedCsvData, setEditedCsvData] = useState(null);
+  const [rowIndex, setRowIndex] = useState(-1);
+  const [columnName, setColumnName] = useState("");
+  const [DepartmentsData, setDepartmentsData] = useState({
+    Hospital: "Apollo",
+    City: "Bengaluru",
+    Departments: [],
+  });
+
+  // [
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "Radiology",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Dhanush"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ECG",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Abhijith"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ICU",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Arunraj"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "Radiology",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Dhanush"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ECG",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Abhijith"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ICU",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Arunraj"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ECHO",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Dhanush"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "OP",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Abhijith"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ICU",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Arunraj"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "Radiology",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Dhanush"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ECHO",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Abhijith"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ICU",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Arunraj"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "OP",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Dhanush"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ECG",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Abhijith"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "OP",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Arunraj"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "Radiology",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Dhanush"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ECG",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Abhijith"
+  //     },
+  //     {
+  //       "department_id": 0,
+  //       "department_name": "ECHO",
+  //       "department_desc": ["Smart PFT_USB USB ECG Monitor PFT USB-PFT"],
+  //       "department_incharge": "Arunraj"
+  //     }
+  //   ]
+
+  async function dataGet() {
+    const response = await axios.get("http://localhost:3000/DepartmentsData");
+    setDepartmentsData(response.data);
+  }
+  useEffect(() => {
+    dataGet();
+  }, []);
+
+  // useEffect(() => {});
+
+  const DepartmentDetails = () => {
+    const filteredData = [...DepartmentsData.Departments];
+
+    if (sortOption === "aToZ") {
+      filteredData?.sort((a, b) =>
+        a.department_name.localeCompare(b.department_name)
+      );
+    } else if (sortOption === "zToA") {
+      filteredData?.sort((a, b) =>
+        b.department_name.localeCompare(a.department_name)
+      );
+    }
+    return filteredData;
+  };
+
+  const searchedFilteredData = DepartmentDetails()?.filter((request) =>
+    request.department_name?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const inputRef = useRef();
+
+  // handle submit from dialog
+
+  const handleSubmit = async () => {
+    setCsvData(editedCsvData);
+    const response = await axios.patch(
+      "http://localhost:3000/DepartmentsData",
       {
-        Dept: "Radiology",
-        Asset: ["Smart PFT_USB", "USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Dhanush",
-      },
-      {
-        Dept: "ECG",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "USB-PFT"],
-        InCharge: "Abhijith",
-      },
-      {
-        Dept: "ICU",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Arunraj",
-      },
-      {
-        Dept: "Radiology",
-        Asset: ["Smart PFT_USB", "USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Dhanush",
-      },
-      {
-        Dept: "ECG",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "USB-PFT"],
-        InCharge: "Abhijith",
-      },
-      {
-        Dept: "ICU",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Arunraj",
-      },
-      {
-        Dept: "ECHO",
-        Asset: ["Smart PFT_USB", "USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Dhanush",
-      },
-      {
-        Dept: "OP",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "USB-PFT"],
-        InCharge: "Abhijith",
-      },
-      {
-        Dept: "ICU",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Arunraj",
-      },
-      {
-        Dept: "Radiology",
-        Asset: ["Smart PFT_USB", "USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Dhanush",
-      },
-      {
-        Dept: "ECHO",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "USB-PFT"],
-        InCharge: "Abhijith",
-      },
-      {
-        Dept: "ICU",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Arunraj",
-      },
-      {
-        Dept: "OP",
-        Asset: ["Smart PFT_USB", "USB", "ECG Monitor"],
-        InCharge: "Dhanush",
-      },
-      {
-        Dept: "ECG",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "USB-PFT"],
-        InCharge: "Abhijith",
-      },
-      {
-        Dept: "OP",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "PFT"],
-        InCharge: "Arunraj",
-      },
-      {
-        Dept: "Radiology",
-        Asset: ["Smart PFT_USB", "USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Dhanush",
-      },
-      {
-        Dept: "ECG",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "USB-PFT"],
-        InCharge: "Abhijith",
-      },
-      {
-        Dept: "ECHO",
-        Asset: ["Smart PFT_USB", "ECG Monitor", "PFT", "USB-PFT"],
-        InCharge: "Arunraj",
-      },
-    ],
+        Departments: [...csvData],
+      }
+    );
+    dataGet();
+  };
+
+  const handleCancel = () => {
+    setCsvData(null);
   };
 
   const handleSearchChange = (event) => {
@@ -137,85 +218,124 @@ const HospitalDepartments = () => {
     setAnchorElSort(null);
   };
 
-  const DepartmentDetails = () => {
-    let filteredData = [...DepartmentsData.Departments];
+  //formatObject
+  function formatObject(obj) {
+    const formattedObj = {};
+    Object.keys(obj).forEach((key) => {
+      formattedObj[key.trim()] = obj[key];
+    });
+    return formattedObj;
+  }
 
-    if (sortOption === "aToZ") {
-      filteredData.sort((a, b) => a.Dept.localeCompare(b.Dept));
-    } else if (sortOption === "zToA") {
-      filteredData.sort((a, b) => b.Dept.localeCompare(a.Dept));
+  // csv to object
+
+  function csvToObject(csvData) {
+    const lines = csvData.split("\n");
+    const result = [];
+    const headers = lines[0].split(",");
+
+    for (let i = 1; i < lines.length - 1; i++) {
+      const obj = {};
+      const currentline = lines[i].split(",");
+
+      for (let j = 0; j < headers.length; j++) {
+        currentline[j] = currentline[j];
+        obj[headers[j]] = currentline[j];
+      }
+
+      result.push(obj);
     }
-    return filteredData;
+
+    return result;
+  }
+  //file upload
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    if (!file) {
+      return;
+    }
+    console.log(e.target.value);
+    e.target.value = null;
+    reader.onload = function (e) {
+      const contents = e.target.result;
+      const data = csvToObject(contents)?.map(formatObject);
+      setCsvData(data);
+      setEditedCsvData(data);
+    };
+    reader.readAsText(file);
   };
 
-  const filteredDepartments = DepartmentDetails().filter((request) =>
-    request.Dept.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  //table edit handler
+  const tableEditHandler = (e, index) => {
+    setRowIndex(index);
+    setColumnName(e.target.getAttribute("datatype"));
+  };
+
+  const handleEditCsvData = (value, rowIndex, column) => {
+    const newData = [...editedCsvData];
+    newData[rowIndex][column] = value;
+    setEditedCsvData(newData);
+  };
 
   return (
     <SideBarWrapper menuList={DashboardMenuList}>
-      <Box minWidth="100%" minHeight="100%" sx={{background: "#FAF5EE"}}>
-        <Box
-          display={{
-            xl: "flex",
-            lg: "flex",
-            md: "flex",
-            sm: "block",
-            xs: "block",
-          }}>
-          <Box>
-            <Box
-              display={"flex"}
-              width={{
-                xl: "600px",
-                lg: "600px",
-                md: "600px",
-                sm: "550px",
-                xs: "460px",
+      <Box>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Box display={"flex"}>
+            <Typography
+              sx={{
+                fontSize: "30px",
+                fontWeight: "500",
+                color: "#1746A2",
+                width: "300px",
               }}>
-              <Typography
-                sx={{
-                  fontSize: "30px",
-                  fontWeight: "500",
-                  color: "#1746A2",
-                  width: "300px",
-                }}>
-                {DepartmentsData.Hospital}
-              </Typography>
-              <Typography
-                sx={{fontSize: "30px", fontWeight: "500", color: "#212427"}}>
-                {DepartmentsData.City}
-              </Typography>
-            </Box>
-            <Box>
-              <Typography
-                sx={{
-                  fontSize: "24px",
-                  fontWeight: "500",
-                  color: "#212427",
-                  width: {
-                    xl: "600px",
-                    lg: "600px",
-                    md: "600px",
-                    sm: "550px",
-                    xs: "460px",
-                  },
-                }}>
-                Departments: {DepartmentsData.Departments.length}
-              </Typography>
-            </Box>
+              {DepartmentsData.Hospital}
+            </Typography>
+            <Typography
+              sx={{fontSize: "30px", fontWeight: "500", color: "#212427"}}>
+              {DepartmentsData.City}
+            </Typography>
           </Box>
-          <Box
-            marginTop="20px"
-            marginLeft={{xl: "100px", lg: "100px", md: "-50px", sm: "-0px"}}
-            display="flex">
+        </Box>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Typography
+            sx={{
+              fontSize: "24px",
+              fontWeight: "500",
+              color: "#212427",
+            }}>
+            Departments: {DepartmentsData?.Departments?.length}
+          </Typography>
+
+          <Box display="flex" alignItems="center" gap="1rem">
+            <Box>
+              <Button
+                onClick={(e) => inputRef.current.click()}
+                variant="contained"
+                startIcon={<TbFileUpload />}
+                sx={{borderRadius: "2rem", textTransform: "none"}}
+                color="primary"
+                display="flex"
+                gap="0.5rem">
+                <input
+                  accept=".csv"
+                  ref={inputRef}
+                  type="file"
+                  hidden
+                  onChange={handleFileUpload}
+                />
+                Upload Bulk Depts
+              </Button>
+            </Box>
             <Box>
               <TextField
                 value={searchQuery}
                 onChange={handleSearchChange}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment>
+                    <InputAdornment position="start">
                       <IconButton>
                         <SearchIcon />
                       </IconButton>
@@ -224,20 +344,19 @@ const HospitalDepartments = () => {
                 }}
                 placeholder="Search"
                 sx={{
+                  bgcolor: "#FFFFFF",
                   "& fieldset": {
-                    borderRadius: "36px",
+                    borderRadius: "2rem",
                     border: "1px solid black",
-                    height: "56px",
-                    maxWidth: "247px",
+                    height: "100%",
+                    width: "100%",
                   },
                 }}></TextField>
             </Box>
-            <Box display="flex" marginTop="-10px">
+            <Box display="flex">
               <IconButton onClick={handleSortClick} type="button">
                 <SortIcon
                   sx={{
-                    width: "60px",
-                    height: "40px",
                     color: "#FF731D",
                   }}></SortIcon>
               </IconButton>
@@ -246,7 +365,7 @@ const HospitalDepartments = () => {
                 open={Boolean(anchorElSort)}
                 onClose={handleSortClose}>
                 <MenuItem
-                  onClick={() => handleSortOptionSelect("aToZ")}
+                  onClick={(e) => handleSortOptionSelect("aToZ")}
                   sx={{
                     color: sortOption === "aToZ" ? "#FF731D" : "#212427",
                     fontSize: "16px",
@@ -267,141 +386,274 @@ const HospitalDepartments = () => {
             </Box>
           </Box>
         </Box>
+      </Box>
 
+      {DepartmentsData?.Departments?.length === 0 ? (
+        csvData ? (
+          <>
+            <Box
+              maxWidth="100vw"
+              height="100%"
+              sx={{
+                overflowY: "auto",
+                boxShadow: "0px 0px 4px 0px #00000033",
+                border: "0px solid #1746A280",
+                borderRadius: "15px",
+                marginTop: "20px",
+              }}>
+              <Box
+                maxWidth={"100vw"}
+                height="100vh"
+                sx={{
+                  overflowY: "auto",
+                  boxShadow: "0px 0px 4px 0px #00000033",
+                  border: "0px solid #1746A280",
+                  borderRadius: "15px",
+                }}>
+                <Table
+                  stickyHeader
+                  sx={{maxWidth: "100vw", minHeight: "100vh"}}>
+                  <TableHead sx={{width: "100vw", bgcolor: "#1746A233"}}>
+                    <TableRow>
+                      <TableCell sx={{color: "primary.main"}}>
+                        Department ID
+                      </TableCell>
+                      <TableCell sx={{color: "primary.main"}}>
+                        Department Name
+                      </TableCell>
+                      <TableCell sx={{color: "primary.main"}}>
+                        Department Description
+                      </TableCell>
+                      <TableCell sx={{color: "primary.main"}}>
+                        InCharge
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {csvData?.map((request, index) => (
+                      <TableRow
+                        onClick={(e) => tableEditHandler(e, index)}
+                        display="flex"
+                        key={request.department_id}>
+                        <TableCell
+                          datatype="department_id"
+                          sx={{
+                            color: "#212427",
+                          }}>
+                          {rowIndex == index &&
+                          columnName == "department_id" ? (
+                            <input
+                              datatype="department_id"
+                              value={editedCsvData[index]["department_id"]}
+                              onChange={(e) =>
+                                handleEditCsvData(
+                                  e.target.value,
+                                  index,
+                                  columnName
+                                )
+                              }
+                              placeholder={request.department_id}
+                            />
+                          ) : (
+                            request.department_id
+                          )}
+                        </TableCell>
+                        <TableCell
+                          datatype="department_name"
+                          sx={{
+                            color: "#212427",
+                          }}>
+                          {rowIndex == index &&
+                          columnName == "department_name" ? (
+                            <input
+                              datatype="department_name"
+                              value={editedCsvData[index]["department_name"]}
+                              onChange={(e) =>
+                                handleEditCsvData(
+                                  e.target.value,
+                                  index,
+                                  columnName
+                                )
+                              }
+                              placeholder={request.department_name}
+                            />
+                          ) : (
+                            request.department_name
+                          )}
+                        </TableCell>
+                        <TableCell
+                          datatype="department_desc"
+                          align="left"
+                          sx={{
+                            color: "#212427",
+                          }}>
+                          {rowIndex == index &&
+                          columnName == "department_desc" ? (
+                            <input
+                              datatype="department_desc"
+                              value={editedCsvData[index]["department_desc"]}
+                              onChange={(e) =>
+                                handleEditCsvData(
+                                  e.target.value,
+                                  index,
+                                  columnName
+                                )
+                              }
+                              placeholder={request.department_desc}
+                            />
+                          ) : (
+                            request.department_desc
+                          )}
+                        </TableCell>
+                        <TableCell
+                          datatype="department_incharge"
+                          align="left"
+                          sx={{
+                            color: "#212427",
+                          }}>
+                          {rowIndex == index &&
+                          columnName == "department_incharge" ? (
+                            <input
+                              datatype="department_incharge"
+                              value={
+                                editedCsvData[index]["department_incharge"]
+                              }
+                              onChange={(e) =>
+                                handleEditCsvData(
+                                  e.target.value,
+                                  index,
+                                  columnName
+                                )
+                              }
+                              placeholder={request.department_incharge}
+                            />
+                          ) : (
+                            request.department_incharge
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Box>
+            </Box>
+
+            <Box display="flex" width="100%" justifyContent="end" gap="2rem">
+              <Button
+                variant="contained"
+                sx={{borderRadius: "2rem", marginTop: "2rem"}}
+                onClick={handleCancel}>
+                Cancel
+              </Button>
+              <Button
+                variant="contained"
+                sx={{borderRadius: "2rem", marginTop: "2rem"}}
+                onClick={handleSubmit}>
+                Submit
+              </Button>
+            </Box>
+          </>
+        ) : (
+          <Box
+            marginTop="20px"
+            boxShadow={"none"}
+            bgcolor="white"
+            display="flex"
+            width="100%"
+            height="70vh"
+            justifyContent="center"
+            alignItems="center">
+            <Typography variant="h2" color="primary">
+              No department data to show
+            </Typography>
+          </Box>
+        )
+      ) : (
         <Box
-          maxWidth="1030px"
-          minHeight="100%"
+          maxWidth={"100vw"}
+          maxHeight="20rem"
           sx={{
+            marginTop: "2rem",
+            overflowY: "auto",
             boxShadow: "0px 0px 4px 0px #00000033",
             border: "0px solid #1746A280",
             borderRadius: "15px",
-            marginTop: {
-              xl: "20px",
-              lg: "20px",
-              md: "20px",
-              sm: "20px",
-              xs: "20px",
-            },
           }}>
-          <TableContainer
+          <Table
             sx={{
-              minWidth: {xl: 1030, lg: 1030, md: 850, sm: 500, xs: 400},
+              maxWidth: "100vw",
               minHeight: "100%",
-              borderRadius: "15px",
-            }}
-            aria-label="simple table">
-            <Table>
-              <TableHead width="1030px" height="50px">
-                <TableRow sx={{background: "#EFF5FE", width: "1030px"}}>
-                  <TableCell maxWidth="1030px">
-                    <Box display="flex">
-                      <Typography
-                        align="left"
-                        sx={{
-                          fontSize: "20px",
-                          fontWeight: "500",
-                          color: "#1746A2",
-                          width: "250px",
-                          height: "30px",
-                        }}>
-                        Department Name
-                      </Typography>
-                      <Typography
-                        align="left"
-                        sx={{
-                          fontSize: "20px",
-                          fontWeight: "500",
-                          color: "#1746A2",
-                          width: "200px",
-                          height: "30px",
-                          marginLeft: "180px",
-                        }}>
-                        No of Assets
-                      </Typography>
-                      <Typography
-                        align="left"
-                        sx={{
-                          fontSize: "20px",
-                          fontWeight: "500",
-                          color: "#1746A2",
-                          width: "200px",
-                          height: "30px",
-                          marginLeft: "140px",
-                        }}>
-                        InCharge
-                      </Typography>
-                    </Box>
+              bgcolor: "#FFFFFF",
+            }}>
+            <TableHead sx={{width: "100vw", bgcolor: "#1746A233"}}>
+              <TableRow>
+                <TableCell
+                  sx={{
+                    color: "primary.main",
+                    fontSize: "1.25rem",
+                    fontWeight: "500",
+                  }}>
+                  Department ID
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: "primary.main",
+                    fontSize: "1.25rem",
+                    fontWeight: "500",
+                  }}>
+                  Department Name
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: "primary.main",
+                    fontSize: "1.25rem",
+                    fontWeight: "500",
+                  }}>
+                  Department Description
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: "primary.main",
+                    fontSize: "1.25rem",
+                    fontWeight: "500",
+                  }}>
+                  InCharge
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody sx={{bgcolor: "#FFFFFF"}}>
+              {searchedFilteredData?.map((request, index) => (
+                <TableRow display="flex" key={request.department_id}>
+                  <TableCell
+                    sx={{
+                      color: "#212427",
+                    }}>
+                    {request.department_id}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "#212427",
+                    }}>
+                    {request.department_name}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "#212427",
+                    }}>
+                    {request.department_desc}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "#212427",
+                    }}>
+                    {request.department_incharge}
                   </TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredDepartments.map((request, index) => (
-                  <TableRow display="flex" key={index}>
-                    <TableCell
-                      maxWidth="1030px"
-                      sx={{
-                        background: "white",
-                        borderColor: "black",
-                        padding: "10px",
-                      }}>
-                      <Box display="flex" width="1030px">
-                        <Typography
-                          align="left"
-                          sx={{
-                            fontSize: "18px",
-                            fontWeight: "500",
-                            width: "250px",
-                            height: "30px",
-                            borderColor: "black",
-                            color: "#1746A2",
-                            marginLeft: "2px",
-                          }}
-                          component="th">
-                          <Link
-                            to={`${request.Dept.toLowerCase()}`}
-                            style={{
-                              textDecoration: "none",
-                              color: "#1746A2",
-                              borderBottom: "2px solid #1746A2",
-                            }}>
-                            {request.Dept}
-                          </Link>{" "}
-                        </Typography>
-                        <Typography
-                          align="left"
-                          sx={{
-                            fontSize: "18px",
-                            fontWeight: "500",
-                            color: "#212427",
-                            width: "200px",
-                            height: "30px",
-                            borderColor: "black",
-                            marginLeft: "190px",
-                          }}>
-                          {request.Asset.length}
-                        </Typography>
-                        <Typography
-                          align="left"
-                          sx={{
-                            fontSize: "18px",
-                            fontWeight: "500",
-                            color: "#212427",
-                            width: "200px",
-                            height: "30px",
-                            borderColor: "black",
-                            marginLeft: "140px",
-                          }}>
-                          {request.InCharge}
-                        </Typography>
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              ))}
+            </TableBody>
+          </Table>
         </Box>
-      </Box>
+      )}
     </SideBarWrapper>
   );
 };

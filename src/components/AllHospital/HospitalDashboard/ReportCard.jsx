@@ -33,11 +33,47 @@ const ReportCard = () => {
               />
 
               <Typography
+                component={Link}
+                color="text.primary"
+                sx={{textDecoration: "none"}}
                 alignSelf="center"
-                marginTop="1rem"
-                variant="body1"
-                fontWeight="normal">
+                variant="body2">
                 Total Reports :{" "}
+                <Typography variant="" color="secondary">
+                  512
+                </Typography>
+              </Typography>
+
+              <Typography
+                component={Link}
+                color="text.primary"
+                sx={{textDecoration: "none"}}
+                alignSelf="center"
+                variant="body2">
+                Service Reports :{" "}
+                <Typography variant="" color="secondary">
+                  512
+                </Typography>
+              </Typography>
+
+              <Typography
+                component={Link}
+                color="text.primary"
+                sx={{textDecoration: "none"}}
+                alignSelf="center"
+                variant="body2">
+                Calibration Reports :{" "}
+                <Typography variant="" color="secondary">
+                  512
+                </Typography>
+              </Typography>
+              <Typography
+                component={Link}
+                color="text.primary"
+                sx={{textDecoration: "none"}}
+                alignSelf="center"
+                variant="body2">
+                Incident Reports :{" "}
                 <Typography variant="" color="secondary">
                   512
                 </Typography>

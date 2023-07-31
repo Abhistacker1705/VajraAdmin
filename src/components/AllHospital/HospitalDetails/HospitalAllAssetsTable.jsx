@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import {Link} from "react-router-dom";
+import {motion} from "framer-motion";
 
 const HospitalAllAssetsTable = ({filteredSearchedAssetData}) => {
   return (
@@ -70,8 +71,14 @@ const HospitalAllAssetsTable = ({filteredSearchedAssetData}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredSearchedAssetData?.map((data) => (
-            <TableRow sx={{":hover": {boxShadow: "tableRow"}}} key={data.id}>
+          {filteredSearchedAssetData?.map((data, index) => (
+            <TableRow
+              component={motion.div}
+              initial={{opacity: 0.2, translateY: "-25px", speed: 2}}
+              animate={{opacity: 1, translateY: "0"}}
+              transition={{duration: 1 + index / 12}}
+              sx={{":hover": {boxShadow: "tableRow"}}}
+              key={data.id}>
               <TableCell>
                 <Typography
                   component={Link}

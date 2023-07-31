@@ -1,0 +1,55 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "DepartmentsData": {
+    "Hospital": "Apollo",
+    "City": "Bengaluru",
+    "Departments": [
+      {
+        "department_name": "Cardiology",
+        "department_desc": "Handles heart-related medical cases",
+        "department_id": "1001",
+        "department_incharge": "Rahul Sharma\r"
+      },
+      {
+        "department_name": "Orth",
+        "department_desc": "Specializes injoint treatments",
+        "department_id": "1002",
+        "department_incharge": "Priya Verma\r"
+      },
+      {
+        "department_name": "Neurology",
+        "department_desc": "Deals with nervous system disorders",
+        "department_id": "1003",
+        "department_incharge": "Ajay Kapoor\r"
+      },
+      {
+        "department_name": "Gynecology",
+        "department_desc": "Focuses on women's reproductive health",
+        "department_id": "1004",
+        "department_incharge": "Neha Singh\r"
+      },
+      {
+        "department_name": "Pediatrics",
+        "department_desc": "Cares for children's medical needs",
+        "department_id": "1005",
+        "department_incharge": "Rajesh Gupta\r"
+      }
+    ]
+  }
+}
