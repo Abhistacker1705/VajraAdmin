@@ -20,6 +20,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import {useParams, Link} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {motion} from "framer-motion";
 
 const ServiceRequestTable = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -122,14 +123,6 @@ const ServiceRequestTable = () => {
               },
               fontWeight: "500",
               color: "secondary.main",
-
-              width: {
-                xl: "220px",
-                lg: "220px",
-                md: "220px",
-                sm: "120px",
-                xs: "80px",
-              },
             }}>
             Service Requests
           </Typography>
@@ -468,6 +461,11 @@ const ServiceRequestTable = () => {
             <TableBody>
               {filteredServiceRequests?.map((data) => (
                 <TableRow
+                  component={motion.div}
+                  whileHover={{
+                    animationTimingFunction: "ease-in-out",
+                    translateY: "-0.25rem",
+                  }}
                   sx={{":hover": {boxShadow: "tableRow"}}}
                   key={data.id}>
                   <TableCell sx={{maxWidth: "20ch", lineHeight: "2"}}>

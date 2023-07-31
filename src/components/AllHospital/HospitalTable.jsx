@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@mui/material";
 import {Link} from "react-router-dom";
+import {motion} from "framer-motion";
 
 const HospitalTable = ({searchedFilteredHospData}) => {
   return (
@@ -75,7 +76,14 @@ const HospitalTable = ({searchedFilteredHospData}) => {
         </TableHead>
         <TableBody>
           {searchedFilteredHospData?.map((data) => (
-            <TableRow sx={{":hover": {boxShadow: "tableRow"}}} key={data.id}>
+            <TableRow
+              sx={{":hover": {boxShadow: "tableRow"}}}
+              component={motion.div}
+              whileHover={{
+                animationTimingFunction: "ease-in-out",
+                translateY: "-0.25rem",
+              }}
+              key={data.id}>
               <TableCell
                 sx={{
                   maxWidth: "20ch",

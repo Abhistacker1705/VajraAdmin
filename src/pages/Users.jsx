@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import {Box, Typography, Button} from "@mui/material";
 import AddCircle from "@mui/icons-material/AddCircle";
 import {useSelector} from "react-redux";
+import {motion} from "framer-motion";
 
 const Users = () => {
   const users = useSelector((store) => store.data.users);

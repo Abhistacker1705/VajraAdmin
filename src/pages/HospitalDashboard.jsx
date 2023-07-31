@@ -11,6 +11,7 @@ import {DashboardMenuList} from "../utils/dashboardMenuList";
 import {useParams} from "react-router";
 import ReportCard from "../components/AllHospital/HospitalDashboard/ReportCard";
 import TotalUsersCard from "../components/AllHospital/HospitalDashboard/TotalUsersCard";
+import {motion} from "framer-motion";
 
 const HospitalDashboard = () => {
   const {hospitalId} = useParams();

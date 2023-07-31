@@ -37,6 +37,7 @@ import IncidentNotClearedDetails from "./pages/IncidentNotClearedDetails";
 import HospitalUsers from "./components/AllHospital/HospitalUsers.jsx/HospitalUsers";
 import HospitalUserDetails from "./pages/HospitalUserDetails";
 import Reports from "./pages/Reports";
+import Manuals from "./pages/Manuals";
 
 function App() {
   const navigate = useNavigate();
@@ -357,7 +358,7 @@ function App() {
         path="home/manuals"
         element={
           <ProtectedRoute isAuthenticated={isAuthenticated()}>
-            <Messages />
+            <Manuals />
           </ProtectedRoute>
         }
       />
