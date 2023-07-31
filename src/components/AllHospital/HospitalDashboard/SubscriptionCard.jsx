@@ -13,13 +13,14 @@ const SubscriptionCard = () => {
         <CardContent
           sx={{
             display: "flex",
+
             alignItems: "center",
             justifyContent: "center",
           }}>
           <Box
             display="flex"
             flexDirection="column"
-            gap="1rem"
+            gap="1.5rem"
             justifyContent="space-between"
             alignItems="center">
             <Typography variant="h4" color="primary">

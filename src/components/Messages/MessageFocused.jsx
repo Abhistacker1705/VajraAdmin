@@ -28,7 +28,7 @@ const MessageFocused = () => {
           Messages
         </Typography>
         <Box
-          maxWidth="1030px"
+          width="100%"
           minHeight="100%"
           sx={{
             boxShadow: "0px 0px 4px 0px #00000033",
