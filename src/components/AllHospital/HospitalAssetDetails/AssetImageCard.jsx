@@ -33,7 +33,6 @@ const AssetImageAndQRCard = () => {
   //download
 
   const download = (e, imageUrl) => {
-    console.log(e.target.href);
     fetch(imageUrl, {
       method: "GET",
       headers: {},
@@ -49,7 +48,7 @@ const AssetImageAndQRCard = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
   return (
