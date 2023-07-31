@@ -260,7 +260,7 @@ const DepartmentDetails = () => {
   const selectedDept = filteredDepartments.filter(
     (item) => item.Dept.toLowerCase() === dept
   );
-  console.log(dept, selectedDept);
+
   return (
     <SideBarWrapper menuList={DashboardMenuList}>
       <Box maxWidth="100%" sx={{background: "#FAF5EE", paddingY: "20px"}}>

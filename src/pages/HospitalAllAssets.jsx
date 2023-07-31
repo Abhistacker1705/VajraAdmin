@@ -42,7 +42,7 @@
 
 //   useEffect(() => {
 //     assets.map((asset) => {
-//       // console.log(asset.status);
+//
 
 //       if (!uniqueFilterOptions.depts.includes(asset.department)) {
 //         uniqueFilterOptions.depts.push(asset.department);
@@ -565,7 +565,7 @@ const HospitalDepartments = () => {
     if (!file) {
       return;
     }
-    console.log(e.target.value);
+
     e.target.value = null;
     reader.onload = function (e) {
       const contents = e.target.result;

@@ -11,7 +11,6 @@ const HospitalUsers = () => {
   const users = useSelector((store) => store.data.hospitalUsers);
   const dispatch = useDispatch();
   const handleDeleteHospUser = (e, id) => {
-    console.log(e.target.getAttribute("href"));
     const link = e.target.getAttribute("href");
     dispatch(deleteHospUser({id}));
   };
