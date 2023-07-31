@@ -292,7 +292,7 @@ const DepartmentDetails = () => {
                   onChange={handleSearchChange}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment>
+                      <InputAdornment position="start">
                         <IconButton>
                           <SearchIcon />
                         </IconButton>

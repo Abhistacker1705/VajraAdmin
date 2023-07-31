@@ -250,3 +250,69 @@ export const changePrice = (data, token) => (dispatch) => {
     }, 500);
   } else dispatch(changePriceFailure());
 };
+
+//Delete user
+
+export const DELETE_HOSPUSER_REQUEST = "DELETE_HOSPUSER_REQUEST";
+export const DELETE_HOSPUSER_SUCCESS = "DELETE_HOSPUSER_SUCCESS";
+export const DELETE_HOSPUSER_FAILURE = "DELETE_HOSPUSER_FAILURE";
+
+export const deleteHospUserRequest = () => {
+  return {
+    type: DELETE_HOSPUSER_REQUEST,
+  };
+};
+
+export const deleteHospUserSuccess = (data) => {
+  return {
+    type: DELETE_HOSPUSER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const deleteHospUserFailure = () => {
+  return {
+    type: DELETE_HOSPUSER_FAILURE,
+  };
+};
+
+//Action Dispatcher
+export const deleteHospUser = (data, token) => (dispatch) => {
+  dispatch(deleteHospUserRequest());
+  if (data.id) {
+    dispatch(deleteHospUserSuccess(data.id));
+  } else dispatch(deleteHospUserFailure());
+};
+
+//Activate or Deactivate User
+
+export const CHANGE_HOSPUSER_STATUS_REQUEST = "CHANGE_HOSPUSER_STATUS_REQUEST";
+export const CHANGE_HOSPUSER_STATUS_SUCCESS = "CHANGE_HOSPUSER_STATUS_SUCCESS";
+export const CHANGE_HOSPUSER_STATUS_FAILURE = "CHANGE_HOSPUSER_STATUS_FAILURE";
+
+export const changeHospUserStatusRequest = () => {
+  return {
+    type: CHANGE_HOSPUSER_STATUS_REQUEST,
+  };
+};
+
+export const changeHospUserStatusSuccess = (data) => {
+  return {
+    type: CHANGE_HOSPUSER_STATUS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const changeHospUserStatusFailure = () => {
+  return {
+    type: CHANGE_HOSPUSER_STATUS_FAILURE,
+  };
+};
+
+//Action Dispatcher
+export const changeHospUserStatus = (data, token) => (dispatch) => {
+  dispatch(changeHospUserStatusRequest());
+  if (data.id) {
+    dispatch(changeHospUserStatusSuccess(data.id));
+  } else dispatch(changeHospUserStatusFailure());
+};

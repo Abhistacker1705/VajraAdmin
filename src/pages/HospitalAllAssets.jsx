@@ -3,6 +3,7 @@ import SideBarWrapper from "../components/Dashboard/SideBarWrapper";
 import AllHospitalAssetsTable from "../components/AllHospital/HospitalDetails/HospitalAllAssetsTable";
 import {
   Box,
+  Button,
   Stack,
   Popover,
   Tooltip,
@@ -19,7 +20,7 @@ import {useSelector} from "react-redux";
 import {FilterAltOutlined} from "@mui/icons-material";
 import {DashboardMenuList} from "../utils/dashboardMenuList";
 import {FormatListNumberedRtl, SortOutlined, Search} from "@mui/icons-material";
-
+import {TbFileUpload} from "react-icons/tb";
 const AllHospitalAssets = () => {
   const assets = useSelector((store) => store.data.assets);
   const [searchQuery, setSearchQuery] = useState("");
@@ -163,6 +164,17 @@ const AllHospitalAssets = () => {
           {/* search */}
 
           <Box display="flex" gap="0.5rem">
+            <Box display="flex">
+              <Button
+                variant="contained"
+                startIcon={<TbFileUpload />}
+                sx={{borderRadius: "2rem", textTransform: "none"}}
+                color="primary"
+                display="flex"
+                gap="0.5rem">
+                Upload Bulk Assets
+              </Button>
+            </Box>
             <Box
               sx={{
                 display: "flex",
